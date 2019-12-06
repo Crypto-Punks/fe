@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 //todo make onsubmit function, getExchangeRate, getPrice
 
-const TransactionForm = ({ currencies, activeCoins }) => {
+const TransactionForm = ({ currencies, investedCoins }) => {
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [fromCurrencyAmount, setFromCurrencyAmount] = useState(0);
   const [fromCurrencyMax, setFromCurrencyMax] = useState(0);
@@ -19,12 +19,12 @@ const TransactionForm = ({ currencies, activeCoins }) => {
     return <option key={currency.name} value={currency} />;
   });
 
-  const activeCoinsElements = activeCoins.map(coin => {
+  const investedCoinsElements = investedCoins.map(coin => {
     return <option key={coin.name} value={coin.name} />;
   });
 
   useEffect(() => {
-    const max = activeCoins.find(element => element.name === fromCurrency).amount;
+    const max = investedCoins.find(element => element.name === fromCurrency).amount;
     setFromCurrencyMax(max);
   }, [fromCurrency]);
 
@@ -67,7 +67,7 @@ const TransactionForm = ({ currencies, activeCoins }) => {
         I want to use
         <input type='number' max={fromCurrencyMax} value={fromCurrencyAmount} onChange={event => setFromCurrencyAmount(event.target.value)} />
         <select value={fromCurrency} onChange={event => setFromCurrency(event.target.value)}>
-          {activeCoinsElements}
+          {investedCoinsElements}
         </select>
       </label>
       <section>
@@ -83,7 +83,7 @@ const TransactionForm = ({ currencies, activeCoins }) => {
 };
 
 TransactionForm.propTypes = {
-  activeCoins: PropTypes.arrayOf(PropTypes.shape({
+  investedCoins: PropTypes.arrayOf(PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
