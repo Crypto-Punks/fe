@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+//todo - make li's into buttons that go to detail page for that coin
+
 const Coin = ({ item }) => {
   const { logo, name, price, changePercent24Hr } = item;
   return (
