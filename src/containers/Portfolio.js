@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NetWorth from '../components/net-worth/NetWorth';
 import AssetList from '../components/assets/AssetList';
+import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
 
 const Portfolio = ({ netWorth, activeCoins }) => {
   return (
@@ -12,8 +13,7 @@ const Portfolio = ({ netWorth, activeCoins }) => {
       //diversification chart
       }
       <AssetList items={activeCoins} />
-      {//hamburger menu
-      }
+      <HamburgerMenu />
     </div>
   );
 };
