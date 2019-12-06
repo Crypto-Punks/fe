@@ -9,12 +9,13 @@ body {
 .Header {
   display: flex;
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 42%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  color: white; 
+  color: #6CB2BA;
+ 
   margin: 0;
 
   h1 {
@@ -88,71 +89,30 @@ body {
 
 @media (max-width: 900px) {
   .Header {
-    color: green;
     left: 35%;
-    top:10%;
+    top: 15%;
   }
 
   .Container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    position: absolute;
     width: 50vw;
     height: 50vh;
     left: 25%;
     top: 50%;
-  
-    a {
-      color: #6CB2BA;
-    }
-  
+    
     a:link {
-      text-decoration: none;
-      cursor: pointer;
-      background-color: #43484F;
-      border-radius: 3em;
       width: 10vw;
-      text-align: center;
-    }
-  
-    span {
-      color: white;
-      margin: 10px;
     }
   }
 
   .Form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
     input {
-      background-color: #ACDEE3;
-      margin: 1em;
       width: 25vw;
       height: 5vh;
-      border-radius: .5em;
-      border: 2px solid black;
     }
-  
-    input::placeholder {
-      color: #BF60A5;
-    }
-  
     button {
       width: 10vw;
       height: 5vh;
-      background-color: #6CB2BA;
-      color: white;
-      border-radius: 1em;
-      border: .5px solid black;
-      cursor: pointer;
     }
-
   }
 
 }
@@ -166,69 +126,30 @@ body {
 @media (max-width: 375px) {
 
   .Header {
-    color: yellow;
     left: 18%;
-    top:10%;
   }
 
   .Container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    position: absolute;
     width: 50vw;
     height: 50vh;
     left: 25%;
     top: 50%;
   
-    a {
-      color: #6CB2BA;
-    }
-  
     a:link {
-      text-decoration: none;
-      cursor: pointer;
-      background-color: #43484F;
-      border-radius: 3em;
       width: 20vw;
-      text-align: center;
-    }
-  
-    span {
-      color: white;
-      margin: 10px;
     }
   }
 
   .Form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
+    
     input {
-      background-color: #ACDEE3;
-      margin: 1em;
       width: 55vw;
       height: 5vh;
-      border-radius: .5em;
-      border: 2px solid black;
-    }
-  
-    input::placeholder {
-      color: #BF60A5;
     }
   
     button {
       width: 20vw;
       height: 5vh;
-      background-color: #6CB2BA;
-      color: white;
-      border-radius: 1em;
-      border: .5px solid black;
-      cursor: pointer;
     }
 
   }
