@@ -27,7 +27,7 @@ const PrivateRoute = ({ ...rest }) => {
   if(!loading && !sessionId) return <Redirect to="/signup"/>;
 
   return <Route {...rest} />;
-};
+}; 
 
 export default function App() {
   return (
