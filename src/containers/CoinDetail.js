@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'; 
 import PropTypes from 'prop-types';
 import AboutCoin from '../components/about-coin/AboutCoin';
+import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
 
 //todo make action for adding/removing from favorites, selectors, add charts
 
@@ -19,6 +20,7 @@ const CoinDetail = ({ match, investedCoins, watchlist }) => {
         // derivative chart
       }
       <AboutCoin {...coinInfo} />
+      <HamburgerMenu />
     </div>
   );
 };
