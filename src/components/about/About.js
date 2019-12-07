@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './About.css';
 
-const About = ({ open }) => {
+const About = ({ openMenu }) => {
 
   return (
     <div className={`${styles.AboutMenu} ${open ? styles.open : styles.closed} `}>
@@ -12,7 +12,7 @@ const About = ({ open }) => {
 };
 
 About.propTypes = {
-  open: PropTypes.bool.isRequired
+  openMenu: PropTypes.bool.isRequired
 };
 
 export default About;
