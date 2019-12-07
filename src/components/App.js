@@ -11,6 +11,7 @@ import { sessionVerify } from '../actions/sessionActions';
 import Signup from '../containers/SignUp';
 import SignIn from '../containers/SignIn';
 import SignOut from '../containers/SignOut';
+import Opener from './opener/Opener';
 
 const PrivateRoute = ({ ...rest }) => {
   const sessionId = useSelector(getSessionId);
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/signin" component={SignIn}/>
         <Route path="/signup" component={Signup}/>
       </Switch>
+      <Opener />
     </Router>
   );
 }

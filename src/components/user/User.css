@@ -8,6 +8,8 @@ body {
 
 .Header {
   display: flex;
+  font-family: niveau-grotesk, sans-serif;
+  font-weight: 700;
   position: absolute;
   top: 15%;
   left: 42%;
