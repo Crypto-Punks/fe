@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NetWorth from '../components/net-worth/NetWorth';
 import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
 import CoinList from '../components/coin-summary/CoinList';
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
+import { getInvestedCoins, getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
+import { getTop100Currencies } from '../services/currencies';
 
-const AllCoins = ({ netWorth, activeCoins, watchlist, allCoins }) => {
+const AllCoins = ({ netWorth, investedCoins, watchList }) => {
+
+  let allCoins = [];
+
+  useEffect(() => {
+    getTop100Currencies()
+      .then(coins => {
+        allCoins = coins;
+      });
+  }, []);
+
   return (
     <div>
       <NetWorth netWorth={netWorth} />
-      <CoinList items={activeCoins} />
-      {watchlist.length !== 0 && <CoinList items={watchlist} />}
+      <CoinList items={investedCoins} />
+      {watchList.length !== 0 && <CoinList items={watchList} />}
       <CoinSearchForm />
       <CoinList items={allCoins} />
       <HamburgerMenu />
@@ -20,19 +32,19 @@ const AllCoins = ({ netWorth, activeCoins, watchlist, allCoins }) => {
 };
 
 AllCoins.propTypes = {
-  netWorth: PropTypes.string.isRequired,
-  activeCoins: PropTypes.arrayOf(PropTypes.shape({
+  netWorth: PropTypes.number.isRequired,
+  investedCoins: PropTypes.arrayOf(PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     changePercent24Hr: PropTypes.number.isRequired
   })).isRequired,
-  watchlist: PropTypes.arrayOf(PropTypes.shape({
+  watchList: PropTypes.arrayOf(PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     changePercent24Hr: PropTypes.number.isRequired
-  })),
+  })).isRequired,
   allCoins: PropTypes.arrayOf(PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
@@ -42,11 +54,9 @@ AllCoins.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  //to do: make selectors
   netWorth: getNetWorth(state),
-  activeCoins: getActiveCoins(state),
-  watchlist: getWatchlist(state),
-  allCoins: getAllCoins(state)
+  investedCoins: getInvestedCoins(state),
+  watchList: getWatchList(state),
 });
 
 export default connect(

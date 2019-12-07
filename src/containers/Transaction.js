@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TransactionForm from '../components/transaction-form/TransactionForm';
 import AssetList from '../components/assets/AssetList';
 import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
 import NetWorth from '../components/net-worth/NetWorth';
+import { getNetWorth, getInvestedCoins } from '../selectors/portfolioSelectors';
+import { getCurrencies } from '../services/currencies';
 
-const Transaction = () => {
+const Transaction = ({ netWorth, investedCoins }) => {
+  let currencies = [];
+
+  useEffect(()=> {
+    getCurrencies()
+      .then(res => {
+        currencies = res;
+      });
+  }, []);
+
   return (
     <div>
       <NetWorth netWorth={netWorth} />
@@ -25,13 +36,10 @@ Transaction.propTypes = {
     amount: PropTypes.number.isRequired,
     value: PropTypes.string.isRequired
   })).isRequired,
-  currencies: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 const mapStateToProps = state => ({
-  //todo make selectors
   netWorth: getNetWorth(state),
-  currencies: getCurrencies(state),
   investedCoins: getInvestedCoins(state)
 });
 
