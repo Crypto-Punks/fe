@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'; 
 import PropTypes from 'prop-types';
 import AboutCoin from '../components/about-coin/AboutCoin';
-import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
+import HamburgerMenu from '../components/hamburger-menu/NavMenu';
 import { getInvestedCoins, getWatchList } from '../selectors/portfolioSelectors';
 import { getCoinInfo } from '../services/currencies';
 
