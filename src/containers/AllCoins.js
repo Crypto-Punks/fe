@@ -2,22 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NetWorth from '../components/net-worth/NetWorth';
-import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
+import HamburgerMenu from '../components/hamburger-menu/NavMenu';
 import CoinList from '../components/coin-summary/CoinList';
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
-import { getInvestedCoins, getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
-import { getTop100Currencies } from '../services/currencies';
+import { getInvestedCoins, getNetWorth, getWatchList, getTop100Coins } from '../selectors/portfolioSelectors';
 
-const AllCoins = ({ netWorth, investedCoins, watchList }) => {
-
-  let allCoins = [];
-
-  useEffect(() => {
-    getTop100Currencies()
-      .then(coins => {
-        allCoins = coins;
-      });
-  }, []);
+const AllCoins = ({ netWorth, investedCoins, watchList, top100Coins }) => {
 
   return (
     <div>
@@ -25,7 +15,7 @@ const AllCoins = ({ netWorth, investedCoins, watchList }) => {
       <CoinList items={investedCoins} />
       {watchList.length !== 0 && <CoinList items={watchList} />}
       <CoinSearchForm />
-      <CoinList items={allCoins} />
+      <CoinList items={top100Coins} />
       <HamburgerMenu />
     </div>
   );
@@ -45,7 +35,7 @@ AllCoins.propTypes = {
     price: PropTypes.number.isRequired,
     changePercent24Hr: PropTypes.number.isRequired
   })).isRequired,
-  allCoins: PropTypes.arrayOf(PropTypes.shape({
+  top100Coins: PropTypes.arrayOf(PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -57,6 +47,7 @@ const mapStateToProps = state => ({
   netWorth: getNetWorth(state),
   investedCoins: getInvestedCoins(state),
   watchList: getWatchList(state),
+  top100Coins: getTop100Coins(state),
 });
 
 export default connect(

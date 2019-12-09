@@ -94,7 +94,8 @@ TransactionForm.propTypes = {
     logo: PropTypes.string,
     rateUsd: PropTypes.number.isRequired,
     priceUsd: PropTypes.number.isRequired
-  }).isRequired
+  })).isRequired
 };
+
 
 export default TransactionForm;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TransactionForm from '../components/transaction-form/TransactionForm';
-import AssetList from '../components/assets/AssetList';
+import AssetList from '../components/ourAssets/AssetList';
 import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
 import NetWorth from '../components/net-worth/NetWorth';
 import { getNetWorth, getInvestedCoins } from '../selectors/portfolioSelectors';

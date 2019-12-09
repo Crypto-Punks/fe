@@ -1,22 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './Hamburger.css';
+import { getOpenMenu } from '../../selectors/menuSelectors';
+import { TOGGLE_OPEN_MENU } from '../../actions/menuActions';
 
-const Hamburger = ({ openMenu, setOpenMenu }) => {
+const Hamburger = () => {
+  const openMenu = useSelector(getOpenMenu);
+  const dispatch = useDispatch();
+  const setOpenMenu = () => dispatch({ type: TOGGLE_OPEN_MENU });
 
   return (
     <div className={styles.ButtonContainer}>
-      <button className={`${styles.Button} ${openMenu ? styles.up : styles.down} `}
-        onClick={() => {
-          openMenu ? setOpenMenu(false) : setOpenMenu(true);
-        }}></button>
+      <button
+        className={`${styles.Button} ${openMenu ? styles.up : styles.down} `}
+        onClick={setOpenMenu}>
+      </button>
     </div>
   );
 };
 
-Hamburger.propTypes = {
-  openMenu: PropTypes.bool.isRequired,
-  setOpenMenu: PropTypes.func.isRequired
-};
 
 export default Hamburger;
