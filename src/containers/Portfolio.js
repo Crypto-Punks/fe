@@ -5,8 +5,10 @@ import NetWorth from '../components/net-worth/NetWorth';
 import AssetList from '../components/assets/AssetList';
 import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
 import styles from '../containers/Portfolio.css';
+import { getNetWorth, getInvestedCoins } from '../selectors/portfolioSelectors';
 
-const Portfolio = ({ netWorth, activeCoins }) => {
+
+const Portfolio = ({ netWorth, investedCoins }) => {
   return (
     <div>
       <h1 className={styles.Hello}>HELLO WORLD</h1>
@@ -14,15 +16,15 @@ const Portfolio = ({ netWorth, activeCoins }) => {
       {//net worth chart
         //diversification chart
       }
-      <AssetList items={activeCoins} />
+      <AssetList items={investedCoins} />
       <HamburgerMenu className={styles.HamburgerMenu}/>
     </div>
   );
 };
 
 Portfolio.propTypes = {
-  netWorth: PropTypes.string.isRequired,
-  activeCoins: PropTypes.arrayOf(PropTypes.shape({
+  netWorth: PropTypes.number.isRequired,
+  investedCoins: PropTypes.arrayOf(PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
@@ -31,9 +33,8 @@ Portfolio.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  //to do: make selectors
   netWorth: getNetWorth(state),
-  activeCoins: getActiveCoins(state)
+  investedCoins: getInvestedCoins(state)
 });
 
 export default connect(

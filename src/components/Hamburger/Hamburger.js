@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Hamburger.css';
 
-const Hamburger = ({ open, setOpen }) => {
+const Hamburger = ({ openMenu, setOpenMenu }) => {
 
   return (
     <div className={styles.ButtonContainer}>
-      <button className={`${styles.Button} ${open ? styles.up : styles.down} `}
+      <button className={`${styles.Button} ${openMenu ? styles.up : styles.down} `}
         onClick={() => {
-          open ? setOpen(false) : setOpen(true);
+          openMenu ? setOpenMenu(false) : setOpenMenu(true);
         }}></button>
     </div>
   );
 };
 
 Hamburger.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired
+  openMenu: PropTypes.bool.isRequired,
+  setOpenMenu: PropTypes.func.isRequired
 };
 
 export default Hamburger;

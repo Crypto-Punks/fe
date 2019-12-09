@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SignOut from '../../containers/SignOut';
-import styles from '../hamburger-menu/HamburgerMenu.css'
+import styles from '../hamburger-menu/HamburgerMenu.css';
+import PropTypes from 'prop-types';
 
-const HamburgerMenu = () => {
+
+const HamburgerMenu = ({ openMenu }) => {
   return (
     <div className={styles.HamburgerMenu}>
       <nav>
@@ -14,6 +16,10 @@ const HamburgerMenu = () => {
       </nav>
     </div>
   );
+};
+
+HamburgerMenu.propTypes = {
+  openMenu: PropTypes.bool.isRequired
 };
 
 export default HamburgerMenu;
