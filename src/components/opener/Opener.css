@@ -1,0 +1,35 @@
+.ButtonContainer {
+button:hover {
+  cursor: pointer;
+}
+
+  .Button {
+    position: absolute;
+    bottom: 1%;
+    left: 48%;
+    width: 5%;
+    height: 7%;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    background-image: url('../../assets/icons8-chevron-64.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    outline: 0;
+  }
+
+}
+
+@media (max-width: 400px) {
+  .ButtonContainer {
+
+    .Button {
+      left: 43%;
+      width: 15%;
+    }
+  }
+}
+
