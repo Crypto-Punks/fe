@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Opener.css';
+import styles from './Hamburger.css';
 
-const Opener = ({ open, setOpen }) => {
+const Hamburger = ({ open, setOpen }) => {
 
   return (
     <div className={styles.ButtonContainer}>
@@ -14,9 +14,9 @@ const Opener = ({ open, setOpen }) => {
   );
 };
 
-Opener.propTypes = {
+Hamburger.propTypes = {
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired
 };
 
-export default Opener;
+export default Hamburger;

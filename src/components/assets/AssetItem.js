@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AssetItem = ({ item }) => {
-  const { logo, name, amount, value } = item;
+const AssetItem = ({ activeCoin }) => {
+  const { logo, name, amount, value } = activeCoin;
   return (
     <li>
       <img src={logo} alt={name} />
@@ -13,7 +13,7 @@ const AssetItem = ({ item }) => {
 };
 
 AssetItem.propTypes = {
-  item: PropTypes.shape({
+  activeCoin: PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,

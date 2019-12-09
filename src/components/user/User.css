@@ -7,17 +7,18 @@ body {
 }
 
 .Header {
-  display: flex;
-  font-family: niveau-grotesk, sans-serif;
-  font-weight: 700;
+  background-image: url('../../images/cryptoLogo.png');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   position: absolute;
-  top: 15%;
-  left: 42%;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  color: #6CB2BA;
- 
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 40%;
   margin: 0;
 
   h1 {
@@ -128,15 +129,12 @@ body {
 @media (max-width: 375px) {
 
   .Header {
-    left: 18%;
+    top: 5%;
+    left: 10%;
   }
 
   .Container {
-    width: 50vw;
-    height: 50vh;
-    left: 25%;
-    top: 50%;
-  
+    
     a:link {
       width: 20vw;
     }

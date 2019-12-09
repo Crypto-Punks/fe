@@ -6,7 +6,7 @@ const NetWorth = ({ netWorth }) => {
 };
 
 NetWorth.propTypes = {
-  netWorth: PropTypes.string.isRequired
+  netWorth: PropTypes.string
 };
 
 export default NetWorth;

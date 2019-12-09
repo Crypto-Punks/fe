@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AssetItem from './AssetItem';
 
-const AssetList = ({ items }) => {
-  const elements = items.map(item => {
-    return <AssetItem key={item.name} item={item} />; 
+const AssetList = ({ activeCoins }) => {
+  const coins = activeCoins.map(coin => {
+    return <AssetItem key={coin.name} coin={coin} />; 
   });
   return (
     <ul>
-      {elements}
+      {coins}
     </ul>
   );
 };
 
 AssetList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
+  activeCoins: PropTypes.arrayOf(PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,

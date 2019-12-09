@@ -1,19 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NetWorth from '../components/net-worth/NetWorth';
 import AssetList from '../components/assets/AssetList';
 import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
+import styles from '../containers/Portfolio.css';
 
 const Portfolio = ({ netWorth, activeCoins }) => {
   return (
     <div>
+      <h1 className={styles.Hello}>HELLO WORLD</h1>
       <NetWorth netWorth={netWorth} />
       {//net worth chart
-      //diversification chart
+        //diversification chart
       }
       <AssetList items={activeCoins} />
-      <HamburgerMenu />
+      <HamburgerMenu className={styles.HamburgerMenu}/>
     </div>
   );
 };
@@ -25,7 +27,7 @@ Portfolio.propTypes = {
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
     value: PropTypes.string.isRequired
-  })).isRequired
+  }))
 };
 
 const mapStateToProps = state => ({
@@ -37,3 +39,5 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps
 )(Portfolio);
+
+export default Portfolio;

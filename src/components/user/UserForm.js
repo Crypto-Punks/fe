@@ -15,8 +15,7 @@ const UserForm = ({ buttonText, redirectText, redirectLink, error, handleSubmit,
   return (
     <>
       <div className={styles.Header}>
-        <h1>CRYPTO</h1>
-        <h1>TRADER</h1>
+        
       </div>
       <div className={styles.Container}>
         {error && <span>{error}</span>}
