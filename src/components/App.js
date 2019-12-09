@@ -14,6 +14,7 @@ import SignOut from '../containers/SignOut';
 import Hamburger from './Hamburger/Hamburger';
 import Portfolio from '../containers/Portfolio';
 import AllCoins from '../containers/AllCoins';
+import CoinDetail from '../containers/CoinDetail';
 // import Transaction from '../containers/Transaction';
 
 const PrivateRoute = ({ ...rest }) => {
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/signup" component={Signup}/>
         <Route path="/portfolio" component={Portfolio}/>
         <Route path="/coins" component={AllCoins}/>
+        <Route path="/detail/:id" component={CoinDetail}/>
         {/* <Route path="/transaction" component={Transaction}/> */}
       </Switch>
       <Hamburger />

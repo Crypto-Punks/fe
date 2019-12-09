@@ -6,7 +6,7 @@ const CoinSearchForm = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <form onSubmit={search}>
+    <form onSubmit={() => {}}>
       <input type='text' value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
       <button>🔍</button>
     </form>
