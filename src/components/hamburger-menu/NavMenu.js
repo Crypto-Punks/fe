@@ -8,15 +8,18 @@ import homeIcon from '../../images/HomeIcon.png';
 import coinIcon from '../../images/CoinPageIcon.png';
 import transactionIcon from '../../images/transactionIcon.png';
 
+
 const NavMenu = () => {
   const openMenu = useSelector(getOpenMenu);
   return (
     <div className={`${styles.NavMenu} ${openMenu ? styles.open : styles.closed}`} >
       <nav>
+
         <Link to='/'><img src={homeIcon} /></Link>
         <Link to='/coins'><img src={coinIcon} /></Link>
         <Link to='/transaction'><img src={transactionIcon} /></Link>
         <SignOut></SignOut>
+
       </nav>
     </div >
   );

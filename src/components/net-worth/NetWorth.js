@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './NetWorth.css';
 import Logo from '../../images/cryptoLogoPlain.png';
 
+
 const NetWorth = ({ netWorth }) => {
   return (
     <div className={styles.NetWorth}>
