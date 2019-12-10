@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Coin from './Coin';
 
 const CoinList = ({ items }) => {
+  console.log(items);
   const elements = items.map(item => {
     return <Coin key={item.name} item={item} />;
   });

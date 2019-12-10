@@ -38,10 +38,10 @@ export default function App() {
   return (
     <Router>
       <Switch>
+        <PrivateRoute exact path="/" component={Portfolio}/>
         <PrivateRoute path="/signout" component={SignOut}/>
         <Route path="/signin" component={SignIn}/>
         <Route path="/signup" component={Signup}/>
-        <Route path="/portfolio" component={Portfolio}/>
         <Route path="/coins" component={AllCoins}/>
         {/* <Route path="/detail/:id" component={CoinDetail}/> */}
         {/* <Route path="/transaction" component={Transaction}/> */}
