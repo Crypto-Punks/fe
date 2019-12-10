@@ -1,0 +1,19 @@
+.NetWorth {
+  display: flex;
+  position: fixed;
+  left: 10%;
+  top: 10%;
+  flex-direction: row;
+  align-items: center;
+  
+  img {
+    width: 9%;
+    top: 10%;
+  }
+
+  p {
+    color: white;
+    top: 10%;
+    margin: 0;
+  }
+}

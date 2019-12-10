@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './Hamburger.css';
 import { getOpenMenu } from '../../selectors/menuSelectors';
 import { TOGGLE_OPEN_MENU } from '../../actions/menuActions';
+import Arrow from '../../images/arrow.png';
 
 const Hamburger = () => {
   const openMenu = useSelector(getOpenMenu);
@@ -13,7 +14,7 @@ const Hamburger = () => {
     <div className={styles.ButtonContainer}>
       <button
         className={`${styles.Button} ${openMenu ? styles.up : styles.down} `}
-        onClick={setOpenMenu}>
+        onClick={setOpenMenu}><img src={Arrow}></img>
       </button>
     </div>
   );

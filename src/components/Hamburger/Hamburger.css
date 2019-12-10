@@ -1,26 +1,52 @@
 .ButtonContainer {
-button:hover {
-  cursor: pointer;
-}
+
+  justify-content: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 20vh;
+  width: 100vw;
+  bottom: 0;
+  
 
   .Button {
-    position: absolute;
-    bottom: 1%;
-    left: 48%;
-    width: 5%;
-    height: 7%;
-    background-color: rgba(255, 255, 255, 0);
+    position: fixed;
+    bottom: 3%;
+    left: 52%;
+
+    background-color: transparent;
     border: none;
-    background-image: url('../../images/icons8-chevron-64.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
     outline: 0;
+    
+    img {
+      width: 5em;
+      height: 5em;
+      background-color: rgba(255, 255, 255, 0);
+      border: none;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: .4s ease-in-out
+    }
+
+    img:hover {
+      box-shadow: .5px .5px 35px 1px white;
+      border-radius: 20em;
+      cursor: pointer;
+    }
   }
 
+  button {
+    transition: .5s ease-in-out
+  }
+
+  .up {
+    transform: rotate(180deg);
+ }
 }
 
 @media (max-width: 400px) {
@@ -32,4 +58,3 @@ button:hover {
     }
   }
 }
-
