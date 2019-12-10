@@ -7,12 +7,16 @@ import CoinList from '../components/coin-summary/CoinList';
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
 import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
 import { getTop100Currencies } from '../services/currencies';
+import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 
-const AllCoins = ({ netWorth, portfolioWatchList }) => {
+const AllCoins = ({ netWorth, portfolioWatchList, handleClick, loadPortfolio }) => {
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
   const [top100Coins, setTop100Coins] = useState([]);
 
+  useEffect(() => {
+    loadPortfolio();
+  }, []);
 
   useEffect(()=> {
     getTop100Currencies()
@@ -32,7 +36,7 @@ const AllCoins = ({ netWorth, portfolioWatchList }) => {
       {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
       <CoinSearchForm />
       <h1>All Coins</h1>
-      <CoinList items={coinListNeeds(top100Coins)} />
+      <CoinList items={coinListNeeds(top100Coins)}  handleClick={handleClick} watchList={portfolioWatchList} />
       <HamburgerMenu />
     </div>
   );
@@ -43,6 +47,8 @@ AllCoins.propTypes = {
   portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
+  handleClick: PropTypes.func.isRequired,
+  loadPortfolio: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -50,8 +56,18 @@ const mapStateToProps = state => ({
   portfolioWatchList: getWatchList(state),
 });
 
+const mapDispatchToProps = dispatch => ({
+  handleClick(watchList, coin) {
+    dispatch(toggleWatchList(watchList, coin));
+  },
+  loadPortfolio() {
+    dispatch(getPortfolio());
+  }
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(AllCoins);
 
 
