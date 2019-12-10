@@ -1,4 +1,13 @@
 .ButtonContainer {
+  justify-content: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 20vh;
+  width: 100vw;
+  bottom: 0;
+  
 
   .Button {
     position: fixed;
