@@ -5,7 +5,7 @@ import styles from './AssetList.css';
 
 const AssetList = ({ investedCoins }) => {
   const coins = investedCoins.map(coin => {
-    return <AssetItem key={coin.name} coin={coin} />; 
+    return <AssetItem key={coin.name} activeCoin={coin} />; 
   });
   return (
     <ul className={styles.AssetList}>
@@ -20,10 +20,11 @@ const AssetList = ({ investedCoins }) => {
 
 AssetList.propTypes = {
   investedCoins: PropTypes.arrayOf(PropTypes.shape({
-    logo: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
-    value: PropTypes.string.isRequired
+    price: PropTypes.string.isRequired
   })).isRequired
 };
 
