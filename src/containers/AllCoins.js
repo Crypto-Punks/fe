@@ -13,21 +13,25 @@ const AllCoins = ({ netWorth, portfolioWatchList }) => {
   const [investedCoins, setInvestedCoins] = useState([]);
   const [top100Coins, setTop100Coins] = useState([]);
 
+
   useEffect(()=> {
     getTop100Currencies()
       .then(({ watchList, investedCoins, top100Coins }) => {
         setWatchList(watchList);
         setInvestedCoins(investedCoins);
-        setTop100Coins(top100Coins);
+        setTop100Coins(modifiedTop100(top100Coins, watchList, investedCoins));
       });
   }, [portfolioWatchList]);
 
   return (
     <div>
       <NetWorth netWorth={netWorth} />
+      <h1>Invested Coins</h1>
       <CoinList items={coinListNeeds(investedCoins)} />
+      <h1>Watched Coins</h1>
       {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
       <CoinSearchForm />
+      <h1>All Coins</h1>
       <CoinList items={coinListNeeds(top100Coins)} />
       <HamburgerMenu />
     </div>
@@ -50,6 +54,8 @@ export default connect(
   mapStateToProps
 )(AllCoins);
 
+
+
 function coinListNeeds(array) {
   return array.map(coin => ({
     id: coin.id,
@@ -60,6 +66,22 @@ function coinListNeeds(array) {
   }));
 }
 
-// function modifiedTop100(watchList, investedCoins, top100Coins) {
 
-// }
+function modifiedTop100(top100Coins, watchList, investedCoins) {
+  const lookup = top100Coins.reduce((acc, coin) => {
+    acc = {
+      ...acc,
+      [coin.id]: { ...coin, special: null }
+    };
+    return acc;
+  }, {});
+
+  watchList.forEach(watchCoin => {
+    if(lookup[watchCoin.id]) lookup[watchCoin.id].special = 'watched';
+  });
+  investedCoins.forEach(investedCoin => {
+    if(lookup[investedCoin.id]) lookup[investedCoin.id].special = 'invested';
+  });
+
+  return Object.values(lookup);
+}
