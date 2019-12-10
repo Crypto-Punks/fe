@@ -7,6 +7,7 @@ import { getPortfolioInvestedCoins, getWatchList } from '../selectors/portfolioS
 import { getCoinById } from '../services/currencies';
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 
+
 //todo make action for adding/removing from favorites, selectors, add charts
 
 const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfolio }) => {

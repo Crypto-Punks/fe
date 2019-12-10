@@ -59,3 +59,7 @@ function coinListNeeds(array) {
     changePercent24Hr: coin.changePercent24Hr
   }));
 }
+
+// function modifiedTop100(watchList, investedCoins, top100Coins) {
+
+// }

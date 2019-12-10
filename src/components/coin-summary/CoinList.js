@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Coin from './Coin';
+import styles from './CoinList.css';
 
 const CoinList = ({ items }) => {
   const elements = items.map(item => {
     return <Coin key={item.name} item={item} />;
   });
   return (
-    <ul>
+    <ul className={styles.CoinList}>
       {elements}
     </ul>
   );
@@ -18,8 +19,8 @@ CoinList.propTypes = {
     id: PropTypes.string.isRequired,
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    changePercent24Hr: PropTypes.number.isRequired
+    price: PropTypes.string.isRequired,
+    changePercent24Hr: PropTypes.string.isRequired
   })).isRequired
 };
 

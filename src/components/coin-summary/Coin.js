@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const Coin = ({ item }) => {
   const { id, logo, name, price, changePercent24Hr } = item;
   
-  if(id !== 'USD') return renderCoinHtml(logo, name, price, changePercent24Hr);
+  if(id === 'USD') return renderCoinHtml(logo, name, price, changePercent24Hr);
   
   return (
     <Link to={`/detail/${id}`}>
@@ -20,8 +20,8 @@ Coin.propTypes = {
     id: PropTypes.string.isRequired,
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    changePercent24Hr: PropTypes.number.isRequired
+    price: PropTypes.string.isRequired,
+    changePercent24Hr: PropTypes.string.isRequired
   })
 };
 
