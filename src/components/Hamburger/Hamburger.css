@@ -4,26 +4,33 @@
     position: absolute;
     bottom: 8%;
     left: 50%;
-    width: 5em;
-    height: 5em;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: transparent;
     border: none;
-    background-image: url('../../images/arrow.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
     outline: 0;
-    transition: .4s ease-in-out
+    
+    img {
+      width: 5em;
+      height: 5em;
+      background-color: rgba(255, 255, 255, 0);
+      border: none;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: .4s ease-in-out
+    }
+
+    img:hover {
+      box-shadow: .5px .5px 35px 1px white;
+      border-radius: 20em;
+      cursor: pointer;
+    }
   }
 
-  button:hover {
-    transform: rotate(90deg);
-    box-shadow: .5px .5px 35px 1px white;
-    border-radius: 20em;
-    cursor: pointer;
+  button {
+    transition: .5s ease-in-out
   }
 
   .up {
