@@ -14,9 +14,7 @@ const UserForm = ({ buttonText, redirectText, redirectLink, error, handleSubmit,
 
   return (
     <>
-      <div className={styles.Header}>
-        
-      </div>
+      <div className={styles.Header}></div>
       <div className={styles.Container}>
         {error && <span>{error}</span>}
         <Link to={redirectLink} onClick={() => handleClearError()}>{redirectText}</Link>

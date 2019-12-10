@@ -8,9 +8,9 @@ import { getOpenMenu } from '../../selectors/menuSelectors';
 const NavMenu = () => {
   const openMenu = useSelector(getOpenMenu);
   return (
-    <div className={`${styles.NavMenu} ${styles.Menu} ${styles.dropMenu} ${openMenu ? styles.open : styles.closed}`} >
+    <div className={`${styles.NavMenu} ${openMenu ? styles.open : styles.closed}`} >
       <nav>
-        <Link to='/home'>Home image</Link>
+        <Link to='/home' className={styles.Home}><img></img></Link>
         <Link to='/portfolio'>Portfolio image</Link>
         <Link to='/transaction'>Transaction image</Link>
         <SignOut>Signout image</SignOut>

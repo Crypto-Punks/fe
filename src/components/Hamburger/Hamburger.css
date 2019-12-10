@@ -1,17 +1,14 @@
 .ButtonContainer {
-button:hover {
-  cursor: pointer;
-}
 
   .Button {
     position: absolute;
-    bottom: 1%;
-    left: 48%;
-    width: 5%;
-    height: 7%;
+    bottom: 8%;
+    left: 50%;
+    width: 5em;
+    height: 5em;
     background-color: rgba(255, 255, 255, 0);
     border: none;
-    background-image: url('../../images/icons8-chevron-64.png');
+    background-image: url('../../images/arrow.png');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -19,8 +16,19 @@ button:hover {
     background-repeat: no-repeat;
     background-position: center;
     outline: 0;
+    transition: .4s ease-in-out
   }
 
+  button:hover {
+    transform: rotate(90deg);
+    box-shadow: .5px .5px 35px 1px white;
+    border-radius: 20em;
+    cursor: pointer;
+  }
+
+  .up {
+    transform: rotate(180deg);
+ }
 }
 
 @media (max-width: 400px) {
@@ -32,4 +40,3 @@ button:hover {
     }
   }
 }
-

@@ -12,7 +12,6 @@ import { getOpenMenu } from '../selectors/menuSelectors';
 const Portfolio = ({ netWorth, investedCoins, openMenu }) => {
   return (
     <div>
-      <h1 className={styles.Hello}>HELLO WORLD</h1>
       <NetWorth netWorth={netWorth} />
       {//net worth chart
         //diversification chart
