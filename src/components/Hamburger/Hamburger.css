@@ -1,9 +1,9 @@
 .ButtonContainer {
 
   .Button {
-    position: absolute;
-    bottom: 8%;
-    left: 50%;
+    position: fixed;
+    bottom: 3%;
+    left: 52%;
     background-color: transparent;
     border: none;
     outline: 0;
