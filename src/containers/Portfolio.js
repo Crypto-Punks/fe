@@ -27,7 +27,7 @@ const Portfolio = ({ netWorth, openMenu, loadPortfolio, portfolioInvestedCoins }
             id: coin.id,
             logo: coin.currencySymbol,
             name: coin.name,
-            amount: portCoin.amount,
+            amount: portCoin ? portCoin.amount : 0,
             price: coin.priceUsd
           };
         }));

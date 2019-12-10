@@ -18,8 +18,8 @@ CoinList.propTypes = {
     id: PropTypes.string.isRequired,
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    changePercent24Hr: PropTypes.number.isRequired
+    price: PropTypes.string.isRequired,
+    changePercent24Hr: PropTypes.string.isRequired
   })).isRequired
 };
 
