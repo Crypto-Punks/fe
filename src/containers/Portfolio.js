@@ -24,6 +24,7 @@ const Portfolio = ({ netWorth, openMenu, loadPortfolio, portfolioInvestedCoins }
         setInvestedCoins(coins.map(coin => {
           const portCoin = portfolioInvestedCoins.find(element => element.name === coin.id);
           return {
+            id: coin.id,
             logo: coin.currencySymbol,
             name: coin.name,
             amount: portCoin.amount,

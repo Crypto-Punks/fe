@@ -15,7 +15,8 @@ const AssetList = ({ investedCoins }) => {
 
 AssetList.propTypes = {
   investedCoins: PropTypes.arrayOf(PropTypes.shape({
-    logo: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired

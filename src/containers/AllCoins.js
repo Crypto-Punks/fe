@@ -52,6 +52,7 @@ export default connect(
 
 function coinListNeeds(array) {
   return array.map(coin => ({
+    id: coin.id,
     logo: coin.currencySymbol,
     name: coin.name,
     price: coin.priceUsd,
