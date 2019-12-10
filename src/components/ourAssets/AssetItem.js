@@ -19,7 +19,7 @@ AssetItem.propTypes = {
     id: PropTypes.string.isRequired,
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
-    amount: PropTypes.number.isRequired,
+    amount: PropTypes.number,
     price: PropTypes.string.isRequired
   })
 };
