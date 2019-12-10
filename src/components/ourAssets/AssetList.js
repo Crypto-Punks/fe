@@ -4,7 +4,7 @@ import AssetItem from './AssetItem';
 
 const AssetList = ({ investedCoins }) => {
   const coins = investedCoins.map(coin => {
-    return <AssetItem key={coin.name} coin={coin} />; 
+    return <AssetItem key={coin.name} activeCoin={coin} />; 
   });
   return (
     <ul>
@@ -18,7 +18,6 @@ AssetList.propTypes = {
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
-    value: PropTypes.string.isRequired
   })).isRequired
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NetWorth from '../components/net-worth/NetWorth';
@@ -7,12 +7,17 @@ import NavMenu from '../components/hamburger-menu/NavMenu';
 import styles from '../containers/Portfolio.css';
 import { getNetWorth, getInvestedCoins } from '../selectors/portfolioSelectors';
 import { getOpenMenu } from '../selectors/menuSelectors';
+import { getPortfolio } from '../actions/portfolioActions';
 
 
-const Portfolio = ({ netWorth, investedCoins, openMenu }) => {
+const Portfolio = ({ netWorth, investedCoins, openMenu, loadPortfolio }) => {
+
+  useEffect(() => {
+    loadPortfolio();
+  }, []);
+
   return (
     <div>
-      <h1 className={styles.Hello}>HELLO WORLD</h1>
       <NetWorth netWorth={netWorth} />
       {//net worth chart
         //diversification chart
@@ -29,9 +34,9 @@ Portfolio.propTypes = {
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
-    value: PropTypes.string.isRequired
   })).isRequired,
-  openMenu: PropTypes.bool.isRequired
+  openMenu: PropTypes.bool.isRequired,
+  loadPortfolio: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -40,8 +45,15 @@ const mapStateToProps = state => ({
   openMenu: getOpenMenu(state)
 });
 
+const mapDispatchToProps = dispatch => ({
+  loadPortfolio() {
+    dispatch(getPortfolio());
+  }
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Portfolio);
 
 
