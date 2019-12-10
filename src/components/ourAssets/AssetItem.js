@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 
 const AssetItem = ({ activeCoin }) => {
   const { id, logo, name, amount, price } = activeCoin;
-  
+
+  if(id !== 'USD') return renderAssetHtml(logo, name, amount, price);
+
   return (
     <Link to={`detail/${id}`}>
-      <li>
-        <img src={logo} alt={name} />
-        <p>{amount} {name}</p>
-        <p>${amount * price}</p>
-      </li>
+      {renderAssetHtml(logo, name, amount, price)}
     </Link>
   );
 };
@@ -27,3 +25,14 @@ AssetItem.propTypes = {
 };
 
 export default AssetItem;
+
+
+function renderAssetHtml(logo, name, amount, price) {
+  return (
+    <li>
+      <img src={logo} alt={name} />
+      <p>{amount} {name}</p>
+      <p>${amount * price}</p>
+    </li>
+  );
+}
