@@ -13,8 +13,8 @@ const NavMenu = () => {
   return (
     <div className={`${styles.NavMenu} ${openMenu ? styles.open : styles.closed}`} >
       <nav>
-        <Link to='/home'><img src={homeIcon} /></Link>
-        <Link to='/portfolio'><img src={coinIcon} /></Link>
+        <Link to='/'><img src={homeIcon} /></Link>
+        <Link to='/coins'><img src={coinIcon} /></Link>
         <Link to='/transaction'><img src={transactionIcon} /></Link>
         <SignOut></SignOut>
       </nav>

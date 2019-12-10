@@ -10,10 +10,6 @@ const AssetList = ({ investedCoins }) => {
   return (
     <ul className={styles.AssetList}>
       {coins}
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
     </ul>
   );
 };

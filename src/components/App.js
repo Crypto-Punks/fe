@@ -42,7 +42,7 @@ export default function App() {
         <PrivateRoute path="/signout" component={SignOut}/>
         <Route path="/signin" component={SignIn}/>
         <Route path="/signup" component={Signup}/>
-        <Route path="/coins" component={AllCoins}/>
+        <PrivateRoute path="/coins" component={AllCoins}/>
         {/* <Route path="/detail/:id" component={CoinDetail}/> */}
         {/* <Route path="/transaction" component={Transaction}/> */}
       </Switch>

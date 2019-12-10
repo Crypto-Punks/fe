@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Coin from './Coin';
+import styles from './CoinList.css';
 
 const CoinList = ({ items }) => {
   const elements = items.map(item => {
     return <Coin key={item.name} item={item} />;
   });
   return (
-    <ul>
+    <ul className={styles.CoinList}>
       {elements}
     </ul>
   );
