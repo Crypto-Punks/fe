@@ -1,0 +1,49 @@
+.ButtonContainer {
+
+  .Button {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    
+    img {
+      width: 5em;
+      height: 5em;
+      background-color: rgba(255, 255, 255, 0);
+      border: none;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: .4s ease-in-out
+    }
+
+    img:hover {
+      box-shadow: .5px .5px 35px 1px white;
+      border-radius: 20em;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    transition: .5s ease-in-out
+  }
+
+  .up {
+    transform: rotate(180deg);
+ }
+}
+
+@media (max-width: 400px) {
+  .ButtonContainer {
+
+    .Button {
+      left: 43%;
+      width: 15%;
+    }
+  }
+}

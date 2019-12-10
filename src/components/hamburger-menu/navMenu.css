@@ -1,0 +1,32 @@
+.NavMenu {
+  background-color: rgba(67, 72, 79, 0.701);
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  transition: .5s ease-in-out;
+  
+  a {
+    margin: 10px;
+    text-decoration: none;
+    color: white;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  img:hover {
+    transform: translateY(-0.2em);
+  }
+}
+
+.closed {
+  transform: translateY(2000%);
+}

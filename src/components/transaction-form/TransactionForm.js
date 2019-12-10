@@ -41,7 +41,7 @@ const TransactionForm = ({ currencies, investedCoins }) => {
   useEffect(() => {
     //check this calculation - depends on data -- will this infinite loop
     const value = fromCurrencyAmount / exchangeRate;
-    setFromCurrencyAmount(value);
+    setToCurrencyAmount(value);
   }, [fromCurrencyAmount]);
 
   useEffect(() => {
@@ -89,7 +89,13 @@ TransactionForm.propTypes = {
     amount: PropTypes.number.isRequired,
     value: PropTypes.string.isRequired
   })).isRequired,
-  currencies: PropTypes.arrayOf(PropTypes.string).isRequired
+  currencies: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    logo: PropTypes.string,
+    rateUsd: PropTypes.number.isRequired,
+    priceUsd: PropTypes.number.isRequired
+  })).isRequired
 };
+
 
 export default TransactionForm;

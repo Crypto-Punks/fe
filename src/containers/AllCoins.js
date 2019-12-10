@@ -1,54 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NetWorth from '../components/net-worth/NetWorth';
-import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
+import HamburgerMenu from '../components/hamburger-menu/NavMenu';
 import CoinList from '../components/coin-summary/CoinList';
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
+import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
+import { getTop100Currencies } from '../services/currencies';
 
-const AllCoins = ({ netWorth, activeCoins, watchlist, allCoins }) => {
+const AllCoins = ({ netWorth, portfolioWatchList }) => {
+  const [watchList, setWatchList] = useState([]);
+  const [investedCoins, setInvestedCoins] = useState([]);
+  const [top100Coins, setTop100Coins] = useState([]);
+
+  useEffect(()=> {
+    getTop100Currencies()
+      .then(({ watchList, investedCoins, top100Coins }) => {
+        setWatchList(watchList);
+        setInvestedCoins(investedCoins);
+        setTop100Coins(top100Coins);
+      });
+  }, [portfolioWatchList]);
+
   return (
     <div>
       <NetWorth netWorth={netWorth} />
-      <CoinList items={activeCoins} />
-      {watchlist.length !== 0 && <CoinList items={watchlist} />}
+      <CoinList items={coinListNeeds(investedCoins)} />
+      {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
       <CoinSearchForm />
-      <CoinList items={allCoins} />
+      <CoinList items={coinListNeeds(top100Coins)} />
       <HamburgerMenu />
     </div>
   );
 };
 
 AllCoins.propTypes = {
-  netWorth: PropTypes.string.isRequired,
-  activeCoins: PropTypes.arrayOf(PropTypes.shape({
-    logo: PropTypes.string,
+  netWorth: PropTypes.number.isRequired,
+  portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    changePercent24Hr: PropTypes.number.isRequired
   })).isRequired,
-  watchlist: PropTypes.arrayOf(PropTypes.shape({
-    logo: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    changePercent24Hr: PropTypes.number.isRequired
-  })),
-  allCoins: PropTypes.arrayOf(PropTypes.shape({
-    logo: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    changePercent24Hr: PropTypes.number.isRequired
-  })).isRequired
 };
 
 const mapStateToProps = state => ({
-  //to do: make selectors
   netWorth: getNetWorth(state),
-  activeCoins: getActiveCoins(state),
-  watchlist: getWatchlist(state),
-  allCoins: getAllCoins(state)
+  portfolioWatchList: getWatchList(state),
 });
 
 export default connect(
   mapStateToProps
 )(AllCoins);
+
+function coinListNeeds(array) {
+  return array.map(coin => ({
+    id: coin.id,
+    logo: coin.currencySymbol,
+    name: coin.name,
+    price: coin.priceUsd,
+    changePercent24Hr: coin.changePercent24Hr
+  }));
+}

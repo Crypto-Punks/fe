@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'; 
 import PropTypes from 'prop-types';
 import AboutCoin from '../components/about-coin/AboutCoin';
-import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
+import HamburgerMenu from '../components/hamburger-menu/NavMenu';
+import { getPortfolioInvestedCoins, getWatchList } from '../selectors/portfolioSelectors';
+import { getCoinById } from '../services/currencies';
+import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 
 //todo make action for adding/removing from favorites, selectors, add charts
 
-const CoinDetail = ({ match, investedCoins, watchlist }) => {
+const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfolio }) => {
   const coin = investedCoins.find(element => element.name === match.params.id);
-  const coinInfo = getCoinInfo(match.params.id);
+  const [coinInfo, setCoinInfo] = useState({});
+
+  useEffect(() => {
+    loadPortfolio();
+    getCoinById(match.params.id)
+      .then(info => {
+        setCoinInfo(info[0]);
+      });
+  }, []);
+
   return (
     <div>
-      <h1>You have {coin.amount} {coin.name}</h1>
-      <button>{watchlist.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchlist</button>
+      <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
+      <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
       {
         // performance chart
       }
@@ -32,22 +44,27 @@ CoinDetail.propTypes = {
     amount: PropTypes.number.isRequired,
     value: PropTypes.string.isRequired
   })).isRequired,
-  watchlist: PropTypes.arrayOf(PropTypes.string),
+  watchList: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
   match: PropTypes.shape({
-    params: {
+    params: PropTypes.shape({
       id: PropTypes.string
-    }
-  }).isRequired
+    })
+  }).isRequired,
+  handleClick: PropTypes.func.isRequired,
+  loadPortfolio: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  investedCoins: getInvestedCoins(state),
-  watchlist: getWatchlist(state)
+  investedCoins: getPortfolioInvestedCoins(state),
+  watchList: getWatchList(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleClick() {
-    dispatch(toggleWatchlist());
+  handleClick(watchList, newCoin) {
+    dispatch(toggleWatchList(watchList, newCoin));
+  },
+  loadPortfolio() {
+    dispatch(getPortfolio());
   }
 });
 

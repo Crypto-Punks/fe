@@ -1,10 +1,33 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-//todo - make li's into buttons that go to detail page for that coin
 
 const Coin = ({ item }) => {
-  const { logo, name, price, changePercent24Hr } = item;
+  const { id, logo, name, price, changePercent24Hr } = item;
+  
+  if(id !== 'USD') return renderCoinHtml(logo, name, price, changePercent24Hr);
+  
+  return (
+    <Link to={`/detail/${id}`}>
+      {renderCoinHtml(logo, name, price, changePercent24Hr)}
+    </Link>
+  );
+};
+
+Coin.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    logo: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    changePercent24Hr: PropTypes.number.isRequired
+  })
+};
+
+export default Coin;
+
+function renderCoinHtml(logo, name, price, changePercent24Hr) {
   return (
     <li>
       <img src={logo} alt={name} />
@@ -15,15 +38,4 @@ const Coin = ({ item }) => {
       </section>
     </li>
   );
-};
-
-Coin.propTypes = {
-  item: PropTypes.shape({
-    logo: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    changePercent24Hr: PropTypes.number.isRequired
-  })
-};
-
-export default Coin;
+}
