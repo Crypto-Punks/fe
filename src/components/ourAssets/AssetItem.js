@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AssetItem = ({ activeCoin }) => {
-  const name = activeCoin.name;
-  const amount = activeCoin.amount;
-  const logo = activeCoin.logo;
+  const { logo, name, amount, price } = activeCoin;
   
   return (
     <li>
-      {logo && <img src={logo} alt={name} />}
+      <img src={logo} alt={name} />
       <p>{amount} {name}</p>
+      <p>${amount * price}</p>
     </li>
   );
 };
@@ -18,7 +17,8 @@ AssetItem.propTypes = {
   activeCoin: PropTypes.shape({
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
-    amount: PropTypes.number.isRequired
+    amount: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired
   })
 };
 

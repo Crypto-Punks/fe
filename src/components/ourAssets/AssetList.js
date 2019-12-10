@@ -18,6 +18,7 @@ AssetList.propTypes = {
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired
   })).isRequired
 };
 
