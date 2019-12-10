@@ -3,3 +3,19 @@
   top: 25%;
   left: 15%;
 }
+
+@media (max-width: 800px) {
+  .SearchForm {
+   top: 3%;
+   left: 65%;
+   z-index: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .SearchForm {
+    top: 1%;
+    left: 55%;
+    z-index: 1;
+  }
+}
