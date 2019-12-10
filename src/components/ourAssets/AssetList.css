@@ -38,3 +38,14 @@
     box-shadow: .5px .5px 35px 1px white;
   }
 }
+
+@media (max-width: 500px) {
+  .AssetList {
+    left: 0%;
+    width: 80%;
+
+    li {
+      height: 8vh;
+    }
+  }
+}
