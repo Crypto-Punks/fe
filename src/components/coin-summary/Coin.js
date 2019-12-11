@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styles from '../coin-summary/CoinList.css';
 
 
 const Coin = ({ item }) => {
@@ -28,13 +29,16 @@ Coin.propTypes = {
 export default Coin;
 
 function renderCoinHtml(logo, name, price, changePercent24Hr) {
+
+  const styleClass = parseFloat(changePercent24Hr) < 0 ? 'negative' : 'positive';
   return (
     <li>
       <img src={logo} alt={name} />
-      <p>{name}</p>
+      <p className={styles.Name} >{name}</p>
       <section>
-        <p>${price}</p>
-        <p>{changePercent24Hr}%</p>
+        <p>Market Price: ${price}</p>
+        <p className={`${styles.Change} ${styles[styleClass]}`}
+        >{changePercent24Hr}%</p>
       </section>
     </li>
   );

@@ -39,7 +39,7 @@
 }
 
 .closed {
-  transform: translateY(2000%);
+  transform: translateY(100%);
 }
 
 @media (max-width: 500px) {

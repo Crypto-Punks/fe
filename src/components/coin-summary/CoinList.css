@@ -1,7 +1,7 @@
 .CoinList {
   position: relative;
   top: 40%;
-  left: 25%;
+  left: 23%;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -21,6 +21,7 @@
     position: relative;
     background-color: #ACDEE3;
     margin: 20px;
+    padding: 10px;
     height: 16vh;
     border-radius: .8em;
     list-style: none;
@@ -42,6 +43,25 @@
       font-family: abolition, sans-serif;
       font-weight: 400;
       font-style: normal;
+    }
+    
+    .Name {
+      left: 0;
+      font-size: 20pt;
+      letter-spacing: .5em;
+      font-weight: bold;
+    }
+
+    .Change {
+      font-size: 10pt;
+    }
+
+    .negative {
+      color: rgb(214, 64, 64);
+    }
+
+    .positive {
+      color: rgb(17, 212, 17);
     }
 
   }
