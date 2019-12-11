@@ -6,13 +6,16 @@ import HamburgerMenu from '../components/hamburger-menu/NavMenu';
 import CoinList from '../components/coin-summary/CoinList';
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
 import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
+import { getStateSearchedList } from '../selectors/coinsSelectors';
 import { getTop100Currencies } from '../services/currencies';
+import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
 import styles from './AllCoins.css';
 
-const AllCoins = ({ netWorth, portfolioWatchList }) => {
+const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, clearSearch }) => {
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
   const [top100Coins, setTop100Coins] = useState([]);
+
 
   useEffect(() => {
     getTop100Currencies()
@@ -27,19 +30,21 @@ const AllCoins = ({ netWorth, portfolioWatchList }) => {
     <>
       <NetWorth netWorth={netWorth} />
       <div className={styles.AllCoins}>
-        <div className={styles.Invested}>
-          <h1>Invested Coins</h1>
-          <CoinList items={coinListNeeds(investedCoins)} />
-        </div>
-        <div className={styles.Watched}>
-          <h1>Watched Coins</h1>
-          {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
-          <CoinSearchForm />
-        </div>
-        <div className={styles.AllCoins} >
-          <h1>All Coins</h1>
-          <CoinList items={coinListNeeds(top100Coins)} />
-        </div>
+
+        {searchedList.length !== 0 && 
+        <>
+          <h1>Search Results</h1>
+          <button onClick={()=> clearSearch()}>Clear Search Results</button>
+          <CoinList items={searchedList} />
+        </>
+        }
+        <h1>Invested Coins</h1>
+        <CoinList items={coinListNeeds(investedCoins)} />
+        <h1>Watched Coins</h1>
+        {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
+        <CoinSearchForm handleSubmit={handleSubmit}/>
+        <h1>All Coins</h1>
+        <CoinList items={coinListNeeds(top100Coins)} />
       </div>
       <HamburgerMenu />
     </>
@@ -51,15 +56,36 @@ AllCoins.propTypes = {
   portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
+  searchedList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    logo: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    changePercent24Hr: PropTypes.string.isRequired
+  })).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  clearSearch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   netWorth: getNetWorth(state),
   portfolioWatchList: getWatchList(state),
+  searchedList: getStateSearchedList(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleSubmit(event, query) {
+    event.preventDefault();
+    dispatch(getSearchedList(query));
+  },
+  clearSearch() {
+    dispatch({ type: CLEAR_SEARCHED_LIST });
+  }
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(AllCoins);
 
 function coinListNeeds(array) {
