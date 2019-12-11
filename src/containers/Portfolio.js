@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import NetWorth from '../components/net-worth/NetWorth';
 import AssetList from '../components/ourAssets/AssetList';
 import NavMenu from '../components/hamburger-menu/NavMenu';
+
+import { getPortfolio } from '../actions/portfolioActions';
 import { getNetWorth, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getOpenMenu } from '../selectors/menuSelectors';
-import { getPortfolio } from '../actions/portfolioActions';
 import { getInvestedList } from '../services/currencies';
 
 
-const Portfolio = ({ netWorth, openMenu, loadPortfolio, portfolioInvestedCoins }) => {
+const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
   const [investedCoins, setInvestedCoins] = useState([]);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const Portfolio = ({ netWorth, openMenu, loadPortfolio, portfolioInvestedCoins }
         //diversification chart
       }
       <AssetList investedCoins={investedCoins} />
-      <NavMenu openMenu={openMenu} />
+      <NavMenu />
     </div>
   );
 };
@@ -51,7 +53,6 @@ Portfolio.propTypes = {
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
   })).isRequired,
-  openMenu: PropTypes.bool.isRequired,
   loadPortfolio: PropTypes.func.isRequired
 };
 

@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import NetWorth from '../components/net-worth/NetWorth';
-import HamburgerMenu from '../components/hamburger-menu/NavMenu';
-import CoinList from '../components/coin-summary/CoinList';
-import CoinSearchForm from '../components/coin-search/CoinSearchForm';
-import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
-import { getStateSearchedList } from '../selectors/coinsSelectors';
-import { getTop100Currencies } from '../services/currencies';
-import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
-import styles from './AllCoins.css';
-import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 
-const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, clearSearch }) => {
+import NetWorth from '../components/net-worth/NetWorth';
+import NavMenu from '../components/hamburger-menu/NavMenu';
+import CoinList from '../components/coin-summary/CoinList';
+
+import CoinSearchForm from '../components/coin-search/CoinSearchForm';
+import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
+import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
+import { getStateSearchedList } from '../selectors/coinsSelectors';
+import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
+import { getTop100Currencies } from '../services/currencies';
+
+import styles from './AllCoins.css';
+
+const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch }) => {
 
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
@@ -25,23 +28,22 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, cl
   useEffect(() => {
     getTop100Currencies()
       .then(({ watchList, investedCoins, top100Coins }) => {
-        setWatchList(watchList);
-        setInvestedCoins(investedCoins);
-        setTop100Coins(modifiedTop100(top100Coins, watchList, investedCoins));
+        setWatchList(modifiedList(watchList, 'watched'));
+        setInvestedCoins(modifiedList(investedCoins, 'invested'));
+        setTop100Coins(modifiedCoinList(top100Coins, watchList, investedCoins));
       });
   }, [portfolioWatchList]);
 
   return (
     <>
       <NetWorth netWorth={netWorth} />
-
       <div className={styles.AllCoins}>
-
-        {searchedList.length !== 0 && 
+        {
+          searchedList.length !== 0 && 
         <>
           <h1>Search Results</h1>
           <button onClick={()=> clearSearch()}>Clear Search Results</button>
-          <CoinList items={searchedList} />
+          <CoinList items={modifiedCoinList(searchedList, watchList, investedCoins)} />
         </>
         }
         <h1>Invested Coins</h1>
@@ -52,7 +54,7 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, cl
         <h1>All Coins</h1>
         <CoinList items={coinListNeeds(top100Coins)} />
       </div>
-      <HamburgerMenu />
+      <NavMenu />
     </>
   );
 };
@@ -62,7 +64,6 @@ AllCoins.propTypes = {
   portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
-
   searchedList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     logo: PropTypes.string,
@@ -71,10 +72,9 @@ AllCoins.propTypes = {
     changePercent24Hr: PropTypes.string.isRequired
   })).isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  clearSearch: PropTypes.func.isRequired
+  clearSearch: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   loadPortfolio: PropTypes.func.isRequired
-
 };
 
 const mapStateToProps = state => ({
@@ -90,10 +90,7 @@ const mapDispatchToProps = dispatch => ({
   },
   clearSearch() {
     dispatch({ type: CLEAR_SEARCHED_LIST });
-  }
-});
-
-const mapDispatchToProps = dispatch => ({
+  },
   handleClick(watchList, coin) {
     dispatch(toggleWatchList(watchList, coin));
   },
@@ -113,15 +110,16 @@ function coinListNeeds(array) {
     logo: coin.currencySymbol,
     name: coin.name,
     price: coin.priceUsd,
-    changePercent24Hr: coin.changePercent24Hr
+    changePercent24Hr: coin.changePercent24Hr,
+    special: coin.special
   }));
 }
 
-function modifiedTop100(top100Coins, watchList, investedCoins) {
-  const lookup = top100Coins.reduce((acc, coin) => {
+function modifiedCoinList(array, watchList, investedCoins) {
+  const lookup = array.reduce((acc, coin) => {
     acc = {
       ...acc,
-      [coin.id]: { ...coin, special: null }
+      [coin.id]: { ...coin, special: 'not' }
     };
     return acc;
   }, {});
@@ -134,4 +132,11 @@ function modifiedTop100(top100Coins, watchList, investedCoins) {
   });
 
   return Object.values(lookup);
+}
+
+function modifiedList(array, string) {
+  return array.map(item => {
+    item.special = string;
+    return item;
+  });
 }

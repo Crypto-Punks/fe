@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import TransactionForm from '../components/transaction-form/TransactionForm';
 import AssetList from '../components/ourAssets/AssetList';
 import NavMenu from '../components/hamburger-menu/NavMenu';
 import NetWorth from '../components/net-worth/NetWorth';
+
 import { getNetWorth, getInvestedCoins } from '../selectors/portfolioSelectors';
 import { getCurrencies } from '../services/currencies';
 import { coinTransaction } from '../actions/portfolioActions';

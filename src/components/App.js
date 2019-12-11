@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSessionId, getSessionLoading } from '../selectors/sessionSelectors';
 import { sessionVerify } from '../actions/sessionActions';
 import Signup from '../containers/SignUp';
-import SignIn from '../containers/SignIn';
+import LogIn from '../containers/LogIn';
 import SignOut from '../containers/SignOut';
 import Hamburger from './Hamburger/Hamburger';
 import Portfolio from '../containers/Portfolio';
@@ -29,7 +29,7 @@ const PrivateRoute = ({ ...rest }) => {
   if(loading) return <h1>Loading...</h1>;
 
 
-  if(!loading && !sessionId) return <Redirect to="/signup"/>;
+  if(!loading && !sessionId) return <Redirect to="/login"/>;
 
   return <Route {...rest} />;
 }; 
@@ -39,9 +39,9 @@ export default function App() {
     <Router>
       <Switch>
         <PrivateRoute exact path="/" component={Portfolio}/>
-        <PrivateRoute path="/signout" component={SignOut}/>
-        <Route path="/signin" component={SignIn}/>
+        <Route path="/login" component={LogIn}/>
         <Route path="/signup" component={Signup}/>
+        <PrivateRoute path="/signout" component={SignOut}/>
         <PrivateRoute path="/coins" component={AllCoins}/>
         <PrivateRoute path="/detail/:id" component={CoinDetail}/>
         <PrivateRoute path="/transaction" component={Transaction}/>
