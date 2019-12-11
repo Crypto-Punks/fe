@@ -36,7 +36,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         getCoinById(toCurrency)
       ])
         .then(([fromCurrencyResult, toCurrencyResult]) => {
-          const exchangeRate = Number(fromCurrencyResult[0].priceUsd) / Number(toCurrencyResult[0].priceUsd)
+          const exchangeRate = Number(fromCurrencyResult[0].priceUsd) / Number(toCurrencyResult[0].priceUsd);
           setExchangeRate(exchangeRate);
           setFromCurrencyAmount(toCurrencyAmount / exchangeRate);
         });
@@ -50,7 +50,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         getCoinById(toCurrency)
       ])
         .then(([fromCurrencyResult, toCurrencyResult]) => {
-          const exchangeRate = Number(fromCurrencyResult[0].priceUsd) / Number(toCurrencyResult[0].priceUsd)
+          const exchangeRate = Number(fromCurrencyResult[0].priceUsd) / Number(toCurrencyResult[0].priceUsd);
           setExchangeRate(exchangeRate);
           setToCurrencyAmount(fromCurrencyAmount * exchangeRate);
         });
