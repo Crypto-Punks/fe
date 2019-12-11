@@ -10,12 +10,17 @@ import { getStateSearchedList } from '../selectors/coinsSelectors';
 import { getTop100Currencies } from '../services/currencies';
 import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
 import styles from './AllCoins.css';
+import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 
-const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, clearSearch }) => {
+const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch }) => {
+
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
   const [top100Coins, setTop100Coins] = useState([]);
 
+  useEffect(() => {
+    loadPortfolio();
+  }, []);
 
   useEffect(() => {
     getTop100Currencies()
@@ -29,7 +34,9 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, cl
   return (
     <>
       <NetWorth netWorth={netWorth} />
+
       <div className={styles.AllCoins}>
+
         {searchedList.length !== 0 && 
         <>
           <h1>Search Results</h1>
@@ -55,6 +62,7 @@ AllCoins.propTypes = {
   portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
+
   searchedList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     logo: PropTypes.string,
@@ -63,7 +71,10 @@ AllCoins.propTypes = {
     changePercent24Hr: PropTypes.string.isRequired
   })).isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  clearSearch: PropTypes.func.isRequired
+  clearSearch: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  loadPortfolio: PropTypes.func.isRequired
+
 };
 
 const mapStateToProps = state => ({
@@ -79,6 +90,12 @@ const mapDispatchToProps = dispatch => ({
   },
   clearSearch() {
     dispatch({ type: CLEAR_SEARCHED_LIST });
+  },
+  handleClick(watchList, coin) {
+    dispatch(toggleWatchList(watchList, coin));
+  },
+  loadPortfolio() {
+    dispatch(getPortfolio());
   }
 });
 

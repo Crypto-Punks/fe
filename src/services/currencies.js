@@ -10,3 +10,5 @@ export const getCoinById = (id) => get(`${CURRENCY_URL}/${id}`);
 export const getWatchList = () => get(`${CURRENCY_URL}/watched`);
 export const getInvestedList = () => get(`${CURRENCY_URL}/invested`);
 export const getSearchCall = query => get(`${CURRENCY_URL}/search/${query}`);
+export const getPriceHistory = (id) => get(`${CURRENCY_URL}/history/${id}/d1`);
+
