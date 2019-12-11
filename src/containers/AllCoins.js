@@ -6,13 +6,14 @@ import HamburgerMenu from '../components/hamburger-menu/NavMenu';
 import CoinList from '../components/coin-summary/CoinList';
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
 import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
+import { getStateSearchedList } from '../selectors/coinsSelectors';
 import { getTop100Currencies } from '../services/currencies';
+import { getSearchedList } from '../actions/coinsActions';
 
-const AllCoins = ({ netWorth, portfolioWatchList }) => {
+const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit }) => {
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
   const [top100Coins, setTop100Coins] = useState([]);
-
 
   useEffect(()=> {
     getTop100Currencies()
@@ -26,12 +27,14 @@ const AllCoins = ({ netWorth, portfolioWatchList }) => {
   return (
     <div>
       <NetWorth netWorth={netWorth} />
-      <h1>Invested Coins</h1>
+      <h2>Invested Coins</h2>
       <CoinList items={coinListNeeds(investedCoins)} />
-      <h1>Watched Coins</h1>
+      <h2>Watched Coins</h2>
       {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
-      <CoinSearchForm />
-      <h1>All Coins</h1>
+      <h2>Search For A Coin</h2>
+      <CoinSearchForm handleSubmit={handleSubmit}/>
+      {searchedList.length !== 0 && <CoinList items={searchedList} />}
+      <h2>All Coins</h2>
       <CoinList items={coinListNeeds(top100Coins)} />
       <HamburgerMenu />
     </div>
@@ -43,15 +46,32 @@ AllCoins.propTypes = {
   portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
+  searchedList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    logo: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    changePercent24Hr: PropTypes.string.isRequired
+  })).isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   netWorth: getNetWorth(state),
   portfolioWatchList: getWatchList(state),
+  searchedList: getStateSearchedList(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleSubmit(event, query) {
+    event.preventDefault();
+    dispatch(getSearchedList(query));
+  }
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(AllCoins);
 
 
