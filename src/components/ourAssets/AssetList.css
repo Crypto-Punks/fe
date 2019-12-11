@@ -8,15 +8,15 @@
 
   li {
     background-color: #ACDEE3;
-    margin: 20px;
+    margin: 0;
     height: 16vh;
-    border-radius: .5em;
+    border-radius: .3em;
     list-style: none;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border: solid black;
+    border: solid thin black;
 
     img {
       width: 20%;
