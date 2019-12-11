@@ -102,7 +102,7 @@ function modifiedCoinList(array, watchList, investedCoins) {
   const lookup = array.reduce((acc, coin) => {
     acc = {
       ...acc,
-      [coin.id]: { ...coin, special: null }
+      [coin.id]: { ...coin, special: 'not' }
     };
     return acc;
   }, {});
