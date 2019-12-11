@@ -1,16 +1,16 @@
 .CoinList {
-  position: absolute;
+  position: relative;
   top: 40%;
-  left: 25%;
+  left: 23%;
   width: 50%;
   display: flex;
   flex-direction: column;
 
   a {
     text-decoration: none;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    text-transform: uppercase;
-    color: black;
+    font-family: abolition, sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
 
   a:visited {
@@ -18,8 +18,10 @@
   }
 
   li {
+    position: relative;
     background-color: #ACDEE3;
     margin: 20px;
+    padding: 10px;
     height: 16vh;
     border-radius: .8em;
     list-style: none;
@@ -37,9 +39,29 @@
     }
 
     p {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 15pt;
-      font-weight: 700;
+      color: black;
+      font-family: abolition, sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    
+    .Name {
+      left: 0;
+      font-size: 20pt;
+      letter-spacing: .5em;
+      font-weight: bold;
+    }
+
+    .Change {
+      font-size: 10pt;
+    }
+
+    .negative {
+      color: rgb(214, 64, 64);
+    }
+
+    .positive {
+      color: rgb(17, 212, 17);
     }
 
   }
@@ -48,5 +70,32 @@
     transform: translateY(-0.2em);
     cursor: pointer;
     box-shadow: .5px .5px 35px 1px white;
+  }
+}
+
+@media (max-width: 800px) {
+
+  .CoinList {
+    top: 40%;
+    left: 0%;
+    width: 80%;
+
+    li {
+      height: 10vh;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+
+  .CoinList {
+    top: 40%;
+    left: 0%;
+    width: 80%;
+
+    li {
+      height: 8vh;
+    }
+
   }
 }

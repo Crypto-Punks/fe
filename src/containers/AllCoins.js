@@ -9,13 +9,15 @@ import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
 import { getStateSearchedList } from '../selectors/coinsSelectors';
 import { getTop100Currencies } from '../services/currencies';
 import { getSearchedList } from '../actions/coinsActions';
+import styles from './AllCoins.css';
 
 const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit }) => {
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
   const [top100Coins, setTop100Coins] = useState([]);
 
-  useEffect(()=> {
+
+  useEffect(() => {
     getTop100Currencies()
       .then(({ watchList, investedCoins, top100Coins }) => {
         setWatchList(watchList);
@@ -25,19 +27,21 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit }) 
   }, [portfolioWatchList]);
 
   return (
-    <div>
+    <>
       <NetWorth netWorth={netWorth} />
-      <h2>Invested Coins</h2>
-      <CoinList items={coinListNeeds(investedCoins)} />
-      <h2>Watched Coins</h2>
-      {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
-      <h2>Search For A Coin</h2>
-      <CoinSearchForm handleSubmit={handleSubmit}/>
-      {searchedList.length !== 0 && <CoinList items={searchedList} />}
-      <h2>All Coins</h2>
-      <CoinList items={coinListNeeds(top100Coins)} />
+      <div className={styles.AllCoins}>
+        <h1>Invested Coins</h1>
+        <CoinList items={coinListNeeds(investedCoins)} />
+        <h1>Watched Coins</h1>
+        {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
+        <CoinSearchForm handleSubmit={handleSubmit}/>
+        {/* dynamically return h2 */}
+        {searchedList.length !== 0 && <CoinList items={searchedList} />}
+        <h1>All Coins</h1>
+        <CoinList items={coinListNeeds(top100Coins)} />
+      </div>
       <HamburgerMenu />
-    </div>
+    </>
   );
 };
 
@@ -74,8 +78,6 @@ export default connect(
   mapDispatchToProps
 )(AllCoins);
 
-
-
 function coinListNeeds(array) {
   return array.map(coin => ({
     id: coin.id,
@@ -85,7 +87,6 @@ function coinListNeeds(array) {
     changePercent24Hr: coin.changePercent24Hr
   }));
 }
-
 
 function modifiedTop100(top100Coins, watchList, investedCoins) {
   const lookup = top100Coins.reduce((acc, coin) => {
