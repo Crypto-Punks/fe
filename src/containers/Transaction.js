@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TransactionForm from '../components/transaction-form/TransactionForm';
 import AssetList from '../components/ourAssets/AssetList';
-import HamburgerMenu from '../components/hamburger-menu/HamburgerMenu';
+import NavMenu from '../components/hamburger-menu/NavMenu';
 import NetWorth from '../components/net-worth/NetWorth';
 import { getNetWorth, getInvestedCoins } from '../selectors/portfolioSelectors';
 import { getCurrencies } from '../services/currencies';
+import { coinTransaction } from '../actions/portfolioActions';
 
-const Transaction = ({ netWorth, investedCoins }) => {
+const Transaction = ({ handleSubmit, netWorth, investedCoins }) => {
   let currencies = [];
 
   useEffect(()=> {
@@ -21,9 +22,9 @@ const Transaction = ({ netWorth, investedCoins }) => {
   return (
     <div>
       <NetWorth netWorth={netWorth} />
-      <TransactionForm currencies={currencies} investedCoins={investedCoins} />
+      <TransactionForm currencies={currencies} investedCoins={investedCoins} handleSubmit={handleSubmit} />
       <AssetList items={investedCoins} />
-      <HamburgerMenu />
+      <NavMenu />
     </div>
   );
 };
@@ -36,6 +37,7 @@ Transaction.propTypes = {
     amount: PropTypes.number.isRequired,
     value: PropTypes.string.isRequired
   })).isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -43,6 +45,13 @@ const mapStateToProps = state => ({
   investedCoins: getInvestedCoins(state)
 });
 
+const mapDispatchToProps = dispatch => ({
+  handleSubmit(toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) {
+    dispatch(coinTransaction(toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins));
+  }
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Transaction);

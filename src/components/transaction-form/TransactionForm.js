@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { getCoinById } from '../../services/currencies';
 
-//todo make onsubmit function, getExchangeRate, getPrice
+//todo make handleSubmit function
 
-const TransactionForm = ({ currencies, investedCoins }) => {
+const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [fromCurrencyAmount, setFromCurrencyAmount] = useState(0);
   const [fromCurrencyMax, setFromCurrencyMax] = useState(0);
@@ -29,7 +30,13 @@ const TransactionForm = ({ currencies, investedCoins }) => {
   }, [fromCurrency]);
 
   useEffect(() => {
-    setExchangeRate(getExchangeRate());
+    return Promise.all([
+      getCoinById(fromCurrency),
+      getCoinById(toCurrency)
+    ])
+      .then(([fromCurrencyResult, toCurrencyResult]) => {
+        setExchangeRate(fromCurrencyResult.priceUsd / toCurrencyResult.priceUsd);
+      });
   }, [fromCurrency, toCurrency]);
 
   useEffect(() => {
@@ -50,12 +57,16 @@ const TransactionForm = ({ currencies, investedCoins }) => {
   }, [toCurrency, fromCurrencyMax]);
 
   useEffect(() => {
-    const value = fromCurrencyAmount * getPrice();
-    setTransactionValue(value);
+    return getCoinById(fromCurrency)
+      .then(fromCurrencyResult => {
+        setTransactionValue(fromCurrencyResult.priceUsd * fromCurrencyAmount);
+      });
   }, [fromCurrencyAmount]);
 
+
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={() => handleSubmit(toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
       <label>
         I want to buy
         <input type='number' value={toCurrencyAmount} max={toCurrencyMax} onChange={event => setToCurrencyAmount(event.target.value)} />
@@ -94,7 +105,8 @@ TransactionForm.propTypes = {
     logo: PropTypes.string,
     rateUsd: PropTypes.number.isRequired,
     priceUsd: PropTypes.number.isRequired
-  })).isRequired
+  })).isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 
