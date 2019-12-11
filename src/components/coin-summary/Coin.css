@@ -1,0 +1,9 @@
+.Coin {
+    .watched {
+        color: gold;
+    }
+
+    .unwatched {
+        color: white;
+    }
+}

@@ -1,0 +1,27 @@
+.AssetList {
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  li {
+    background-color: #ACDEE3;
+    margin: 20px;
+    height: 16vh;
+    border-radius: .5em;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    img {
+      width: 20%;
+      background-color: #43484F;
+      height: 100%;
+      border-radius: .5em;
+    }
+  }
+}

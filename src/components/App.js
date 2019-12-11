@@ -11,6 +11,11 @@ import { sessionVerify } from '../actions/sessionActions';
 import Signup from '../containers/SignUp';
 import SignIn from '../containers/SignIn';
 import SignOut from '../containers/SignOut';
+import Hamburger from './Hamburger/Hamburger';
+import Portfolio from '../containers/Portfolio';
+import AllCoins from '../containers/AllCoins';
+import CoinDetail from '../containers/CoinDetail';
+// import Transaction from '../containers/Transaction';
 
 const PrivateRoute = ({ ...rest }) => {
   const sessionId = useSelector(getSessionId);
@@ -33,10 +38,15 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <PrivateRoute exact path="/" component={SignOut}/>
+        <PrivateRoute exact path="/" component={Portfolio}/>
+        <PrivateRoute path="/signout" component={SignOut}/>
         <Route path="/signin" component={SignIn}/>
         <Route path="/signup" component={Signup}/>
+        <PrivateRoute path="/coins" component={AllCoins}/>
+        <PrivateRoute path="/detail/:id" component={CoinDetail}/>
+        {/* <Route path="/transaction" component={Transaction}/> */}
       </Switch>
+      <Hamburger />
     </Router>
   );
 }
