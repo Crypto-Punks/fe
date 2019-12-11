@@ -1,10 +1,11 @@
 .CoinList {
   position: relative;
   top: 40%;
-  left: 23%;
+  left: 25%;
   width: 50%;
   display: flex;
   flex-direction: column;
+  margin: 0;
 
   a {
     text-decoration: none;
@@ -20,17 +21,17 @@
   li {
     position: relative;
     background-color: #ACDEE3;
-    margin: 20px;
+    margin: 0px;
     padding: 10px;
-    height: 16vh;
-    border-radius: .8em;
+    height: 12vh;
+    border-radius: .3em;
     list-style: none;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     transition: .2s ease-in-out;
-    border: solid black;
+    border: solid thin black;
 
     img {
       width: 20%;
@@ -56,14 +57,6 @@
       font-size: 10pt;
     }
 
-    .negative {
-      color: rgb(214, 64, 64);
-    }
-
-    .positive {
-      color: rgb(17, 212, 17);
-    }
-
   }
 
   li:hover {
@@ -72,6 +65,7 @@
     box-shadow: .5px .5px 35px 1px white;
   }
 }
+
 
 @media (max-width: 800px) {
 
@@ -94,23 +88,20 @@
     width: 80%;
 
     li {
-      height: 8vh;
+      height: 5vh;
+      border-radius: .75em;
+
+      img{
+        width: 15%;
+      }
 
       p {
         font-size: 5pt;
       }
-
-      .Name {
-        left: 0;
-        font-size: 10pt;
-        letter-spacing: .2em;
-        font-weight: bold;
-      }
-
+      
       .Change {
         font-size: 5pt;
       }
     }
-
   }
 }

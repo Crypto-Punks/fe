@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getPriceHistory } from '../../services/currencies';
 import moment from 'moment';
+import styles from './PriceHistory.css';
 
 const PriceHistory = ({ id }) => {
   const [intervals, setIntervals] = useState([]);
@@ -17,7 +18,10 @@ const PriceHistory = ({ id }) => {
       duration: 1000,
       easing: 'linear',
       showlines: true
-    }
+    }, 
+    responsive: true,
+    
+    
   };
 
   useEffect(() => {
@@ -29,7 +33,12 @@ const PriceHistory = ({ id }) => {
   }, []);
 
   return (
-    <Line data={{ labels: intervals, datasets: [{ label: 'price', data: datasets }] }} options={priceHistoryOptions} /> 
+    <div className={styles.PriceHistory}>
+      <Line data={{
+        labels: intervals,
+        datasets: [{ label: 'price', data: datasets }]
+      }} options={priceHistoryOptions} />
+    </div>
   );
 };
 
