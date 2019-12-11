@@ -5,6 +5,10 @@
   width: 50%;
   display: flex;
   flex-direction: column;
+  margin: 0;
+
+  
+  
 
   a {
     text-decoration: none;
@@ -20,9 +24,9 @@
   li {
     position: relative;
     background-color: #ACDEE3;
-    margin: 20px;
+    margin: 0px;
     padding: 10px;
-    height: 16vh;
+    height: 12vh;
     border-radius: .8em;
     list-style: none;
     display: flex;
@@ -30,7 +34,7 @@
     align-items: center;
     justify-content: space-between;
     transition: .2s ease-in-out;
-    border: solid black;
+    border: solid thin black;
 
     img {
       width: 20%;
@@ -72,6 +76,7 @@
     box-shadow: .5px .5px 35px 1px white;
   }
 }
+
 
 @media (max-width: 800px) {
 
