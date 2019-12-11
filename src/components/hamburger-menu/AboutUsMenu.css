@@ -1,0 +1,23 @@
+.AboutUsMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(67, 72, 79, 0.831);
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 1em;
+  transition: .5s ease-in-out;
+  color: white;
+  overflow-y: scroll;
+  
+  p {
+    width: 90vw;
+  }
+
+}
+
+.closed {
+      transform: translateY(300%);
+}

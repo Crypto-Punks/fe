@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getPriceHistory } from '../../services/currencies';
 import moment from 'moment';
+import styles from './Derivative.css';
 
 const Derivative = ({ id }) => {
   const [derivativeArray, setDerivativeArray] = useState([]);
@@ -33,7 +34,9 @@ const Derivative = ({ id }) => {
   }, []);
   
   return (
-    <Line data={{ labels: intervals, datasets: [{ label: '% change', data: derivativeArray }] }} options={derivativeOptions} /> 
+    <div className={styles.Derivative}>
+      <Line data={{ labels: intervals, datasets: [{ label: '% change', data: derivativeArray }] }} options={derivativeOptions} /> 
+    </div>
   );
 };
 

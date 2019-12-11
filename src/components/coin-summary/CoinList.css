@@ -57,14 +57,6 @@
       font-size: 10pt;
     }
 
-    .negative {
-      color: rgb(214, 64, 64);
-    }
-
-    .positive {
-      color: rgb(17, 212, 17);
-    }
-
   }
 
   li:hover {
@@ -96,19 +88,17 @@
     width: 80%;
 
     li {
-      height: 8vh;
+      height: 5vh;
+      border-radius: .75em;
+
+      img{
+        width: 15%;
+      }
 
       p {
         font-size: 5pt;
       }
-
-      .Name {
-        left: 0;
-        font-size: 20pt;
-        letter-spacing: .2em;
-        font-weight: bold;
-      }
-
+      
       .Change {
         font-size: 5pt;
       }
