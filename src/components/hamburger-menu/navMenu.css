@@ -1,10 +1,9 @@
 .NavMenu {
-
   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: center;
-  background-color: rgba(67, 72, 79, 0.701);
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(67, 72, 79, 0.897);
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -40,5 +39,22 @@
 }
 
 .closed {
-  transform: translateY(2000%);
+  transform: translateY(100%);
+}
+
+@media (max-width: 500px) {
+  .NavMenu {
+
+    nav{
+
+      a {
+       margin-top: 0%;
+      }
+
+      img {
+        width: 2em;
+        height: 2em;
+      }
+    }
+  }
 }

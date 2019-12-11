@@ -136,7 +136,8 @@ body {
   .Container {
     
     a:link {
-      width: 20vw;
+      width: 30vw;
+      height: 3vh;
     }
   }
 

@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './CoinSearchForm.css';
 
-//todo make onSubmit function
 
-const CoinSearchForm = () => {
+const CoinSearchForm = ({ handleSubmit }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <form className={styles.SearchForm} onSubmit={() => {}}>
-      <input type='text' value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
+    <form 
+      className={styles.SearchForm} 
+      onSubmit={event => {
+        setSearchTerm('');
+        handleSubmit(event, searchTerm);
+      }}>
+      <input type='text' value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} />
       <button>🔍</button>
     </form>
   );
+};
+
+CoinSearchForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default CoinSearchForm;
