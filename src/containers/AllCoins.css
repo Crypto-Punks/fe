@@ -3,7 +3,7 @@
   
   h1 {
     text-align: left;
-    margin-left: 3em;
+    margin-left: 30em;
     margin-bottom: 0;
     color: white;
     font-family: abolition, sans-serif;
@@ -13,4 +13,14 @@
     letter-spacing: .4em;
   }
 
+}
+
+@media (max-width: 500px) {
+
+  .AllCoins {
+
+    h1{
+      margin-left: 3em;
+    }
+  }
 }
