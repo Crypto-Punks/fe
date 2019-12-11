@@ -17,10 +17,11 @@ const CoinList = ({ items, watchList, handleClick }) => {
 CoinList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    logo: PropTypes.string.isRequierd,
+    logo: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    changePercent24Hr: PropTypes.string.isRequired
+    changePercent24Hr: PropTypes.string.isRequired,
+    special: PropTypes.string.isRequired
   })).isRequired,
   watchList: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
   handleClick: PropTypes.func
