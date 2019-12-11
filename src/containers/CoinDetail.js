@@ -35,7 +35,7 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
       <Derivative id={match.params.id} />
       <AboutCoin {...coinInfo} />
       <HamburgerMenu />
-    </>
+    </div>
   );
 };
 

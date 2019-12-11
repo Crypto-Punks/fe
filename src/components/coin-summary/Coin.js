@@ -1,13 +1,8 @@
 import React from 'react';
-// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styles from '../coin-summary/CoinList.css';
+// import styles from '../coin-summary/CoinList.css';
 import styles from './Coin.css';
-// import { getWatchList } from '../../selectors/portfolioSelectors';
-// import { toggleWatchList } from '../../actions/portfolioActions';
-
-
 
 const Coin = ({ item, watchList, handleClick }) => {
   const { id, logo, name, price, changePercent24Hr } = item;
@@ -36,15 +31,6 @@ Coin.propTypes = {
   handleClick: PropTypes.func
 };
 
-// const mapStateToProps = state => ({
-//   watchList: getWatchList(state)
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   handleClick(watchList, coin) {
-//     dispatch(toggleWatchList(watchList, coin))
-//   }
-// })
 
 export default Coin;
 

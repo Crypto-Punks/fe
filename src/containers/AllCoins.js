@@ -12,7 +12,7 @@ import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
 import styles from './AllCoins.css';
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 
-const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, clearSearch }) => {
+const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch }) => {
 
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
@@ -71,7 +71,7 @@ AllCoins.propTypes = {
     changePercent24Hr: PropTypes.string.isRequired
   })).isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  clearSearch: PropTypes.func.isRequired
+  clearSearch: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   loadPortfolio: PropTypes.func.isRequired
 
@@ -90,10 +90,7 @@ const mapDispatchToProps = dispatch => ({
   },
   clearSearch() {
     dispatch({ type: CLEAR_SEARCHED_LIST });
-  }
-});
-
-const mapDispatchToProps = dispatch => ({
+  },
   handleClick(watchList, coin) {
     dispatch(toggleWatchList(watchList, coin));
   },
