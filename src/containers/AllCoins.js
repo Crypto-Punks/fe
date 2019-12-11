@@ -27,13 +27,19 @@ const AllCoins = ({ netWorth, portfolioWatchList }) => {
     <>
       <NetWorth netWorth={netWorth} />
       <div className={styles.AllCoins}>
-        <h1>Invested Coins</h1>
-        <CoinList items={coinListNeeds(investedCoins)} />
-        <h1>Watched Coins</h1>
-        {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
-        <CoinSearchForm />
-        <h1>All Coins</h1>
-        <CoinList items={coinListNeeds(top100Coins)} />
+        <div className={styles.Invested}>
+          <h1>Invested Coins</h1>
+          <CoinList items={coinListNeeds(investedCoins)} />
+        </div>
+        <div className={styles.Watched}>
+          <h1>Watched Coins</h1>
+          {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
+          <CoinSearchForm />
+        </div>
+        <div className={styles.AllCoins} >
+          <h1>All Coins</h1>
+          <CoinList items={coinListNeeds(top100Coins)} />
+        </div>
       </div>
       <HamburgerMenu />
     </>
