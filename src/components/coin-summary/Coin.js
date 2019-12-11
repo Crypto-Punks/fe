@@ -22,7 +22,8 @@ Coin.propTypes = {
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    changePercent24Hr: PropTypes.string.isRequired
+    changePercent24Hr: PropTypes.string.isRequired,
+    special: PropTypes.string.isRequired
   })
 };
 

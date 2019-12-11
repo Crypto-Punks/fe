@@ -20,8 +20,8 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, cl
   useEffect(() => {
     getTop100Currencies()
       .then(({ watchList, investedCoins, top100Coins }) => {
-        setWatchList(watchList);
-        setInvestedCoins(investedCoins);
+        setWatchList(modifiedList(watchList, 'watched'));
+        setInvestedCoins(modifiedList(investedCoins, 'invested'));
         setTop100Coins(modifiedTop100(top100Coins, watchList, investedCoins));
       });
   }, [portfolioWatchList]);
@@ -93,7 +93,8 @@ function coinListNeeds(array) {
     logo: coin.currencySymbol,
     name: coin.name,
     price: coin.priceUsd,
-    changePercent24Hr: coin.changePercent24Hr
+    changePercent24Hr: coin.changePercent24Hr,
+    special: coin.special
   }));
 }
 
@@ -114,4 +115,11 @@ function modifiedTop100(top100Coins, watchList, investedCoins) {
   });
 
   return Object.values(lookup);
+}
+
+function modifiedList(array, string) {
+  return array.map(item => {
+    item.special = string;
+    return item;
+  });
 }
