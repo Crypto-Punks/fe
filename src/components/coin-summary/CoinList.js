@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Coin from './Coin';
+import PropTypes from 'prop-types';
 import styles from './CoinList.css';
 
 const CoinList = ({ items, watchList, handleClick }) => {

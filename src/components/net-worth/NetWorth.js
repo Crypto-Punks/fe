@@ -1,7 +1,7 @@
 import React from 'react';
+import Logo from '../../images/cryptoLogoPlain.png';
 import PropTypes from 'prop-types';
 import styles from './NetWorth.css';
-import Logo from '../../images/cryptoLogoPlain.png';
 
 
 const NetWorth = ({ netWorth }) => {

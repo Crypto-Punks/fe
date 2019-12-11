@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import NetWorth from '../components/net-worth/NetWorth';
-import HamburgerMenu from '../components/hamburger-menu/NavMenu';
+import NavMenu from '../components/hamburger-menu/NavMenu';
 import CoinList from '../components/coin-summary/CoinList';
+
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
-import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
-import { getStateSearchedList } from '../selectors/coinsSelectors';
-import { getTop100Currencies } from '../services/currencies';
 import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
-import styles from './AllCoins.css';
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
+import { getStateSearchedList } from '../selectors/coinsSelectors';
+import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
+import { getTop100Currencies } from '../services/currencies';
+
+import styles from './AllCoins.css';
 
 const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch }) => {
 
@@ -34,10 +37,9 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
   return (
     <>
       <NetWorth netWorth={netWorth} />
-
       <div className={styles.AllCoins}>
-
-        {searchedList.length !== 0 && 
+        {
+          searchedList.length !== 0 && 
         <>
           <h1>Search Results</h1>
           <button onClick={()=> clearSearch()}>Clear Search Results</button>
@@ -52,7 +54,7 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
         <h1>All Coins</h1>
         <CoinList items={coinListNeeds(top100Coins)} />
       </div>
-      <HamburgerMenu />
+      <NavMenu />
     </>
   );
 };
@@ -62,7 +64,6 @@ AllCoins.propTypes = {
   portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
-
   searchedList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     logo: PropTypes.string,
@@ -74,7 +75,6 @@ AllCoins.propTypes = {
   clearSearch: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   loadPortfolio: PropTypes.func.isRequired
-
 };
 
 const mapStateToProps = state => ({
