@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import UserForm from '../components/user/UserForm';
-import { sessionSignIn, clearSessionError } from '../actions/sessionActions';
+import { sessionLogIn, clearSessionError } from '../actions/sessionActions';
 import { getSessionError } from '../selectors/sessionSelectors';
 
 const mapStateToProps = state => ({
   buttonText: 'Login',
-  redirectText: 'Get Started!',
+  redirectText: 'Sign Up!',
   redirectLink: '/signup',
   error: getSessionError(state)
 });
@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleSubmit(event, username, password) {
     event.preventDefault();
-    dispatch(sessionSignIn(username, password));
+    dispatch(sessionLogIn(username, password));
   },
   handleClearError() {
     dispatch(clearSessionError());
