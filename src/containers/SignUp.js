@@ -6,7 +6,7 @@ import { getSessionError } from '../selectors/sessionSelectors';
 const mapStateToProps = state => ({
   buttonText: 'Sign Up',
   redirectText: 'Login!',
-  redirectLink: '/signin',
+  redirectLink: '/login',
   error: getSessionError(state)
 });
 

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import AboutCoin from '../components/about-coin/AboutCoin';
-import HamburgerMenu from '../components/hamburger-menu/NavMenu';
+import NavMenu from '../components/hamburger-menu/NavMenu';
+import Derivative from '../components/charts/Derivative';
+import PriceHistory from '../components/charts/PriceHistory';
+
+import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 import { getPortfolioInvestedCoins, getWatchList } from '../selectors/portfolioSelectors';
 import { getCoinById } from '../services/currencies';
-import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
+
 import styles from './CoinDetail.css';
-import PriceHistory from '../components/charts/PriceHistory';
-import Derivative from '../components/charts/Derivative';
 
 
 
@@ -34,7 +37,7 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
       <PriceHistory id={match.params.id} />
       <Derivative id={match.params.id} />
       <AboutCoin {...coinInfo} />
-      <HamburgerMenu />
+      <NavMenu />
     </div>
   );
 };

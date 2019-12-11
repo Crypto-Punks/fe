@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import styles from '../coin-summary/CoinList.css';
 import styles from './Coin.css';
 
 const Coin = ({ item, watchList, handleClick }) => {
@@ -11,7 +10,13 @@ const Coin = ({ item, watchList, handleClick }) => {
   
   return (
     <div className={styles.Coin}>
-      {handleClick && <button className={watchList.find(element => element.name === id) ? styles.watched : styles.unwatched} onClick={() => handleClick(watchList, id)}>🟊</button>}
+      {
+        handleClick && 
+      <button 
+        className={watchList.find(element => element.name === id) ? styles.watched : styles.unwatched} 
+        onClick={() => handleClick(watchList, id)}>
+        🟊</button>
+      }
       <Link to={`/detail/${id}`}>
         {renderCoinHtml(logo, name, price, changePercent24Hr)}
       </Link>
@@ -25,17 +30,17 @@ Coin.propTypes = {
     logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    changePercent24Hr: PropTypes.string.isRequired
+    changePercent24Hr: PropTypes.string.isRequired,
+    special: PropTypes.string.isRequired
   }),
   watchList: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
   handleClick: PropTypes.func
 };
 
-
 export default Coin;
 
-function renderCoinHtml(logo, name, price, changePercent24Hr) {
 
+function renderCoinHtml(logo, name, price, changePercent24Hr) {
   const styleClass = parseFloat(changePercent24Hr) < 0 ? 'negative' : 'positive';
   return (
     <li>

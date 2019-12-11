@@ -1,13 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styles from './Hamburger.css';
-import { getOpenMenu } from '../../selectors/menuSelectors';
+
 import { TOGGLE_OPEN_MENU } from '../../actions/menuActions';
+import { getOpenMenu } from '../../selectors/menuSelectors';
+
 import Arrow from '../../images/arrow.png';
+import styles from './Hamburger.css';
 
 const Hamburger = () => {
-  const openMenu = useSelector(getOpenMenu);
   const dispatch = useDispatch();
+  const openMenu = useSelector(getOpenMenu);
   const setOpenMenu = () => dispatch({ type: TOGGLE_OPEN_MENU });
 
   return (
