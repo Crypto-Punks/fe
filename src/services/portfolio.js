@@ -12,3 +12,17 @@ export const changeWatchList = (watchList, coin) => {
 
   return put(`${PORTFOLIO_BASE_URL}`, { watchList });
 };
+
+export const changeInvested = (toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) => {
+  if(!investedCoins.find(element => element.name === toCurrency)) {
+    investedCoins.push({ name: toCurrency, amount: toCurrencyAmount });
+  } else {
+    investedCoins.find(element => element.name === toCurrency).amount += toCurrencyAmount;
+  }
+  investedCoins.find(element => element.name === fromCurrency).amount -= fromCurrencyAmount;
+  if(investedCoins.find(element => element.name === fromCurrency).amount === 0) {
+
+    investedCoins.splice(investedCoins.indexOf(investedCoins.find(element => element.name === fromCurrency)), 1);
+  }
+  return put(`${PORTFOLIO_BASE_URL}`, { investedCoins });
+};

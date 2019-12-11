@@ -8,7 +8,6 @@ import NavMenu from '../components/hamburger-menu/NavMenu';
 
 import { getPortfolio } from '../actions/portfolioActions';
 import { getNetWorth, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
-import { getOpenMenu } from '../selectors/menuSelectors';
 import { getInvestedList } from '../services/currencies';
 
 
@@ -58,7 +57,6 @@ Portfolio.propTypes = {
 
 const mapStateToProps = state => ({
   netWorth: getNetWorth(state),
-  openMenu: getOpenMenu(state),
   portfolioInvestedCoins: getPortfolioInvestedCoins(state)
 });
 

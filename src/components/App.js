@@ -15,7 +15,7 @@ import Hamburger from './Hamburger/Hamburger';
 import Portfolio from '../containers/Portfolio';
 import AllCoins from '../containers/AllCoins';
 import CoinDetail from '../containers/CoinDetail';
-// import Transaction from '../containers/Transaction';
+import Transaction from '../containers/Transaction';
 
 const PrivateRoute = ({ ...rest }) => {
   const sessionId = useSelector(getSessionId);
@@ -44,7 +44,7 @@ export default function App() {
         <PrivateRoute path="/signout" component={SignOut}/>
         <PrivateRoute path="/coins" component={AllCoins}/>
         <PrivateRoute path="/detail/:id" component={CoinDetail}/>
-        {/* <Route path="/transaction" component={Transaction}/> */}
+        <PrivateRoute path="/transaction" component={Transaction}/>
       </Switch>
       <Hamburger />
     </Router>

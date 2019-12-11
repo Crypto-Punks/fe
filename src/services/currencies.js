@@ -23,3 +23,4 @@ export const getCoinById = (id) => get(`${CURRENCY_URL}/${id}`);
 //getCoinsById/getCoins needs id:id, logo: currencySymbol, name:name, priceUsd:priceUsd, changePercent24Hr:changePercent24Hr
 export const getTop100Currencies = () => get(CURRENCY_URL);
 
+ 
