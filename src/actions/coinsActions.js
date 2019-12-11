@@ -11,3 +11,5 @@ export const getSearchedList = query => dispatch => {
       });
     });
 };
+
+export const CLEAR_SEARCHED_LIST = 'CLEAR_SEARCHED_LIST';
