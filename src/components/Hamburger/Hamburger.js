@@ -6,7 +6,7 @@ import { getOpenMenu } from '../../selectors/menuSelectors';
 
 import Arrow from '../../images/arrow.png';
 import styles from './Hamburger.css';
-import BackgroundImage from '../../images/Background.png';
+import BackgroundImage from '../../images/background.png';
 
 const Hamburger = () => {
   const dispatch = useDispatch();
