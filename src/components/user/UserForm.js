@@ -24,8 +24,8 @@ const UserForm = ({ buttonText, redirectText, redirectLink, error, handleSubmit,
           <input type="password" value={password} onChange={({ target }) => setPassword(target.value)} placeholder="Password" />
           <button>{buttonText}</button>
         </form>
-        <AboutUsMenu />
       </div>
+      <AboutUsMenu />
     </>
   );
 };

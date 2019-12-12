@@ -6,4 +6,23 @@
     .unwatched {
         color: white;
     }
+
+    .negative {
+        color: rgb(214, 64, 64);
+      }
+  
+      .positive {
+        color: rgb(17, 212, 17);
+      }
+}
+
+@media (max-width: 500px) {
+
+    .Coin {
+
+        .Name {
+            font-size: 15pt;
+            color: #272D36;
+        }
+    }
 }

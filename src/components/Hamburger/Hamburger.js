@@ -6,6 +6,7 @@ import { getOpenMenu } from '../../selectors/menuSelectors';
 
 import Arrow from '../../images/arrow.png';
 import styles from './Hamburger.css';
+import BackgroundImage from '../../images/Background.png';
 
 const Hamburger = () => {
   const dispatch = useDispatch();
@@ -13,12 +14,13 @@ const Hamburger = () => {
   const setOpenMenu = () => dispatch({ type: TOGGLE_OPEN_MENU });
 
   return (
-    <div className={styles.ButtonContainer}>
+    <>
+      <div className={styles.Background}><img src={BackgroundImage}></img></div>
       <button
         className={`${styles.Button} ${openMenu ? styles.up : styles.down} `}
         onClick={setOpenMenu}><img src={Arrow}></img>
       </button>
-    </div>
+    </>
   );
 };
 

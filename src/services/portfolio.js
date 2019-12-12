@@ -1,4 +1,5 @@
 import { get, put } from './request';
+import { addTrade } from './trades';
 const PORTFOLIO_BASE_URL = 'http://localhost:7891/api/v1/portfolio';
 
 export const fetchPortfolio = () => get(`${PORTFOLIO_BASE_URL}`);
@@ -13,7 +14,8 @@ export const changeWatchList = (watchList, coin) => {
   return put(`${PORTFOLIO_BASE_URL}`, { watchList });
 };
 
-export const changeInvested = (toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) => {
+export const changeInvested = (exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) => {
+  console.log(investedCoins);
   if(!investedCoins.find(element => element.name === toCurrency)) {
     investedCoins.push({ name: toCurrency, amount: toCurrencyAmount });
   } else {
@@ -24,5 +26,6 @@ export const changeInvested = (toCurrency, toCurrencyAmount, fromCurrency, fromC
 
     investedCoins.splice(investedCoins.indexOf(investedCoins.find(element => element.name === fromCurrency)), 1);
   }
+  addTrade(toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, exchangeRate);
   return put(`${PORTFOLIO_BASE_URL}`, { investedCoins });
 };

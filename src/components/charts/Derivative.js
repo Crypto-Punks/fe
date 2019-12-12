@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getPriceHistory } from '../../services/currencies';
 import moment from 'moment';
+import styles from './Derivative.css';
 
-const Derivative = ({ id }) => {
+const Derivative = ({ id, derivativeInterval }) => {
   const [derivativeArray, setDerivativeArray] = useState([]);
   const [intervals, setIntervals] = useState([]);
 
@@ -21,7 +22,7 @@ const Derivative = ({ id }) => {
   };
 
   useEffect(() => {
-    getPriceHistory(id)
+    getPriceHistory(id, derivativeInterval)
       .then(priceHistory => {
         const derivatives = priceHistory.map((element, i) => {
           if(i === 0) return (priceHistory[1 + 1].priceUsd - element.priceUsd) * 100 / (priceHistory[i + 1].time - element.time);
@@ -30,15 +31,18 @@ const Derivative = ({ id }) => {
         setDerivativeArray(derivatives);
         setIntervals(priceHistory.map(item => moment(item.time).format('MMM Do YYYY')));
       });
-  }, []);
+  }, [derivativeInterval]);
   
   return (
-    <Line data={{ labels: intervals, datasets: [{ label: '% change', data: derivativeArray }] }} options={derivativeOptions} /> 
+    <div className={styles.Derivative}>
+      <Line data={{ labels: intervals, datasets: [{ label: '% change', data: derivativeArray }] }} options={derivativeOptions} /> 
+    </div>
   );
 };
 
 Derivative.propTypes = {
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  derivativeInterval: PropTypes.string.isRequired
 };
 
 export default Derivative;

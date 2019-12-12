@@ -18,7 +18,7 @@ body {
   width: 300px;
   height: 300px;
   top: 5%;
-  left: 40%;
+  left: 41%;
   margin: 0;
 
   h1 {
@@ -48,7 +48,7 @@ body {
     text-decoration: none;
     cursor: pointer;
     background-color: #43484F;
-    border-radius: 3em;
+    border-radius: .2em;
     width: 6vw;
     text-align: center;
   }
@@ -67,10 +67,10 @@ body {
 
   input {
     background-color: #ACDEE3;
-    margin: 1em;
+    margin: 0;
     width: 20vw;
     height: 5vh;
-    border-radius: .5em;
+    border-radius: .35em;
     border: 2px solid black;
   }
 
@@ -80,10 +80,10 @@ body {
 
   button {
     width: 7vw;
-    height: 5vh;
+    height: 3vh;
     background-color: #6CB2BA;
     color: white;
-    border-radius: 1em;
+    border-radius: .5em;
     border: .5px solid black;
     cursor: pointer;
   }
@@ -136,7 +136,7 @@ body {
   .Container {
     
     a:link {
-      width: 30vw;
+      width: 25vw;
       height: 3vh;
     }
   }
@@ -145,12 +145,12 @@ body {
     
     input {
       width: 55vw;
-      height: 5vh;
+      height: 3vh;
     }
   
     button {
       width: 20vw;
-      height: 5vh;
+      height: 3vh;
     }
 
   }
