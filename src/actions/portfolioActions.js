@@ -33,3 +33,4 @@ export const coinTransaction = (exchangeRate, toCurrency, toCurrencyAmount, from
     });
 };
 
+export const UPDATE_NET_WORTH = 'UPDATE_NET_WORTH';

@@ -9,12 +9,12 @@ import NetWorth from '../components/net-worth/NetWorth';
 import styles from './HomeContainer.css';
 
 import { getPortfolio } from '../actions/portfolioActions';
-import { getNetWorth, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
+import { getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getAllCurrencyIds } from '../services/currencies';
 import { coinTransaction } from '../actions/portfolioActions';
 import { getInvestedList } from '../services/currencies';
 
-const Transaction = ({ handleSubmit, netWorth, loadPortfolio, portfolioInvestedCoins }) => {
+const Transaction = ({ handleSubmit, loadPortfolio, portfolioInvestedCoins }) => {
   const [investedCoins, setInvestedCoins] = useState([]);
   const [currencies, setCurrencies] = useState([]);
 
@@ -41,7 +41,7 @@ const Transaction = ({ handleSubmit, netWorth, loadPortfolio, portfolioInvestedC
 
   return (
     <div className={styles.HomeContainer}>
-      <NetWorth netWorth={netWorth} />
+      <NetWorth />
       <TransactionForm currencies={currencies} investedCoins={portfolioInvestedCoins} handleSubmit={handleSubmit} />
       <AssetList investedCoins={investedCoins} />
       <NavMenu />
@@ -51,7 +51,6 @@ const Transaction = ({ handleSubmit, netWorth, loadPortfolio, portfolioInvestedC
 
 Transaction.propTypes = {
   loadPortfolio: PropTypes.func.isRequired,
-  netWorth: PropTypes.number.isRequired,
   portfolioInvestedCoins: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
@@ -60,7 +59,6 @@ Transaction.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  netWorth: getNetWorth(state),
   portfolioInvestedCoins: getPortfolioInvestedCoins(state)
 });
 
