@@ -1,6 +1,6 @@
 import { 
   SET_SESSION,
-  SET_SESSION_LOADING,
+  SET_SESSION_LOADING_TRUE,
   SET_SESSION_ERROR,
   CLEAR_SESSION_ERROR,
   SET_SESSION_SIGN_OUT,
@@ -12,8 +12,8 @@ describe('Session Actions', ()=> {
     expect(SET_SESSION).toBe('SET_SESSION');
   });
 
-  it('SET_SESSION_LOADING equals the correct string', () => {
-    expect(SET_SESSION_LOADING).toBe('SET_SESSION_LOADING');
+  it('SET_SESSION_LOADING_TRUE equals the correct string', () => {
+    expect(SET_SESSION_LOADING_TRUE).toBe('SET_SESSION_LOADING_TRUE');
   });
 
   it('SET_SESSION_ERROR equals the correct string', () => {
