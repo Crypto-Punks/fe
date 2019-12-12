@@ -19,7 +19,6 @@ const NetWorth = () => {
         return getCoinPriceById(val.name)
           .then(price => price * val.amount);
       })).then(values => {
-        console.log(values);
         return values.reduce((acc, val) => acc + val); 
       }). then(netWorth => dispatch({ type: UPDATE_NET_WORTH, payload: netWorth }));
     }
