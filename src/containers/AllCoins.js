@@ -10,12 +10,12 @@ import CoinSearchForm from '../components/coin-search/CoinSearchForm';
 import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 import { getStateSearchedList, getSearchedError } from '../selectors/coinsSelectors';
-import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
+import { getWatchList } from '../selectors/portfolioSelectors';
 import { getTop100Currencies } from '../services/currencies';
 
 import styles from './AllCoins.css';
 
-const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch, handleClick, searchedError }) => {
+const AllCoins = ({ portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch, handleClick, searchedError }) => {
 
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
@@ -36,7 +36,7 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
 
   return (
     <>
-      <NetWorth netWorth={netWorth} />
+      <NetWorth />
       <div className={styles.AllCoins}>
         { searchedError &&
         <> 
@@ -67,7 +67,6 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
 };
 
 AllCoins.propTypes = {
-  netWorth: PropTypes.number.isRequired,
   portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
@@ -86,7 +85,6 @@ AllCoins.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  netWorth: getNetWorth(state),
   portfolioWatchList: getWatchList(state),
   searchedList: getStateSearchedList(state),
   searchedError: getSearchedError(state)

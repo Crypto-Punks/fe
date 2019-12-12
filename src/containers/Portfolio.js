@@ -7,7 +7,7 @@ import AssetList from '../components/ourAssets/AssetList';
 import NavMenu from '../components/hamburger-menu/NavMenu';
 
 import { getPortfolio } from '../actions/portfolioActions';
-import { getNetWorth, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
+import { getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getInvestedList } from '../services/currencies';
 
 import styles from './HomeContainer.css';
@@ -15,7 +15,7 @@ import PortfolioHistory from '../components/charts/PortfolioHistory';
 import Diversification from '../components/charts/Diversification';
 
 
-const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
+const Portfolio = ({ loadPortfolio, portfolioInvestedCoins }) => {
   const [investedCoins, setInvestedCoins] = useState([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
 
   return (
     <div className={styles.HomeContainer}>
-      <NetWorth netWorth={netWorth} />
+      <NetWorth />
       <PortfolioHistory />
       <Diversification investedCoins={investedCoins} />
       <AssetList investedCoins={investedCoins} />
@@ -44,7 +44,6 @@ const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
 };
 
 Portfolio.propTypes = {
-  netWorth: PropTypes.number.isRequired,
   portfolioInvestedCoins: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
@@ -53,7 +52,6 @@ Portfolio.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  netWorth: getNetWorth(state),
   portfolioInvestedCoins: getPortfolioInvestedCoins(state)
 });
 
