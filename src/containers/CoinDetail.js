@@ -9,47 +9,49 @@ import PriceHistory from '../components/charts/PriceHistory';
 
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 import { getPortfolioInvestedCoins, getWatchList } from '../selectors/portfolioSelectors';
-import { getCoinById } from '../services/currencies';
+import { getCoinInfoById } from '../services/currencies';
 
 import styles from './CoinDetail.css';
 
 
-
-//todo make action for adding/removing from favorites, selectors, add charts
-
 const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfolio }) => {
   const coin = investedCoins.find(element => element.name === match.params.id);
   const [coinInfo, setCoinInfo] = useState({});
-  const [derivativeInterval, setDerivativeInterval] = useState('d1');
-  const [historyInterval, setHistoryInterval] = useState('d1');
+  const [stateDuration, setStateDuration] = useState('1day');
+
 
   useEffect(() => {
     loadPortfolio();
-    getCoinById(match.params.id)
+    getCoinInfoById(match.params.id)
       .then(info => {
-        setCoinInfo(info[0]);
+        setCoinInfo(info);
       });
   }, []);
 
   return (
 
-    <div className={styles.CoinDetail}>
-      <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
-      <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
-      <form>
-        {radioButton('m1', 'Previous Hour', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('m30', 'Previous Day', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('h1', 'Previous 3 Days', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('h12', 'Previous Week', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('d1', 'Previous Month', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('d1m6', 'Previous 6 Months', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('d1y1', 'Previous Year', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-      </form>
-      <PriceHistory id={match.params.id} historyInterval={historyInterval}/>
-      <Derivative id={match.params.id} derivativeInterval={derivativeInterval} />
+    <>
+      <div className={styles.CoinDetail}>
+        <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
+        {/* use coin.logo */}
+        <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
+        <form>
+          {radioButton('1hour', 'Hour', stateDuration, setStateDuration)}
+          {radioButton('1day', 'Day', stateDuration, setStateDuration)}
+          {radioButton('3days', '3 Days', stateDuration, setStateDuration)}
+          {radioButton('1week', 'Week', stateDuration, setStateDuration)}
+          {radioButton('1month', 'Month', stateDuration, setStateDuration)}
+          {radioButton('6months', '6 Months', stateDuration, setStateDuration)}
+          {radioButton('1year', 'Year', stateDuration, setStateDuration)}
+        </form>
+      </div>
+      <div className={styles.Charts}>
+        <PriceHistory id={match.params.id} historyDuration={stateDuration}/>
+        <Derivative id={match.params.id} derivativeDuration={stateDuration} />
+      </div>
       <AboutCoin {...coinInfo} />
       <NavMenu />
-    </div>
+    </>
   );
 };
 
@@ -89,16 +91,13 @@ export default connect(
   mapDispatchToProps
 )(CoinDetail);
 
-function radioButton(string, label, stateInterval, setHistoryInterval, setDerivativeInterval) {
+function radioButton(duration, label, stateDuration, setStateDuration) {
   return (
     <div>
       <label>
-        <input type='radio' value={string} 
-          checked={stateInterval === string}
-          onChange={() => {
-            setHistoryInterval(string);
-            setDerivativeInterval(string);
-          }} />
+        <input type='radio' value={duration} 
+          checked={stateDuration === duration}
+          onChange={() => setStateDuration(duration)} />
         {label}
       </label>
     </div>

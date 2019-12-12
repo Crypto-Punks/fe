@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import styles from './AssetList.css';
 
 const AssetList = ({ investedCoins }) => {
-
   const coins = investedCoins.map(coin => {
     return <AssetItem key={coin.name} activeCoin={coin} />; 
   });

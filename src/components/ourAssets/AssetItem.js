@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styles from './AssetList.css';
 
 const AssetItem = ({ activeCoin }) => {
   const { id, logo, name, amount, price } = activeCoin;
@@ -31,8 +32,8 @@ function renderAssetHtml(logo, name, amount, price) {
   return (
     <li>
       <img src={logo} alt={name} />
-      <p>{amount} {name}</p>
-      <p>${amount * price}</p>
+      <p className={styles.Name}>{name} ({amount})</p>
+      <p className={styles.Change}>${amount * price}</p>
     </li>
   );
 }

@@ -9,13 +9,13 @@ import CoinList from '../components/coin-summary/CoinList';
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
 import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
-import { getStateSearchedList } from '../selectors/coinsSelectors';
+import { getStateSearchedList, getSearchedError } from '../selectors/coinsSelectors';
 import { getNetWorth, getWatchList } from '../selectors/portfolioSelectors';
 import { getTop100Currencies } from '../services/currencies';
 
 import styles from './AllCoins.css';
 
-const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch, handleClick }) => {
+const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch, handleClick, searchedError }) => {
 
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
@@ -38,6 +38,12 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
     <>
       <NetWorth netWorth={netWorth} />
       <div className={styles.AllCoins}>
+        { searchedError &&
+        <> 
+          <button className={styles.ClearButton} onClick={()=> clearSearch()}>X</button>
+          <h1>{searchedError}</h1>
+        </>
+        }
         {
           searchedList.length !== 0 && 
         <>
@@ -46,13 +52,14 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
           <CoinList items={modifiedCoinList(searchedList, watchList, investedCoins)} />
         </>
         }
+    
         <h1>Invested Coins</h1>
-        <CoinList items={coinListNeeds(investedCoins)} />
+        <CoinList items={investedCoins} />
         <h1>Watched Coins</h1>
-        {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} handleClick={handleClick} watchList={portfolioWatchList} />}
+        {watchList.length !== 0 && <CoinList items={watchList} handleClick={handleClick} watchList={portfolioWatchList} />}
         <CoinSearchForm handleSubmit={handleSubmit}/>
         <h1>All Coins</h1>
-        <CoinList items={coinListNeeds(top100Coins)} handleClick={handleClick} watchList={portfolioWatchList} />
+        <CoinList items={top100Coins} handleClick={handleClick} watchList={portfolioWatchList} />
       </div>
       <NavMenu />
     </>
@@ -74,13 +81,15 @@ AllCoins.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   clearSearch: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
-  loadPortfolio: PropTypes.func.isRequired
+  loadPortfolio: PropTypes.func.isRequired,
+  searchedError: PropTypes.string
 };
 
 const mapStateToProps = state => ({
   netWorth: getNetWorth(state),
   portfolioWatchList: getWatchList(state),
-  searchedList: getStateSearchedList(state)
+  searchedList: getStateSearchedList(state),
+  searchedError: getSearchedError(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -92,11 +101,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: CLEAR_SEARCHED_LIST });
   },
   handleClick(watchList, coin) {
-    console.log(coin);
     dispatch(toggleWatchList(watchList, coin));
   },
   loadPortfolio() {
     dispatch(getPortfolio());
+    dispatch({ type: CLEAR_SEARCHED_LIST });
   }
 });
 
@@ -104,17 +113,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllCoins);
-
-function coinListNeeds(array) {
-  return array.map(coin => ({
-    id: coin.id,
-    logo: coin.currencySymbol,
-    name: coin.name,
-    price: coin.priceUsd,
-    changePercent24Hr: coin.changePercent24Hr,
-    special: coin.special
-  }));
-}
 
 function modifiedCoinList(array, watchList, investedCoins) {
   const lookup = array.reduce((acc, coin) => {

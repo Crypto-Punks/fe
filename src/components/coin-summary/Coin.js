@@ -2,20 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Coin.css';
+import Star from '../../images/starIcon.png';
 
 const Coin = ({ item, watchList, handleClick }) => {
   const { id, logo, name, price, changePercent24Hr } = item;
-  
-  if(id === 'USD') return renderCoinHtml(logo, name, price, changePercent24Hr);
-  
+
+  if(id === 'USD') return (
+    <div className={styles.Coin}>
+      {renderCoinHtml(logo, name, price, changePercent24Hr)}
+    </div>
+  );
+
   return (
     <div className={styles.Coin}>
       {
-        handleClick && 
-      <button 
-        className={watchList.find(element => element.name === id) ? styles.watched : styles.unwatched} 
-        onClick={() => handleClick(watchList, id)}>
-        🟊</button>
+        handleClick &&
+        <button
+          className={watchList.find(element => element.name === id) ? styles.watched : styles.unwatched}
+          onClick={() => handleClick(watchList, id)}>
+          <img src={Star}/></button>
       }
       <Link to={`/detail/${id}`}>
         {renderCoinHtml(logo, name, price, changePercent24Hr)}
@@ -47,7 +52,7 @@ function renderCoinHtml(logo, name, price, changePercent24Hr) {
       <img src={logo} alt={name} />
       <p className={styles.Name} >{name}</p>
       <section>
-        <p>Market Price: ${price}</p>
+        <p className={styles.Change}> Market Price ${price}</p>
         <p className={`${styles.Change} ${styles[styleClass]}`}
         >{changePercent24Hr}%</p>
       </section>

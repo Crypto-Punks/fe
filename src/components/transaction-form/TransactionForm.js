@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { evaluate } from 'mathjs';
 import PropTypes from 'prop-types';
-import { getCoinById } from '../../services/currencies';
+import { getCoinPriceById } from '../../services/currencies';
 import styles from './TransactionForm.css';
 
 
@@ -32,33 +32,36 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
     }
   }, [fromCurrency]);
 
+  
   useEffect(() => {
     if(fromCurrency && toCurrency) {
       Promise.all([
-        getCoinById(fromCurrency),
-        getCoinById(toCurrency)
+        getCoinPriceById(fromCurrency),
+        getCoinPriceById(toCurrency)
       ])
-        .then(([fromCurrencyResult, toCurrencyResult]) => {
-          const exchangeRate = evaluate(Number(fromCurrencyResult[0].priceUsd) / Number(toCurrencyResult[0].priceUsd));
+        .then(([fromCurrencyPrice, toCurrencyPrice]) => {
+          const exchangeRate = evaluate(Number(fromCurrencyPrice) / Number(toCurrencyPrice));
           setExchangeRate(exchangeRate);
           setFromCurrencyAmount(evaluate(toCurrencyAmount / exchangeRate));
         });
     }
   }, [fromCurrency]);
 
+
   useEffect(() => {
     if(fromCurrency && toCurrency) {
       Promise.all([
-        getCoinById(fromCurrency),
-        getCoinById(toCurrency)
+        getCoinPriceById(fromCurrency),
+        getCoinPriceById(toCurrency)
       ])
-        .then(([fromCurrencyResult, toCurrencyResult]) => {
-          const exchangeRate = evaluate(Number(fromCurrencyResult[0].priceUsd) / Number(toCurrencyResult[0].priceUsd));
+        .then(([fromCurrencyPrice, toCurrencyPrice]) => {
+          const exchangeRate = evaluate(Number(fromCurrencyPrice) / Number(toCurrencyPrice));
           setExchangeRate(exchangeRate);
           setToCurrencyAmount(evaluate(Number(fromCurrencyAmount * exchangeRate)));
         });
     }
   }, [toCurrency]);
+
 
   useEffect(() => {
     if(exchangeRate) {
@@ -67,23 +70,27 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
     }
   }, [toCurrencyAmount, fromCurrencyMax]);
 
+
   useEffect(() => {
     if(fromCurrency) {
-      getCoinById(fromCurrency)
-        .then(fromCurrencyResult => {
-          setTransactionValue(evaluate(fromCurrencyResult[0].priceUsd * fromCurrencyAmount));
+      getCoinPriceById(fromCurrency)
+        .then(fromCurrencyPrice => {
+          setTransactionValue(evaluate(fromCurrencyPrice * fromCurrencyAmount));
         });
     }
   }, [fromCurrency, fromCurrencyAmount]);
 
+
   useEffect(() => {
     if(toCurrency) {
-      getCoinById(toCurrency)
-        .then(toCurrencyResult => {
-          setTransactionValue(evaluate(toCurrencyResult[0].priceUsd * toCurrencyAmount));
+      getCoinPriceById(toCurrency)
+        .then(toCurrencyPrice => {
+          setTransactionValue(evaluate(toCurrencyPrice * toCurrencyAmount));
         });
     }
   }, [toCurrency, toCurrencyAmount]);
+
+
 
   return (
     <form className={styles.TransactionForm} onSubmit={event => handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>

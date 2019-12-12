@@ -13,17 +13,21 @@ h1 {
   font-style: normal;
 }
 
-p {
-  margin-top: 3%;
-  margin-bottom: 10%;
-  margin-left: 15%;
-  margin-right: 15%;
+button {
   color: white;
-  font-family: abolition, sans-serif;
-  font-weight: 300;
-  font-style: normal;
-  letter-spacing: 3px;
 }
 
+form {
+  display: flex;
+  color: white;
+}
+
+}
+
+.Charts {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
