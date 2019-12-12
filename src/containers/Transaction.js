@@ -47,7 +47,7 @@ const Transaction = ({ handleSubmit, netWorth, loadPortfolio, portfolioInvestedC
   return (
     <div>
       <NetWorth netWorth={netWorth} />
-      <TransactionForm currencies={currencies} investedCoins={investedCoins} handleSubmit={handleSubmit} />
+      <TransactionForm currencies={currencies} investedCoins={portfolioInvestedCoins} handleSubmit={handleSubmit} />
       <AssetList investedCoins={investedCoins} />
       <NavMenu />
     </div>
@@ -70,9 +70,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleSubmit(event, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) {
+  handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) {
     event.preventDefault();
-    dispatch(coinTransaction(toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins));
+    dispatch(coinTransaction(exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins));
   },
   loadPortfolio() {
     dispatch(getPortfolio());

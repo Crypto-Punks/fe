@@ -20,13 +20,14 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
   });
 
   const investedCoinsElements = investedCoins.map(coin => {
-    return <option key={coin.id} value={coin.id}>{coin.id}</option>;
+    return <option key={coin.name} value={coin.name}>{coin.name}</option>;
   });
 
   useEffect(() => {
-    if(fromCurrency) {const max = investedCoins.find(element => {
-      return element.id === fromCurrency; }).amount;
-    setFromCurrencyMax(max);}
+    if(fromCurrency) {
+      const max = investedCoins.find(element => element.name === fromCurrency).amount;
+      setFromCurrencyMax(max);
+    }
   }, [fromCurrency]);
 
   useEffect(() => {
@@ -83,7 +84,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
 
 
   return (
-    <form onSubmit={event => handleSubmit(event, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
+    <form onSubmit={event => handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
       <label>
         I want to buy
         <input 
@@ -92,7 +93,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
           max={toCurrencyMax} 
           min={0} 
           placeholder={0.00} 
-          step={.01} 
+          step={'any'} 
           onChange={event => {
             setToCurrencyAmount(event.target.value);
             if(exchangeRate) setFromCurrencyAmount(event.target.value / exchangeRate);
@@ -114,7 +115,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
           max={fromCurrencyMax} 
           min={0} 
           placeholder={0.00} 
-          step={.01} 
+          step={'any'} 
           onChange={event => {
             setFromCurrencyAmount(event.target.value);
             if(exchangeRate) setToCurrencyAmount(event.target.value * exchangeRate);
@@ -150,14 +151,10 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
 
 TransactionForm.propTypes = {
   investedCoins: PropTypes.arrayOf(PropTypes.shape({
-    logo: PropTypes.string,
     name: PropTypes.string.isRequired,
     amount: PropTypes.number,
-    price: PropTypes.string.isRequired
   })).isRequired,
-  currencies: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired
-  })).isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string.isRequired),
   handleSubmit: PropTypes.func.isRequired
 };
 
