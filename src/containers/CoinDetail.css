@@ -1,4 +1,8 @@
 .CoinDetail {
+position: fixed;
+z-index: 1;
+background-color: rgba(101, 134, 137, 0.845);
+border-radius: .3em;
 text-align: center;
 width: 100%;
 display: flex;
@@ -6,28 +10,63 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 
-h1 {
-  color: white;
-  font-family: abolition, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
 
-button {
-  color: white;
-}
+.Header {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
 
-form {
-  display: flex;
-  color: white;
-}
+  h1 {
+    color: white;
+    font-family: abolition, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 5em;
+    height: 5em;
+    border-radius: 1em;
 
+    img {
+      width: 100%;
+    }
+  }
+}
+    form {
+      display: flex;
+      color: white;
+    }
 }
 
 .Charts {
+  position: absolute;
+  top: 10%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+@media (max-width: 500px) {
+.CoinDetail {
+
+  .Header {
+
+
+    button {
+      height: 5em;
+      width: 5em;
+    }
+  }
+}
+
+.Charts {
+  margin-top: 0;
+}
 }
 

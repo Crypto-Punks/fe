@@ -12,6 +12,8 @@ import { getPortfolioInvestedCoins, getWatchList } from '../selectors/portfolioS
 import { getCoinInfoById } from '../services/currencies';
 
 import styles from './CoinDetail.css';
+import close from '../images/xmarksthespot.png';
+import add from '../images/checkIt.png';
 
 
 const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfolio }) => {
@@ -32,9 +34,11 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
 
     <>
       <div className={styles.CoinDetail}>
-        <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
-        {/* use coin.logo */}
-        <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
+        <div className={styles.Header}>
+          <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
+          <img src={coinInfo.logo} />
+          <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? <img src={close} /> : <img src={add}/>} </button>
+        </div>
         <form>
           {radioButton('1hour', 'Hour', stateDuration, setStateDuration)}
           {radioButton('1day', 'Day', stateDuration, setStateDuration)}
@@ -46,7 +50,7 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
         </form>
       </div>
       <div className={styles.Charts}>
-        <PriceHistory id={match.params.id} historyDuration={stateDuration}/>
+        <PriceHistory id={match.params.id} historyDuration={stateDuration} />
         <Derivative id={match.params.id} derivativeDuration={stateDuration} />
       </div>
       <AboutCoin {...coinInfo} />
@@ -95,7 +99,7 @@ function radioButton(duration, label, stateDuration, setStateDuration) {
   return (
     <div>
       <label>
-        <input type='radio' value={duration} 
+        <input type='radio' value={duration}
           checked={stateDuration === duration}
           onChange={() => setStateDuration(duration)} />
         {label}
