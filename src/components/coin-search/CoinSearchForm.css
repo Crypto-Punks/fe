@@ -1,7 +1,10 @@
 .SearchForm {
   position: fixed;
+  width: 20%;
+  height: 20%;
   top: 25%;
   left: 15%;
+
 }
 
 @media (max-width: 800px) {
@@ -15,7 +18,13 @@
 @media (max-width: 500px) {
   .SearchForm {
     top: 1%;
-    left: 55%;
+    left: 56%;
     z-index: 1;
+
+    .SearchButton {
+      position: fixed;
+      top: .75%;
+      right: 0;
+    }
   }
 }

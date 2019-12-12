@@ -10,6 +10,8 @@ import { getPortfolio } from '../actions/portfolioActions';
 import { getNetWorth, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getInvestedList } from '../services/currencies';
 
+import styles from './HomeContainer.css';
+
 
 const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
   const [investedCoins, setInvestedCoins] = useState([]);
@@ -35,7 +37,7 @@ const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
   }, [portfolioInvestedCoins]);
 
   return (
-    <div>
+    <div className={styles.HomeContainer}>
       <NetWorth netWorth={netWorth} />
       {//net worth chart
         //diversification chart
