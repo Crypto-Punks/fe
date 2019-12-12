@@ -20,6 +20,8 @@ import styles from './CoinDetail.css';
 const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfolio }) => {
   const coin = investedCoins.find(element => element.name === match.params.id);
   const [coinInfo, setCoinInfo] = useState({});
+  const [derivativeInterval, setDerivativeInterval] = useState('d1');
+  const [historyInterval, setHistoryInterval] = useState('d1');
 
   useEffect(() => {
     loadPortfolio();
@@ -34,8 +36,17 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
     <div className={styles.CoinDetail}>
       <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
       <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
-      <PriceHistory id={match.params.id} />
-      <Derivative id={match.params.id} />
+      <form>
+        {radioButton('m1', 'Previous Hour', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+        {radioButton('m30', 'Previous Day', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+        {radioButton('h1', 'Previous 3 Days', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+        {radioButton('h12', 'Previous Week', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+        {radioButton('d1', 'Previous Month', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+        {radioButton('d1m6', 'Previous 6 Months', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+        {radioButton('d1y1', 'Previous Year', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+      </form>
+      <PriceHistory id={match.params.id} historyInterval={historyInterval}/>
+      <Derivative id={match.params.id} derivativeInterval={derivativeInterval} />
       <AboutCoin {...coinInfo} />
       <NavMenu />
     </div>
@@ -77,3 +88,19 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(CoinDetail);
+
+function radioButton(string, label, stateInterval, setHistoryInterval, setDerivativeInterval) {
+  return (
+    <div>
+      <label>
+        <input type='radio' value={string} 
+          checked={stateInterval === string}
+          onChange={() => {
+            setHistoryInterval(string);
+            setDerivativeInterval(string);
+          }} />
+        {label}
+      </label>
+    </div>
+  );
+}

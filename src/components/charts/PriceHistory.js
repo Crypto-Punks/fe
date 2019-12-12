@@ -5,7 +5,7 @@ import { getPriceHistory } from '../../services/currencies';
 import moment from 'moment';
 import styles from './PriceHistory.css';
 
-const PriceHistory = ({ id }) => {
+const PriceHistory = ({ id, historyInterval }) => {
   const [intervals, setIntervals] = useState([]);
   const [datasets, setDatasets] = useState([]);
 
@@ -25,12 +25,12 @@ const PriceHistory = ({ id }) => {
   };
 
   useEffect(() => {
-    getPriceHistory(id)
+    getPriceHistory(id, historyInterval)
       .then(priceHistory => {
         setIntervals(priceHistory.map(item => moment(item.time).format('MMM Do YYYY')));
         setDatasets(priceHistory.map(item => item.priceUsd));
       });
-  }, []);
+  }, [historyInterval]);
 
   return (
     <div className={styles.PriceHistory}>
@@ -43,7 +43,8 @@ const PriceHistory = ({ id }) => {
 };
 
 PriceHistory.propTypes = {
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  historyInterval: PropTypes.string.isRequired
 };
 
 export default PriceHistory;
