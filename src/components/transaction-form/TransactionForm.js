@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { evaluate } from 'mathjs';
 import PropTypes from 'prop-types';
 import { getCoinPriceById } from '../../services/currencies';
 import styles from './TransactionForm.css';
@@ -40,9 +39,9 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         getCoinPriceById(toCurrency)
       ])
         .then(([fromCurrencyPrice, toCurrencyPrice]) => {
-          const exchangeRate = evaluate(Number(fromCurrencyPrice) / Number(toCurrencyPrice));
+          const exchangeRate = Number(fromCurrencyPrice) / Number(toCurrencyPrice);
           setExchangeRate(exchangeRate);
-          setFromCurrencyAmount(evaluate(toCurrencyAmount / exchangeRate));
+          setFromCurrencyAmount(toCurrencyAmount / exchangeRate);
         });
     }
   }, [fromCurrency]);
@@ -55,9 +54,9 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         getCoinPriceById(toCurrency)
       ])
         .then(([fromCurrencyPrice, toCurrencyPrice]) => {
-          const exchangeRate = evaluate(Number(fromCurrencyPrice) / Number(toCurrencyPrice));
+          const exchangeRate = Number(fromCurrencyPrice) / Number(toCurrencyPrice);
           setExchangeRate(exchangeRate);
-          setToCurrencyAmount(evaluate(Number(fromCurrencyAmount * exchangeRate)));
+          setToCurrencyAmount(Number(fromCurrencyAmount * exchangeRate));
         });
     }
   }, [toCurrency]);
@@ -65,7 +64,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
 
   useEffect(() => {
     if(exchangeRate) {
-      const max = evaluate(fromCurrencyMax * exchangeRate);
+      const max = fromCurrencyMax * exchangeRate;
       setToCurrencyMax(max);
     }
   }, [toCurrencyAmount, fromCurrencyMax]);
@@ -75,7 +74,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
     if(fromCurrency) {
       getCoinPriceById(fromCurrency)
         .then(fromCurrencyPrice => {
-          setTransactionValue(evaluate(fromCurrencyPrice * fromCurrencyAmount));
+          setTransactionValue(fromCurrencyPrice * fromCurrencyAmount);
         });
     }
   }, [fromCurrency, fromCurrencyAmount]);
@@ -85,7 +84,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
     if(toCurrency) {
       getCoinPriceById(toCurrency)
         .then(toCurrencyPrice => {
-          setTransactionValue(evaluate(toCurrencyPrice * toCurrencyAmount));
+          setTransactionValue(toCurrencyPrice * toCurrencyAmount);
         });
     }
   }, [toCurrency, toCurrencyAmount]);
@@ -104,7 +103,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
           step={'any'} 
           onChange={event => {
             setToCurrencyAmount(event.target.value);
-            if(exchangeRate) setFromCurrencyAmount(evaluate(event.target.value / exchangeRate));
+            if(exchangeRate) setFromCurrencyAmount(event.target.value / exchangeRate);
           }} 
         />
         <select 
@@ -126,7 +125,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
           step={'any'} 
           onChange={event => {
             setFromCurrencyAmount(event.target.value);
-            if(exchangeRate) setToCurrencyAmount(evaluate(event.target.value * exchangeRate));
+            if(exchangeRate) setToCurrencyAmount(event.target.value * exchangeRate);
           }} 
         />
         <select 
