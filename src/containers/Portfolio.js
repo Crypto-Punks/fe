@@ -25,13 +25,7 @@ const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
       .then(coins => {
         setInvestedCoins(coins.map(coin => {
           const portCoin = portfolioInvestedCoins.find(element => element.name === coin.id);
-          return {
-            id: coin.id,
-            logo: coin.currencySymbol,
-            name: coin.name,
-            amount: portCoin ? portCoin.amount : null,
-            price: coin.priceUsd
-          };
+          return portCoin ? { ...coin, amount: portCoin.amount } : coin;
         }));
       });
   }, [portfolioInvestedCoins]);

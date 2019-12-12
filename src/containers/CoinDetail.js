@@ -14,9 +14,6 @@ import { getCoinById } from '../services/currencies';
 import styles from './CoinDetail.css';
 
 
-
-//todo make action for adding/removing from favorites, selectors, add charts
-
 const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfolio }) => {
   const coin = investedCoins.find(element => element.name === match.params.id);
   const [coinInfo, setCoinInfo] = useState({});

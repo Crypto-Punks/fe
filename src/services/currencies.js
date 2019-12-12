@@ -2,22 +2,17 @@ import { get } from './request';
 import { baseUrl } from './dbUrl';
 
 const CURRENCY_URL = `${baseUrl}/api/v1/currencies`;
-//getCoins('all') not used yet... for transaction page
-export const getAllCurrencies = () => get(`${CURRENCY_URL}/all`);
 
-//getCoinsById needs: id:id, logo:currencySymbol, name:name, price:priceUsd
+export const getAllCurrencyIds = () => get(`${CURRENCY_URL}/all-ids`);
+
 export const getInvestedList = () => get(`${CURRENCY_URL}/invested`);
 
-//getCoinsById not used yet
-export const getWatchList = () => get(`${CURRENCY_URL}/watched`);
-
-//getCoinsById needs name:name website:website description:description
+//getcoinById needs 
 export const getCoinById = (id) => get(`${CURRENCY_URL}/${id}`);
 
-//getCoinsById/getCoins needs id:id, logo: currencySymbol, name:name, priceUsd:priceUsd, changePercent24Hr:changePercent24Hr
 export const getTop100Currencies = () => get(CURRENCY_URL);
 
-//refactored
+//error handling
 export const getSearchCall = query => get(`${CURRENCY_URL}/search/${query}`);
 
 export const getPriceHistory = (id, interval) => {

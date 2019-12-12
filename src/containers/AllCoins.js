@@ -47,12 +47,12 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
         </>
         }
         <h1>Invested Coins</h1>
-        <CoinList items={coinListNeeds(investedCoins)} />
+        <CoinList items={investedCoins} />
         <h1>Watched Coins</h1>
-        {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} handleClick={handleClick} watchList={portfolioWatchList} />}
+        {watchList.length !== 0 && <CoinList items={watchList} handleClick={handleClick} watchList={portfolioWatchList} />}
         <CoinSearchForm handleSubmit={handleSubmit}/>
         <h1>All Coins</h1>
-        <CoinList items={coinListNeeds(top100Coins)} handleClick={handleClick} watchList={portfolioWatchList} />
+        <CoinList items={top100Coins} handleClick={handleClick} watchList={portfolioWatchList} />
       </div>
       <NavMenu />
     </>
@@ -92,7 +92,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: CLEAR_SEARCHED_LIST });
   },
   handleClick(watchList, coin) {
-    console.log(coin);
     dispatch(toggleWatchList(watchList, coin));
   },
   loadPortfolio() {
@@ -104,17 +103,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllCoins);
-
-function coinListNeeds(array) {
-  return array.map(coin => ({
-    id: coin.id,
-    logo: coin.currencySymbol,
-    name: coin.name,
-    price: coin.priceUsd,
-    changePercent24Hr: coin.changePercent24Hr,
-    special: coin.special
-  }));
-}
 
 function modifiedCoinList(array, watchList, investedCoins) {
   const lookup = array.reduce((acc, coin) => {

@@ -10,7 +10,7 @@ import styles from './HomeContainer.css';
 
 import { getPortfolio } from '../actions/portfolioActions';
 import { getNetWorth, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
-import { getAllCurrencies } from '../services/currencies';
+import { getAllCurrencyIds } from '../services/currencies';
 import { coinTransaction } from '../actions/portfolioActions';
 import { getInvestedList } from '../services/currencies';
 
@@ -23,9 +23,9 @@ const Transaction = ({ handleSubmit, netWorth, loadPortfolio, portfolioInvestedC
   }, []);
 
   useEffect(()=> {
-    getAllCurrencies()
+    getAllCurrencyIds()
       .then(res => {
-        setCurrencies(res.map(coin => coin.id));
+        setCurrencies(res);
       });
   }, []);
 
@@ -34,13 +34,7 @@ const Transaction = ({ handleSubmit, netWorth, loadPortfolio, portfolioInvestedC
       .then(coins => {
         setInvestedCoins(coins.map(coin => {
           const portCoin = portfolioInvestedCoins.find(element => element.name === coin.id);
-          return {
-            id: coin.id,
-            logo: coin.currencySymbol,
-            name: coin.name,
-            amount: portCoin ? portCoin.amount : null,
-            price: coin.priceUsd
-          };
+          return portCoin ? { ...coin, amount: portCoin.amount } : coin;
         }));
       });
   }, [portfolioInvestedCoins]);
