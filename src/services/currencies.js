@@ -9,12 +9,10 @@ export const getTop100Currencies = () => get(`${CURRENCY_URL}/100`);
 
 export const getInvestedList = () => get(`${CURRENCY_URL}/invested`);
 
-export const getCoinInfoById = (id) => get(`${CURRENCY_URL}/${id}`);
+export const getCoinInfoById = (id) => get(`${CURRENCY_URL}/info/${id}`);
 
 export const getCoinPriceById = (id) => get(`${CURRENCY_URL}/price/${id}`);
 
-
-//error handling
 export const getSearchCall = query => get(`${CURRENCY_URL}/search/${query}`);
 
 export const getPriceHistory = (id, interval) => {
