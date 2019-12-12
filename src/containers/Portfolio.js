@@ -12,6 +12,7 @@ import { getInvestedList } from '../services/currencies';
 
 import styles from './HomeContainer.css';
 import PortfolioHistory from '../components/charts/PortfolioHistory';
+import Diversification from '../components/charts/Diversification';
 
 
 const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
@@ -41,9 +42,7 @@ const Portfolio = ({ netWorth, loadPortfolio, portfolioInvestedCoins }) => {
     <div className={styles.HomeContainer}>
       <NetWorth netWorth={netWorth} />
       <PortfolioHistory />
-      {//net worth chart
-        //diversification chart
-      }
+      <Diversification investedCoins={investedCoins} />
       <AssetList investedCoins={investedCoins} />
       <NavMenu />
     </div>

@@ -1,6 +1,5 @@
 import { Line } from 'react-chartjs-2';
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import { getTotals } from '../../services/total';
 import { getTrades } from '../../services/trades';
