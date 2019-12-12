@@ -5,12 +5,14 @@ const CURRENCY_URL = `${baseUrl}/api/v1/currencies`;
 
 export const getAllCurrencyIds = () => get(`${CURRENCY_URL}/all-ids`);
 
+export const getTop100Currencies = () => get(`${CURRENCY_URL}/100`);
+
 export const getInvestedList = () => get(`${CURRENCY_URL}/invested`);
 
-//getcoinById needs 
-export const getCoinById = (id) => get(`${CURRENCY_URL}/${id}`);
+export const getCoinInfoById = (id) => get(`${CURRENCY_URL}/${id}`);
 
-export const getTop100Currencies = () => get(CURRENCY_URL);
+export const getCoinPriceById = (id) => get(`${CURRENCY_URL}/price/${id}`);
+
 
 //error handling
 export const getSearchCall = query => get(`${CURRENCY_URL}/search/${query}`);

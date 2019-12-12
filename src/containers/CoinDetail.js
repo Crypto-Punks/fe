@@ -9,7 +9,7 @@ import PriceHistory from '../components/charts/PriceHistory';
 
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 import { getPortfolioInvestedCoins, getWatchList } from '../selectors/portfolioSelectors';
-import { getCoinById } from '../services/currencies';
+import { getCoinInfoById } from '../services/currencies';
 
 import styles from './CoinDetail.css';
 
@@ -22,9 +22,9 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
 
   useEffect(() => {
     loadPortfolio();
-    getCoinById(match.params.id)
+    getCoinInfoById(match.params.id)
       .then(info => {
-        setCoinInfo(info[0]);
+        setCoinInfo(info);
       });
   }, []);
 
@@ -33,6 +33,7 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
     <>
       <div className={styles.CoinDetail}>
         <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
+        {/* use coin.logo */}
         <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
         <form>
           {radioButton('1hour', 'Hour', stateDuration, setStateDuration)}
