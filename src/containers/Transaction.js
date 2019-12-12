@@ -6,6 +6,7 @@ import TransactionForm from '../components/transaction-form/TransactionForm';
 import AssetList from '../components/ourAssets/AssetList';
 import NavMenu from '../components/hamburger-menu/NavMenu';
 import NetWorth from '../components/net-worth/NetWorth';
+import styles from './HomeContainer.css';
 
 import { getPortfolio } from '../actions/portfolioActions';
 import { getNetWorth, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
@@ -45,7 +46,7 @@ const Transaction = ({ handleSubmit, netWorth, loadPortfolio, portfolioInvestedC
   }, [portfolioInvestedCoins]);
 
   return (
-    <div>
+    <div className={styles.HomeContainer}>
       <NetWorth netWorth={netWorth} />
       <TransactionForm currencies={currencies} investedCoins={investedCoins} handleSubmit={handleSubmit} />
       <AssetList investedCoins={investedCoins} />

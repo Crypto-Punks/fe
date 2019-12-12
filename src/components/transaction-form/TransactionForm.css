@@ -1,13 +1,14 @@
 .TransactionForm {
   background-color: #ACDEE3;
   display: flex;
+  position: fixed;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 10%;
-  height: 40%;
+  margin-top: 1%;
+  height: 38%;
   width: 50%;
-  left: 30%;
+  left: 27.75%;
 
   label {
     margin: 10px;
@@ -25,12 +26,5 @@
     width: 90%;
     left: 0%;
 
-
-    label{
-
-      input{
-
-      }
-    }
   }
 }
