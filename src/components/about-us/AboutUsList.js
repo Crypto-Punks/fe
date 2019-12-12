@@ -1,6 +1,7 @@
 import React from 'react';
-import Developer from './AboutUsItem';
 import { connect } from 'react-redux';
+import Developer from './AboutUsItem';
+import DeveloperMenu from '../hamburger-menu/DeveloperMenu';
 import { developerData } from '../../developerData';
 
 const DeveloperList = () => {
@@ -8,9 +9,12 @@ const DeveloperList = () => {
     return <Developer key={i} {...developer} />;
   });
   return (
-    <ul>
-      {developerElements}
-    </ul>
+    <>
+      <ul>
+        {developerElements}
+      </ul>
+      <DeveloperMenu />
+    </>
   );
 };
 
