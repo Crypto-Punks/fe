@@ -16,12 +16,12 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
   const [exchangeRate, setExchangeRate] = useState(0);
   const [transactionValue, setTransactionValue] = useState(0);
   
-  const currenciesElements = currencies.map(currency => {
+  const currenciesElements = currencies.sort().map(currency => {
     return <option key={currency} value={currency}>{currency}</option>;
   });
 
-  const investedCoinsElements = investedCoins.map(coin => {
-    return <option key={coin.name} value={coin.name}>{coin.name}</option>;
+  const investedCoinsElements = investedCoins.sort().map(coin => {
+    if(coin.name !== 'USD') return <option key={coin.name} value={coin.name}>{coin.name}</option>;
   });
 
   useEffect(() => {
@@ -106,6 +106,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
           value={toCurrency} 
           onChange={(event) => setToCurrency(event.target.value)}>
           <option value={''} disabled hidden>Choose your To Currency</option>
+          <option key={'USD'} value={'USD'}>{'USD'}</option>
  
           {currenciesElements}
         </select>
@@ -128,6 +129,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
           value={fromCurrency} 
           onChange={event => setFromCurrency(event.target.value)}>
           <option value={''} disabled hidden>Choose Your From Currency</option>
+          <option key={'USD'} value={'USD'}>{'USD'}</option>
           {investedCoinsElements}
         </select>
       </label>
