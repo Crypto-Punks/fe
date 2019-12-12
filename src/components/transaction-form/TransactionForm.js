@@ -60,9 +60,11 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
   }, [toCurrency]);
 
   useEffect(() => {
-    const max = fromCurrencyMax / exchangeRate;
-    setToCurrencyMax(max);
-  }, [toCurrency]);
+    if(exchangeRate) {
+      const max = fromCurrencyMax * exchangeRate;
+      setToCurrencyMax(max);
+    }
+  }, [toCurrencyAmount, fromCurrencyMax]);
 
   useEffect(() => {
     if(fromCurrency) {
@@ -85,7 +87,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
 
 
   return (
-    <form className={styles.TransactionForm} onSubmit={event => handleSubmit(event, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
+    <form className={styles.TransactionForm} onSubmit={event => handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
       <label>
         I want to buy
         <input 
