@@ -14,7 +14,7 @@ const CoinSearchForm = ({ handleSubmit }) => {
         handleSubmit(event, searchTerm);
       }}>
       <input type='text' value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} />
-      <button>🔍</button>
+      <button className={styles.SearchButton}>🔍</button>
     </form>
   );
 };

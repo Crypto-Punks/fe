@@ -1,7 +1,7 @@
 import React from 'react';
 import AssetItem from './AssetItem';
 import PropTypes from 'prop-types';
-import styles from './AssetList.css';
+import styles from '../coin-summary/CoinList.css';
 
 const AssetList = ({ investedCoins }) => {
 
@@ -10,7 +10,7 @@ const AssetList = ({ investedCoins }) => {
   });
   
   return (
-    <ul className={styles.AssetList}>
+    <ul className={styles.CoinList}>
       {coins}
     </ul>
   );

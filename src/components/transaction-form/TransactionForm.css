@@ -1,0 +1,36 @@
+.TransactionForm {
+  background-color: #ACDEE3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10%;
+  height: 40%;
+  width: 50%;
+  left: 30%;
+
+  label {
+    margin: 10px;
+  
+    input {
+      margin: 10px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+
+  .TransactionForm {
+    height: 40%;
+    width: 90%;
+    left: 0%;
+
+
+    label{
+
+      input{
+
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getCoinById } from '../../services/currencies';
+import styles from './TransactionForm.css';
 
 
 const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
@@ -83,7 +84,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
 
 
   return (
-    <form onSubmit={event => handleSubmit(event, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
+    <form className={styles.TransactionForm} onSubmit={event => handleSubmit(event, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
       <label>
         I want to buy
         <input 

@@ -1,5 +1,7 @@
 .AllCoins {
   margin-top: 15%;
+  position: absolute;
+  width: 100%;
   
   h1 {
     text-align: left;
@@ -13,6 +15,10 @@
     letter-spacing: .4em;
   }
 
+.ClearButton {
+  color: Red;
+  position: absolute;
+}
 }
 
 @media (max-width: 500px) {
@@ -21,6 +27,11 @@
 
     h1{
       margin-left: 3em;
+    }
+
+    .ClearButton {
+      top: 0;
+      left: 4%;
     }
   }
 }
