@@ -30,23 +30,27 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
 
   return (
 
-    <div className={styles.CoinDetail}>
-      <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
-      <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
-      <form>
-        {radioButton('1hour', 'Previous Hour', stateDuration, setStateDuration)}
-        {radioButton('1day', 'Previous Day', stateDuration, setStateDuration)}
-        {radioButton('3days', 'Previous 3 Days', stateDuration, setStateDuration)}
-        {radioButton('1week', 'Previous Week', stateDuration, setStateDuration)}
-        {radioButton('1month', 'Previous Month', stateDuration, setStateDuration)}
-        {radioButton('6months', 'Previous 6 Months', stateDuration, setStateDuration)}
-        {radioButton('1year', 'Previous Year', stateDuration, setStateDuration)}
-      </form>
-      <PriceHistory id={match.params.id} historyDuration={stateDuration}/>
-      <Derivative id={match.params.id} derivativeDuration={stateDuration} />
+    <>
+      <div className={styles.CoinDetail}>
+        <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
+        <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
+        <form>
+          {radioButton('1hour', 'Hour', stateDuration, setStateDuration)}
+          {radioButton('1day', 'Day', stateDuration, setStateDuration)}
+          {radioButton('3days', '3 Days', stateDuration, setStateDuration)}
+          {radioButton('1week', 'Week', stateDuration, setStateDuration)}
+          {radioButton('1month', 'Month', stateDuration, setStateDuration)}
+          {radioButton('6months', '6 Months', stateDuration, setStateDuration)}
+          {radioButton('1year', 'Year', stateDuration, setStateDuration)}
+        </form>
+      </div>
+      <div className={styles.Charts}>
+        <PriceHistory id={match.params.id} historyDuration={stateDuration}/>
+        <Derivative id={match.params.id} derivativeDuration={stateDuration} />
+      </div>
       <AboutCoin {...coinInfo} />
       <NavMenu />
-    </div>
+    </>
   );
 };
 
@@ -92,9 +96,7 @@ function radioButton(duration, label, stateDuration, setStateDuration) {
       <label>
         <input type='radio' value={duration} 
           checked={stateDuration === duration}
-          onChange={() => {
-            setStateDuration(duration);
-          }} />
+          onChange={() => setStateDuration(duration)} />
         {label}
       </label>
     </div>

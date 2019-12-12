@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: flex-start;
   margin: 0;
-  
+
   a {
     text-decoration: none;
     font-family: abolition, sans-serif;
@@ -22,7 +22,7 @@
 
   li {
     position: relative;
-    background-color: rgba(172, 222, 227, 0.845);
+    background-color: rgba(101, 134, 137, 0.845);
     margin: 0px;
     padding: 10px;
     height: 12vh;
@@ -30,35 +30,36 @@
     list-style: none;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: flex-start;
     transition: .2s ease-in-out;
     border: solid thin black;
 
     img {
-      width: 20%;
-      height: 100%;
+      margin-top: 3%;
+      width: 10%;
+      height: 50%;
       border-radius: .5em;
     }
 
     p {
-      color: black;
+      color: white;
       font-family: abolition, sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-    
-    .Name {
-      left: 0;
-      font-size: 20pt;
-      letter-spacing: .5em;
-      font-weight: bold;
+      font-size: 15pt;
+      margin-left: 5em;
+      margin-top: 0;
+      margin-bottom: 0;
+      letter-spacing: .4em;
+      text-align: right;
     }
 
-    .Change {
-      font-size: 10pt;
+    section {
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      flex-direction: column;
     }
-
   }
 
   li:hover {
@@ -67,6 +68,7 @@
     box-shadow: .5px .5px 30px 1px white;
   }
 }
+
 
 
 @media (max-width: 800px) {
@@ -88,20 +90,18 @@
     width: 80%;
 
     li {
-      height: 5vh;
+      height: 8vh;
       border-radius: .75em;
 
       img{
-        width: 15%;
+        width: 10%;
       }
 
       p {
         font-size: 5pt;
+        margin-left: 8em;
       }
       
-      .Change {
-        font-size: 5pt;
-      }
     }
   }
 }

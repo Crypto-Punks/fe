@@ -1,18 +1,49 @@
 .Coin {
-    .watched {
-        color: gold;
-    }
 
-    .unwatched {
-        color: white;
+    button {
+        position: absolute;
+        z-index: 1;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        transition: 0s;
+        
+        .watched {
+            color: gold;
+        }
+    
+        .unwatched {
+            color: white;
+        }
+
+        img {
+            width: 2vw;
+            border: none;
+        }
     }
 
     .negative {
         color: rgb(214, 64, 64);
+    }
+          
+    .positive {
+        color: rgb(17, 212, 17);
+    }
+
+      .Name {
+        font-size: 10pt;
+        margin-left: .5em;
+        margin-top: 2em;
+        letter-spacing: .4em;
+        font-weight: bold;
       }
   
-      .positive {
-        color: rgb(17, 212, 17);
+      .Change {
+        font-size: 15pt;
+        margin-left: 5em;
+        margin-top: 0;
+        letter-spacing: .4em;
+        text-align: right;
       }
 }
 
@@ -21,8 +52,17 @@
     .Coin {
 
         .Name {
-            font-size: 15pt;
-            color: #272D36;
+            font-size: 5pt;
+            margin-left: 1em;
+        }
+
+        .Change {
+            font-size: 8pt;
+            margin-left: 5em;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
         }
     }
 }

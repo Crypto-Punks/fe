@@ -1,0 +1,32 @@
+.AboutCoin {
+  text-align: center;
+
+    a {
+      margin: 1em;
+      text-decoration: none;
+      color: white;
+    }
+
+  p {
+    margin-top: 3%;
+    margin-bottom: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+    color: white;
+    font-family: abolition, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .AboutCoin {
+    p {
+      font-size: 10pt;
+      text-align: center;
+      margin-bottom: 15%;
+    }
+  }
+}
