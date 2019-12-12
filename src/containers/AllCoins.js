@@ -42,7 +42,7 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
           searchedList.length !== 0 && 
         <>
           <h1>Search Results</h1>
-          <button onClick={()=> clearSearch()}>Clear Search Results</button>
+          <button className={styles.ClearButton} onClick={()=> clearSearch()}>X</button>
           <CoinList items={modifiedCoinList(searchedList, watchList, investedCoins)} />
         </>
         }

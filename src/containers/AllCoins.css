@@ -13,6 +13,10 @@
     letter-spacing: .4em;
   }
 
+.ClearButton {
+  color: Red;
+  position: absolute;
+}
 }
 
 @media (max-width: 500px) {
@@ -21,6 +25,11 @@
 
     h1{
       margin-left: 3em;
+    }
+
+    .ClearButton {
+      top: 0;
+      left: 4%;
     }
   }
 }
