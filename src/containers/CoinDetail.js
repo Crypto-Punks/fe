@@ -32,24 +32,27 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
   }, []);
 
   return (
-
-    <div className={styles.CoinDetail}>
-      <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
-      <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
-      <form>
-        {radioButton('m1', 'Previous Hour', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('m30', 'Previous Day', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('h1', 'Previous 3 Days', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('h12', 'Previous Week', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('d1', 'Previous Month', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('d1m6', 'Previous 6 Months', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-        {radioButton('d1y1', 'Previous Year', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
-      </form>
-      <PriceHistory id={match.params.id} historyInterval={historyInterval}/>
-      <Derivative id={match.params.id} derivativeInterval={derivativeInterval} />
+    <>
+      <div className={styles.CoinDetail}>
+        <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
+        <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? 'Remove from' : 'Add to'} watchList</button>
+        <form>
+          {radioButton('m1', 'Hour', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+          {radioButton('m30', 'Day', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+          {radioButton('h1', '3 Days', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+          {radioButton('h12', 'Week', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+          {radioButton('d1', 'Month', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+          {radioButton('d1m6', ' Months', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+          {radioButton('d1y1', 'Year', derivativeInterval, setHistoryInterval, setDerivativeInterval)}
+        </form>
+      </div>
+      <div className={styles.Charts}>
+        <PriceHistory id={match.params.id} historyInterval={historyInterval} />
+        <Derivative id={match.params.id} derivativeInterval={derivativeInterval} />
+      </div>
       <AboutCoin {...coinInfo} />
       <NavMenu />
-    </div>
+    </>
   );
 };
 
@@ -93,7 +96,7 @@ function radioButton(string, label, stateInterval, setHistoryInterval, setDeriva
   return (
     <div>
       <label>
-        <input type='radio' value={string} 
+        <input type='radio' value={string}
           checked={stateInterval === string}
           onChange={() => {
             setHistoryInterval(string);
