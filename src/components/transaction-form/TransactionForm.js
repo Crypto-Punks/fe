@@ -32,6 +32,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
     }
   }, [fromCurrency]);
 
+  
   useEffect(() => {
     if(fromCurrency && toCurrency) {
       Promise.all([
@@ -45,6 +46,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         });
     }
   }, [fromCurrency]);
+
 
   useEffect(() => {
     if(fromCurrency && toCurrency) {
@@ -60,12 +62,14 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
     }
   }, [toCurrency]);
 
+
   useEffect(() => {
     if(exchangeRate) {
       const max = evaluate(fromCurrencyMax * exchangeRate);
       setToCurrencyMax(max);
     }
   }, [toCurrencyAmount, fromCurrencyMax]);
+
 
   useEffect(() => {
     if(fromCurrency) {
@@ -76,6 +80,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
     }
   }, [fromCurrency, fromCurrencyAmount]);
 
+
   useEffect(() => {
     if(toCurrency) {
       getCoinById(toCurrency)
@@ -84,6 +89,8 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         });
     }
   }, [toCurrency, toCurrencyAmount]);
+
+
 
   return (
     <form className={styles.TransactionForm} onSubmit={event => handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>

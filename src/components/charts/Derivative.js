@@ -5,7 +5,7 @@ import { getPriceHistory } from '../../services/currencies';
 import moment from 'moment';
 import styles from './Derivative.css';
 
-const Derivative = ({ id, derivativeInterval }) => {
+const Derivative = ({ id, derivativeDuration }) => {
   const [derivativeArray, setDerivativeArray] = useState([]);
   const [intervals, setIntervals] = useState([]);
 
@@ -22,7 +22,7 @@ const Derivative = ({ id, derivativeInterval }) => {
   };
 
   useEffect(() => {
-    getPriceHistory(id, derivativeInterval)
+    getPriceHistory(id, derivativeDuration)
       .then(priceHistory => {
         const derivatives = priceHistory.map((element, i) => {
           if(i === 0) return (priceHistory[1 + 1].priceUsd - element.priceUsd) * 100 / (priceHistory[i + 1].time - element.time);
@@ -31,7 +31,7 @@ const Derivative = ({ id, derivativeInterval }) => {
         setDerivativeArray(derivatives);
         setIntervals(priceHistory.map(item => moment(item.time).format('MMM Do YYYY')));
       });
-  }, [derivativeInterval]);
+  }, [derivativeDuration]);
   
   return (
     <div className={styles.Derivative}>
@@ -42,7 +42,7 @@ const Derivative = ({ id, derivativeInterval }) => {
 
 Derivative.propTypes = {
   id: PropTypes.string.isRequired,
-  derivativeInterval: PropTypes.string.isRequired
+  derivativeDuration: PropTypes.string.isRequired
 };
 
 export default Derivative;
