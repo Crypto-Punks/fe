@@ -1,5 +1,6 @@
 .TransactionForm {
-  background-color: #ACDEE3;
+  background-color:  rgba(67, 72, 79, 0.897);
+  border: none;
   display: flex;
   position: fixed;
   justify-content: center;
@@ -7,8 +8,11 @@
   flex-direction: column;
   margin-top: 1%;
   height: 38%;
-  width: 50%;
+  width: 80%;
   left: 27.75%;
+  z-index: 1;
+  color: white;
+  border-radius: .3em;
 
   label {
     margin: 10px;
@@ -22,9 +26,9 @@
 @media (max-width: 500px) {
 
   .TransactionForm {
-    height: 40%;
-    width: 90%;
-    left: 0%;
-
+    height: 50%;
+    left: 0;
+    width: 100vw;
+    top: 4.461%;
   }
 }
