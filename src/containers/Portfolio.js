@@ -21,7 +21,7 @@ const Portfolio = ({ loadPortfolio, portfolioInvestedCoins }) => {
   useEffect(() => {
     loadPortfolio();
   }, []);
-  
+
   useEffect(() => {
     getInvestedList()
       .then(coins => {
@@ -35,8 +35,10 @@ const Portfolio = ({ loadPortfolio, portfolioInvestedCoins }) => {
   return (
     <div className={styles.HomeContainer}>
       <NetWorth />
-      <PortfolioHistory />
-      <Diversification investedCoins={investedCoins} />
+      <div className={styles.Chart}>
+        <PortfolioHistory />
+        <Diversification investedCoins={investedCoins} />
+      </div>
       <AssetList investedCoins={investedCoins} />
       <NavMenu />
     </div>
