@@ -15,7 +15,7 @@ import { getTop100Currencies } from '../services/currencies';
 
 import styles from './AllCoins.css';
 
-const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch }) => {
+const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch, handleClick }) => {
 
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
@@ -49,10 +49,10 @@ const AllCoins = ({ netWorth, portfolioWatchList, searchedList, handleSubmit, lo
         <h1>Invested Coins</h1>
         <CoinList items={coinListNeeds(investedCoins)} />
         <h1>Watched Coins</h1>
-        {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} />}
+        {watchList.length !== 0 && <CoinList items={coinListNeeds(watchList)} handleClick={handleClick} watchList={portfolioWatchList} />}
         <CoinSearchForm handleSubmit={handleSubmit}/>
         <h1>All Coins</h1>
-        <CoinList items={coinListNeeds(top100Coins)} />
+        <CoinList items={coinListNeeds(top100Coins)} handleClick={handleClick} watchList={portfolioWatchList} />
       </div>
       <NavMenu />
     </>
@@ -92,6 +92,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: CLEAR_SEARCHED_LIST });
   },
   handleClick(watchList, coin) {
+    console.log(coin);
     dispatch(toggleWatchList(watchList, coin));
   },
   loadPortfolio() {
