@@ -1,4 +1,4 @@
-import { post } from './request';
+import { post, get } from './request';
 export const TRADE_BASE_URL = 'http://localhost:7891/api/v1/trade';
 
 
@@ -19,4 +19,8 @@ export const addTrade = (toCurrency, toCurrencyAmount, fromCurrency, fromCurrenc
     .then(result => {
       console.log(result);
     });
+};
+
+export const getTrades = () => {
+  return get(TRADE_BASE_URL);
 };
