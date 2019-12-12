@@ -6,11 +6,13 @@ const AboutCoin = ({ website, description, maxSupply, supply, marketCapUsd, volu
   return (
     <div className={styles.AboutCoin}>
       <a target='_blank' rel="noopener noreferrer" href={website}>Coins website</a>
-      <p>Supply: {supply}</p>
-      <p>Max Supply: {maxSupply}</p>
-      <p>Market Cap in USD: {marketCapUsd}</p>
-      <p>Volume Traded in last 24 Hours in USD: {volumeUsd24Hr}</p>
-      <p>Change Percent in last 24 Hours in USD: {changePercent24Hr}</p>
+      <div className={styles.Stats}>
+        <p>Supply: {supply}</p>
+        <p>Max Supply: {maxSupply}</p>
+        <p>Market Cap in USD: {marketCapUsd}</p>
+        <p>Volume Traded in last 24 Hours in USD: {volumeUsd24Hr}</p>
+        <p>Change Percent in last 24 Hours in USD: {changePercent24Hr}</p>
+      </div>
       <p>Description: {description}</p>
     </div>
   );
