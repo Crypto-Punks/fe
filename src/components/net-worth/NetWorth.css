@@ -25,7 +25,7 @@
 @media (max-width: 800px) {
   .NetWorth {
     position: fixed;
-    background-color: #6CB2BA;
+    background-color: rgba(67, 72, 79, 0.897);
     width: 100vw;
     top: 0;
     left: 0;
@@ -36,7 +36,7 @@
 @media (max-width: 500px) {
   .NetWorth {
     position: fixed;
-    background-color: #6CB2BA;
+    background-color: rgba(67, 72, 79, 0.897);
     width: 100vw;
     top: 0;
     left: 0;
