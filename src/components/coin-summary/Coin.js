@@ -7,7 +7,11 @@ import Star from '../../images/starIcon.png';
 const Coin = ({ item, watchList, handleClick }) => {
   const { id, logo, name, price, changePercent24Hr } = item;
 
-  if(id === 'USD') return renderCoinHtml(logo, name, price, changePercent24Hr);
+  if(id === 'USD') return (
+    <div className={styles.Coin}>
+      {renderCoinHtml(logo, name, price, changePercent24Hr)}
+    </div>
+  );
 
   return (
     <div className={styles.Coin}>
