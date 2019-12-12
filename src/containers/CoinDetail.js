@@ -47,7 +47,7 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
                 setHistoryInterval('m1');
                 setDerivativeInterval('m1');
               }} />
-              1 Minute Intervals
+              Previous Hour
           </label>
         </div>
         <div>
@@ -58,7 +58,7 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
                 setHistoryInterval('m30');
                 setDerivativeInterval('m30');
               }} />
-              30 Minute Intervals
+              Previous Day
           </label>
         </div>
         <div>
@@ -69,7 +69,7 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
                 setHistoryInterval('h1');
                 setDerivativeInterval('h1');
               }} />
-              1 Hour Intervals
+              Previous 3 Days
           </label>
         </div>
         <div>
@@ -80,7 +80,7 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
                 setHistoryInterval('h12');
                 setDerivativeInterval('h12');
               }} />
-              12 Hour Intervals
+              Previous Week
           </label>
         </div>
         <div>
@@ -91,7 +91,29 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
                 setHistoryInterval('d1');
                 setDerivativeInterval('d1');
               }} />
-              1 Day Intervals
+              Previous Month
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type='radio' value='d1m6' 
+              checked={derivativeInterval === 'd1m6'}
+              onChange={() => {
+                setHistoryInterval('d1m6');
+                setDerivativeInterval('d1m6');
+              }} />
+              Previous 6 Months
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type='radio' value='d1y1' 
+              checked={derivativeInterval === 'd1y1'}
+              onChange={() => {
+                setHistoryInterval('d1y1');
+                setDerivativeInterval('d1y1');
+              }} />
+              Previous Year
           </label>
         </div>
       </form>
