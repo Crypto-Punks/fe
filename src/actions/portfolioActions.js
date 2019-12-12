@@ -23,8 +23,8 @@ export const toggleWatchList = (watchList, newCoin) => dispatch => {
 };
 
 export const ADD_REMOVE_INVESTED = 'ADD_REMOVE_INVESTED';
-export const coinTransaction = (toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) => dispatch => {
-  return changeInvested(toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)
+export const coinTransaction = (exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) => dispatch => {
+  return changeInvested(exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)
     .then(portfolio => {
       dispatch({
         type: ADD_REMOVE_INVESTED,
@@ -32,3 +32,4 @@ export const coinTransaction = (toCurrency, toCurrencyAmount, fromCurrency, from
       });
     });
 };
+

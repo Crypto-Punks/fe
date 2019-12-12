@@ -1,11 +1,14 @@
 .AssetList {
-  position: absolute;
-  top: 40%;
+  position: relative;
+  top: 10%;
   left: 25%;
   width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-
+  justify-content: flex-start;
+  margin: 0;
+  
   a {
     text-decoration: none;
     font-family: abolition, sans-serif;
@@ -19,8 +22,8 @@
 
   li {
     position: relative;
-    background-color: #ACDEE3;
-    margin: 0;
+    background-color: rgba(172, 222, 227, 0.845);
+    margin: 0px;
     padding: 10px;
     height: 12vh;
     border-radius: .3em;
@@ -44,22 +47,62 @@
       font-weight: 400;
       font-style: normal;
     }
+    
+    .Name {
+      left: 0;
+      font-size: 20pt;
+      letter-spacing: .5em;
+      font-weight: bold;
+    }
+
+    .Change {
+      font-size: 10pt;
+    }
+
   }
 
   li:hover {
     transform: translateY(-0.2em);
     cursor: pointer;
-    box-shadow: .5px .5px 35px 1px white;
+    box-shadow: .5px .5px 30px 1px white;
   }
 }
 
-@media (max-width: 500px) {
+
+@media (max-width: 800px) {
+
   .AssetList {
+    top: 40%;
     left: 0%;
     width: 80%;
 
     li {
-      height: 8vh;
+      height: 10vh;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+
+  .AssetList {
+    width: 80%;
+    top: 60%;
+
+    li {
+      height: 3vh;
+      border-radius: .75em;
+
+      img{
+        width: 15%;
+      }
+
+      p {
+        font-size: 5pt;
+      }
+      
+      .Change {
+        font-size: 5pt;
+      }
     }
   }
 }
