@@ -38,9 +38,10 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
     <>
       <NetWorth />
       <div className={styles.AllCoins}>
-        { searchedError &&
+        {
+          searchedError &&
         <> 
-          <button className={styles.ClearButton} onClick={()=> clearSearch()}>X</button>
+          {renderClearSearchButton(clearSearch)}
           <h1>{searchedError}</h1>
         </>
         }
@@ -48,18 +49,20 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
           searchedList.length !== 0 && 
         <>
           <h1>Search Results</h1>
-          <button className={styles.ClearButton} onClick={()=> clearSearch()}>X</button>
-          <CoinList items={modifiedCoinList(searchedList, watchList, investedCoins)} handleClick={handleClick} watchList={portfolioWatchList} />
+          {renderClearSearchButton(clearSearch)}
+          {renderCoinList(modifiedCoinList(searchedList, watchList, investedCoins), handleClick, portfolioWatchList)}
         </>
         }
-    
         <h1>Invested Coins</h1>
-        <CoinList items={investedCoins} />
+        {renderCoinList(investedCoins)}
         <h1>Watched Coins</h1>
-        {watchList.length !== 0 && <CoinList items={watchList} handleClick={handleClick} watchList={portfolioWatchList} />}
+        {
+          watchList.length !== 0 && 
+          renderCoinList(watchList, handleClick, portfolioWatchList)
+        }
         <CoinSearchForm handleSubmit={handleSubmit}/>
         <h1>All Coins</h1>
-        <CoinList items={top100Coins} handleClick={handleClick} watchList={portfolioWatchList} portfolioInvestedCoins={portfolioInvestedCoins} />
+        {renderCoinList(top100Coins, handleClick, portfolioWatchList, portfolioInvestedCoins)}
       </div>
       <NavMenu />
     </>
@@ -116,6 +119,20 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllCoins);
+
+function renderCoinList(top100Coins, handleClick, portfolioWatchList, portfolioInvestedCoins) {
+  return <CoinList items={top100Coins} handleClick={handleClick} watchList={portfolioWatchList} portfolioInvestedCoins={portfolioInvestedCoins} />;
+}
+
+function renderClearSearchButton(clearSearch) {
+  return (
+    <button 
+      className={styles.ClearButton} 
+      onClick={()=> clearSearch()}>
+  X
+    </button>
+  );
+}
 
 function modifiedCoinList(array, watchList, investedCoins) {
   const lookup = array.reduce((acc, coin) => {
