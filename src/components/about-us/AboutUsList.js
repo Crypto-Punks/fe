@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Developer from './AboutUsItem';
 import DeveloperMenu from '../hamburger-menu/DeveloperMenu';
 import { developerData } from '../../developerData';
+import styles from './AboutUs.css';
 
 const DeveloperList = () => {
   const developerElements = developerData.map((developer, i) => {
@@ -10,9 +11,11 @@ const DeveloperList = () => {
   });
   return (
     <>
-      <ul>
-        {developerElements}
-      </ul>
+      <div className={styles.AboutUs}>
+        <ul>
+          {developerElements}
+        </ul>
+      </div>
       <DeveloperMenu />
     </>
   );
