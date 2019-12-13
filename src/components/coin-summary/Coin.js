@@ -19,7 +19,7 @@ const Coin = ({ item, watchList, handleClick, portfolioInvestedCoins }) => {
         <button
           className={watchList.find(element => element.name === id) ? styles.watched : styles.unwatched}
           onClick={() => handleClick(watchList, id)}>
-          🟊</button>
+          ★</button>
       }
       <Link to={`/detail/${id}`}>
         {renderCoinHtml(logo, name, price, changePercent24Hr)}
