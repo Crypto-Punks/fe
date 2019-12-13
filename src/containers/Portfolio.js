@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import NetWorth from '../components/net-worth/NetWorth';
@@ -7,18 +7,22 @@ import AssetList from '../components/ourAssets/AssetList';
 import NavMenu from '../components/hamburger-menu/NavMenu';
 
 import { getPortfolio } from '../actions/portfolioActions';
+import { SET_OPEN_MENU_FALSE } from '../actions/menuActions';
 import { getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getInvestedList } from '../services/currencies';
 
-import styles from './HomeContainer.css';
 import PortfolioHistory from '../components/charts/PortfolioHistory';
 import Diversification from '../components/charts/Diversification';
+import styles from './HomeContainer.css';
 
 
 const Portfolio = ({ loadPortfolio, portfolioInvestedCoins }) => {
   const [investedCoins, setInvestedCoins] = useState([]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
+    dispatch({ type: SET_OPEN_MENU_FALSE });
     loadPortfolio();
   }, []);
 
