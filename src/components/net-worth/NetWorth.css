@@ -17,6 +17,7 @@
   p {
     color: white;
     font-family: abolition, sans-serif;
+    font-size: 15pt;
     font-weight: 300;
     font-style: normal;
     letter-spacing: 3px;
@@ -45,6 +46,10 @@
     left: 0;
     z-index: 1;
     border: none;
+
+    p {
+      font-size: 6pt;
+    }
   }
 }
 
