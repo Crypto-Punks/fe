@@ -9,6 +9,9 @@ exports[`Derivative component renders Derivative 1`] = `
       Object {
         "datasets": Array [
           Object {
+            "backgroundColor": "rgba(255, 0, 0, 0.2)",
+            "borderColor": "rgba(0, 0, 0, 0.2)",
+            "borderWidth": 0.5,
             "data": Array [],
             "label": "% change",
           },

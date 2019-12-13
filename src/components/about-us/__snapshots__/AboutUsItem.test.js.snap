@@ -5,16 +5,26 @@ exports[`AboutUsItem component renders AboutUsItem 1`] = `
   <h1>
     test
   </h1>
+  <div
+    className="HeadShot"
+  >
+    <img
+      alt="test"
+      src="test"
+    />
+    <p>
+      test
+    </p>
+  </div>
   <h2>
     Spirit Animal: 
     test
   </h2>
-  <img
-    alt="test"
-    src="test"
-  />
-  <p>
-    test
-  </p>
+  <a
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    test's Website
+  </a>
 </div>
 `;
