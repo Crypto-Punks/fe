@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import TransactionForm from '../components/transaction-form/TransactionForm';
@@ -12,13 +12,17 @@ import { getPortfolio } from '../actions/portfolioActions';
 import { getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getAllCurrencyIds } from '../services/currencies';
 import { coinTransaction } from '../actions/portfolioActions';
+import { SET_OPEN_MENU_FALSE } from '../actions/menuActions';
 import { getInvestedList } from '../services/currencies';
 
 const Transaction = ({ handleSubmit, loadPortfolio, portfolioInvestedCoins }) => {
   const [investedCoins, setInvestedCoins] = useState([]);
   const [currencies, setCurrencies] = useState([]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
+    dispatch({ type: SET_OPEN_MENU_FALSE });
     loadPortfolio();
   }, []);
 
