@@ -15,12 +15,6 @@
         outline: none;
         transition: 0s;
         font-size: 1.5em;
-        
-
-        img {
-            width: 2vw;
-            border: none;
-        }
     }
 
     .negative {
@@ -51,6 +45,10 @@
 @media (max-width: 500px) {
 
     .Coin {
+
+        button {
+          font-size: 10pt;
+        }
 
         .Name {
             font-size: 5pt;

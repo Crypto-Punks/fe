@@ -2,7 +2,7 @@
   background-color:  rgba(67, 72, 79, 0.897);
   border: none;
   display: flex;
-  position: fixed;
+  margin-bottom: 10%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
