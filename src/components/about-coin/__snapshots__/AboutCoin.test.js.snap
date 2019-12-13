@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutCoin component renders AboutCoin 1`] = `
+<div
+  className="AboutCoin"
+>
+  <a
+    href="https://bitcoin.org/"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    Coins website
+  </a>
+  <div
+    className="Stats"
+  >
+    <p>
+      Supply: 
+      18098137.0000000000000000
+    </p>
+    <p>
+      Max Supply: 
+      21000000.0000000000000000
+    </p>
+    <p>
+      Market Cap in USD: 
+      130874608807.5038975492994827
+    </p>
+    <p>
+      Volume Traded in last 24 Hours in USD: 
+      3535338669.2445264736224412
+    </p>
+    <p>
+      Change Percent in last 24 Hours in USD: 
+      0.5591885701135556
+    </p>
+  </div>
+  <p>
+    Description: 
+    Bitcoin (BTC) is a consensus network that enables a new payment system and a completely digital currency. Powered by its users, it is a peer to peer payment network that requires no central authority to operate. On October 31st, 2008, an individual or group of individuals operating under the pseudonym "Satoshi Nakamoto" published the Bitcoin Whitepaper and described it as: "a purely peer-to-peer version of electronic cash, which would allow online payments to be sent directly from one party to a...
+  </p>
+</div>
+`;
