@@ -18,6 +18,7 @@
 @media (max-width: 500px) {
   .SearchForm {
     top: 1%;
+    width: 10%;
     left: 56%;
     z-index: 1;
 
