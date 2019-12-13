@@ -15,7 +15,9 @@ const Hamburger = () => {
 
   return (
     <>
-      <div className={styles.Background}><img src={BackgroundImage}></img></div>
+      <div className={styles.Background}>
+        <img src={BackgroundImage}></img>
+      </div>
       <button
         className={`${styles.Button} ${openMenu ? styles.up : styles.down} `}
         onClick={setOpenMenu}><img src={Arrow}></img>

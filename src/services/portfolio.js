@@ -17,12 +17,12 @@ export const changeWatchList = (watchList, coin) => {
 export const changeInvested = (exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) => {
   if(!investedCoins.find(element => element.name === toCurrency)) {
     investedCoins.push({ name: toCurrency, amount: toCurrencyAmount });
-  } else {
+  } 
+  else {
     investedCoins.find(element => element.name === toCurrency).amount += toCurrencyAmount;
   }
   investedCoins.find(element => element.name === fromCurrency).amount -= fromCurrencyAmount;
   if(investedCoins.find(element => element.name === fromCurrency).amount === 0) {
-
     investedCoins.splice(investedCoins.indexOf(investedCoins.find(element => element.name === fromCurrency)), 1);
   }
   addTrade(toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, exchangeRate);

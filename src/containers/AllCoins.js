@@ -28,9 +28,9 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
   useEffect(() => {
     getTop100Currencies()
       .then(({ watchList, investedCoins, top100Coins }) => {
-        setWatchList(modifiedList(watchList, 'watched'));
-        setInvestedCoins(modifiedList(investedCoins, 'invested'));
-        setTop100Coins(modifiedCoinList(top100Coins, watchList, investedCoins));
+        setWatchList(watchList);
+        setInvestedCoins(investedCoins);
+        setTop100Coins(top100Coins);
       });
   }, [portfolioWatchList]);
 
@@ -38,9 +38,10 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
     <>
       <NetWorth />
       <div className={styles.AllCoins}>
-        { searchedError &&
+        {
+          searchedError &&
         <> 
-          <button className={styles.ClearButton} onClick={()=> clearSearch()}>X</button>
+          {renderClearSearchButton(clearSearch)}
           <h1>{searchedError}</h1>
         </>
         }
@@ -48,18 +49,20 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
           searchedList.length !== 0 && 
         <>
           <h1>Search Results</h1>
-          <button className={styles.ClearButton} onClick={()=> clearSearch()}>X</button>
-          <CoinList items={modifiedCoinList(searchedList, watchList, investedCoins)} handleClick={handleClick} watchList={portfolioWatchList} />
+          {renderClearSearchButton(clearSearch)}
+          {renderCoinList(searchedList, handleClick, portfolioWatchList)}
         </>
         }
-    
         <h1>Invested Coins</h1>
-        <CoinList items={investedCoins} />
+        {renderCoinList(investedCoins)}
         <h1>Watched Coins</h1>
-        {watchList.length !== 0 && <CoinList items={watchList} handleClick={handleClick} watchList={portfolioWatchList} />}
+        {
+          watchList.length !== 0 && 
+          renderCoinList(watchList, handleClick, portfolioWatchList)
+        }
         <CoinSearchForm handleSubmit={handleSubmit}/>
         <h1>All Coins</h1>
-        <CoinList items={top100Coins} handleClick={handleClick} watchList={portfolioWatchList} portfolioInvestedCoins={portfolioInvestedCoins} />
+        {renderCoinList(top100Coins, handleClick, portfolioWatchList, portfolioInvestedCoins)}
       </div>
       <NavMenu />
     </>
@@ -117,28 +120,17 @@ export default connect(
   mapDispatchToProps
 )(AllCoins);
 
-function modifiedCoinList(array, watchList, investedCoins) {
-  const lookup = array.reduce((acc, coin) => {
-    acc = {
-      ...acc,
-      [coin.id]: { ...coin, special: 'not' }
-    };
-    return acc;
-  }, {});
-
-  watchList.forEach(watchCoin => {
-    if(lookup[watchCoin.id]) lookup[watchCoin.id].special = 'watched';
-  });
-  investedCoins.forEach(investedCoin => {
-    if(lookup[investedCoin.id]) lookup[investedCoin.id].special = 'invested';
-  });
-
-  return Object.values(lookup);
+function renderCoinList(top100Coins, handleClick, portfolioWatchList, portfolioInvestedCoins) {
+  return <CoinList items={top100Coins} handleClick={handleClick} watchList={portfolioWatchList} portfolioInvestedCoins={portfolioInvestedCoins} />;
 }
 
-function modifiedList(array, string) {
-  return array.map(item => {
-    item.special = string;
-    return item;
-  });
+function renderClearSearchButton(clearSearch) {
+  return (
+    <button 
+      className={styles.ClearButton} 
+      onClick={()=> clearSearch()}>
+  X
+    </button>
+  );
 }
+

@@ -7,7 +7,6 @@ import { getTrades } from '../../services/trades';
 const PortfolioHistory = () => {
   const [intervals, setIntervals] = useState([]);
   const [totals, setTotals] = useState([]);
-  const [trades, setTrades] = useState([]);
 
   const PortfolioHistoryOptions = {
     title: {
@@ -26,18 +25,28 @@ const PortfolioHistory = () => {
       getTotals(),
       getTrades()
     ])
-      .then(([totals, trades]) => {
+      .then(([totals]) => {
         setIntervals(totals.map(item =>  moment(item.timestamp).format('MMM Do YYYY')));
         setTotals(totals.map(item => item.totals.reduce((acc, val) => {
           acc += val.value;
           return acc;
         }, 0)));
-        setTrades(trades.map(({ exchange_rate, from_currency, to_currency }) => ({ exchange_rate, from_currency, to_currency })));
       });
   }, []);
 
   return (
-    <Line data={{ labels: intervals, datasets: [{ label: 'net worth', data: totals }, { label: 'trade history', data: trades }] }} options={PortfolioHistoryOptions} /> 
+    <Line data={{ 
+      labels: intervals, 
+      datasets: [
+        { 
+          label: 'net worth', 
+          data: totals, 
+          backgroundColor: 'rgba(255, 0, 0, 0.1)' 
+        }, 
+      ] 
+    }} 
+    options={PortfolioHistoryOptions}
+    /> 
   );
 };
 

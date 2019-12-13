@@ -7,7 +7,11 @@ import styles from './SignOut.css';
 
 function SignOut({ signOut }) {
   return (
-    <button className={styles.SignOut} onClick={() => signOut()}><img src={exitIcon} /></button>
+    <button 
+      className={styles.SignOut} 
+      onClick={() => signOut()}>
+      <img src={exitIcon} />
+    </button>
   );
 }
 
