@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Coin component renders Coin 1`] = `
+<div
+  className="Coin"
+>
+  <Link
+    to="/detail/undefined"
+  >
+    <li>
+      <img />
+      <p
+        className="Name"
+      />
+      <section>
+        <p
+          className="Change"
+        >
+           Market Price $
+        </p>
+        <p
+          className="Change positive"
+        >
+          %
+        </p>
+      </section>
+    </li>
+  </Link>
+</div>
+`;

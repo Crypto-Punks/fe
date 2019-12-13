@@ -33,4 +33,4 @@ const DeveloperList = () => {
 };
 
 
-export default connect()(DeveloperList);
+export default (DeveloperList);
