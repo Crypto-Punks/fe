@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PriceHistory component renders PriceHistory 1`] = `
+<div
+  className="PriceHistory"
+>
+  <Line
+    data={
+      Object {
+        "datasets": Array [
+          Object {
+            "data": Array [],
+            "label": "price",
+          },
+        ],
+        "labels": Array [],
+      }
+    }
+    options={
+      Object {
+        "animation": Object {
+          "duration": 1000,
+          "easing": "linear",
+          "showlines": true,
+        },
+        "responsive": true,
+        "title": Object {
+          "display": true,
+          "text": "Price History",
+        },
+      }
+    }
+  />
+</div>
+`;

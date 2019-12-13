@@ -7,7 +7,6 @@ export const changeWatchList = (watchList, coin) => {
 
   if(watchList.find(element => element.name === coin)) {
     const index = watchList.indexOf(watchList.find(element => element.name === coin));
-    console.log(index);
     watchList.splice(index, 1);
   } 
   else watchList.push({ name: coin });
@@ -16,7 +15,6 @@ export const changeWatchList = (watchList, coin) => {
 };
 
 export const changeInvested = (exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) => {
-  console.log(investedCoins);
   if(!investedCoins.find(element => element.name === toCurrency)) {
     investedCoins.push({ name: toCurrency, amount: toCurrencyAmount });
   } else {

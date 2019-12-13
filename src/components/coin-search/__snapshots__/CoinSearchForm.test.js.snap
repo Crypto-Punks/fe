@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinSearchForm component renders CoinSearchForm 1`] = `
+<form
+  className="SearchForm"
+  onSubmit={[Function]}
+>
+  <input
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <button
+    className="SearchButton"
+  >
+    🔍
+  </button>
+</form>
+`;
