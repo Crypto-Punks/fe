@@ -14,13 +14,9 @@ const NetWorth = () => {
 
   useEffect(() => {
     if(portfolioInvestedCoins.length) {
-      Promise.all(portfolioInvestedCoins.map(val => {
-        // if(val.name === 'USD') {return val.amount;}
-        return getCoinPriceById(val.name)
-          .then(price => price * val.amount);
-      })).then(values => {
-        return values.reduce((acc, val) => acc + val); 
-      }). then(netWorth => dispatch({ type: UPDATE_NET_WORTH, payload: netWorth }));
+      Promise.all(portfolioInvestedCoins.map(val => getCoinPriceById(val.name).then(price => price * val.amount)))
+        .then(values => values.reduce((acc, val) => acc + val))
+        .then(netWorth => dispatch({ type: UPDATE_NET_WORTH, payload: netWorth }));
     }
   }, [portfolioInvestedCoins]);
 

@@ -8,14 +8,14 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
   const [fromCurrency, setFromCurrency] = useState('');
   const [fromCurrencyAmount, setFromCurrencyAmount] = useState(0);
   const [fromCurrencyMax, setFromCurrencyMax] = useState(0);
-  
+
   const [toCurrency, setToCurrency] = useState('');
   const [toCurrencyAmount, setToCurrencyAmount] = useState(0);
   const [toCurrencyMax, setToCurrencyMax] = useState(0);
-  
+
   const [exchangeRate, setExchangeRate] = useState(0);
   const [transactionValue, setTransactionValue] = useState(0);
-  
+
   const currenciesElements = currencies.sort().map(currency => {
     return <option key={currency} value={currency}>{currency}</option>;
   });
@@ -25,132 +25,57 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
   });
 
   useEffect(() => {
+    calculateTransactionValue(fromCurrency, setTransactionValue, fromCurrencyAmount);
+  }, [fromCurrency, fromCurrencyAmount]);
+
+
+  useEffect(() => {
+    calculateTransactionValue(toCurrency, setTransactionValue, toCurrencyAmount);
+  }, [toCurrency, toCurrencyAmount]);
+
+
+  useEffect(() => {
+    setExchangeRateAndCurrencyAmount(fromCurrency, toCurrency, setExchangeRate, setFromCurrencyAmount, toCurrencyAmount);
+  }, [fromCurrency]);
+
+
+  useEffect(() => {
+    setExchangeRateAndCurrencyAmount(fromCurrency, toCurrency, setExchangeRate, setToCurrencyAmount, fromCurrencyAmount, true);
+  }, [toCurrency]);
+
+  useEffect(() => {
     if(fromCurrency) {
       const max = investedCoins.find(element => element.name === fromCurrency).amount;
       setFromCurrencyMax(max);
     }
   }, [fromCurrency]);
 
-  
-  useEffect(() => {
-    if(fromCurrency && toCurrency) {
-      Promise.all([
-        getCoinPriceById(fromCurrency),
-        getCoinPriceById(toCurrency)
-      ])
-        .then(([fromCurrencyPrice, toCurrencyPrice]) => {
-          const exchangeRate = Number(fromCurrencyPrice) / Number(toCurrencyPrice);
-          setExchangeRate(exchangeRate);
-          setFromCurrencyAmount(toCurrencyAmount / exchangeRate);
-        });
-    }
-  }, [fromCurrency]);
-
-
-  useEffect(() => {
-    if(fromCurrency && toCurrency) {
-      Promise.all([
-        getCoinPriceById(fromCurrency),
-        getCoinPriceById(toCurrency)
-      ])
-        .then(([fromCurrencyPrice, toCurrencyPrice]) => {
-          const exchangeRate = Number(fromCurrencyPrice) / Number(toCurrencyPrice);
-          setExchangeRate(exchangeRate);
-          setToCurrencyAmount(Number(fromCurrencyAmount * exchangeRate));
-        });
-    }
-  }, [toCurrency]);
-
-
   useEffect(() => {
     if(exchangeRate) {
       const max = fromCurrencyMax * exchangeRate;
       setToCurrencyMax(max);
     }
-  }, [toCurrencyAmount, fromCurrencyMax]);
-
-
-  useEffect(() => {
-    if(fromCurrency) {
-      getCoinPriceById(fromCurrency)
-        .then(fromCurrencyPrice => {
-          setTransactionValue(fromCurrencyPrice * fromCurrencyAmount);
-        });
-    }
-  }, [fromCurrency, fromCurrencyAmount]);
-
-
-  useEffect(() => {
-    if(toCurrency) {
-      getCoinPriceById(toCurrency)
-        .then(toCurrencyPrice => {
-          setTransactionValue(toCurrencyPrice * toCurrencyAmount);
-        });
-    }
-  }, [toCurrency, toCurrencyAmount]);
-
-
+  }, [toCurrencyAmount, fromCurrencyMax, exchangeRate]);
 
   return (
-    <form className={styles.TransactionForm} onSubmit={event => handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
+    <form
+      className={styles.TransactionForm}
+      onSubmit={event => handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
       <label>
-        I want to buy
-        <input 
-          type='number' 
-          value={toCurrencyAmount}  
-          max={toCurrencyMax} 
-          min={0}
-          step={'any'} 
-          onChange={event => {
-            setToCurrencyAmount(event.target.value);
-            if(exchangeRate) setFromCurrencyAmount(event.target.value / exchangeRate);
-          }} 
-        />
-        <select 
-          value={toCurrency} 
-          onChange={(event) => setToCurrency(event.target.value)}>
-          <option value={''} disabled hidden>Choose your To Currency</option>
-          <option key={'USD'} value={'USD'}>{'USD'}</option>
- 
-          {currenciesElements}
-        </select>
+        {renderSelect(toCurrency, setToCurrency, 'Choose Coin to Buy', currenciesElements)}
+        {renderInput(toCurrencyAmount, toCurrencyMax, exchangeRate, setToCurrencyAmount, setFromCurrencyAmount)}
       </label>
       <label>
-        I want to use
-        <input 
-          type='number' 
-          value={fromCurrencyAmount} 
-          max={fromCurrencyMax} 
-          min={0} 
-          step={'any'} 
-          onChange={event => {
-            setFromCurrencyAmount(event.target.value);
-            if(exchangeRate) setToCurrencyAmount(event.target.value * exchangeRate);
-          }} 
-        />
-        <select 
-          value={fromCurrency} 
-          onChange={event => setFromCurrency(event.target.value)}>
-          <option value={''} disabled hidden>Choose Your From Currency</option>
-          <option key={'USD'} value={'USD'}>{'USD'}</option>
-          {investedCoinsElements}
-        </select>
+        {renderSelect(fromCurrency, setFromCurrency, 'Paying With', investedCoinsElements)}
+        {renderInput(fromCurrencyAmount, fromCurrencyMax, exchangeRate, setFromCurrencyAmount, setToCurrencyAmount)}
       </label>
       <section>
         <p>Exchange rate:</p>
-        <input 
-          type='number' 
-          value={exchangeRate}
-          readOnly={true} 
-        />
+        {renderReadOnlyInput(exchangeRate)}
       </section>
       <section>
-        <p>Value of transaction (USD):</p>
-        <input 
-          type='number' 
-          value={transactionValue} 
-          readOnly={true}
-        />
+        <p>Value (USD):</p>
+        {renderReadOnlyInput(transactionValue)}
       </section>
       <button>Complete Your Transaction</button>
     </form>
@@ -168,3 +93,66 @@ TransactionForm.propTypes = {
 
 
 export default TransactionForm;
+
+function calculateTransactionValue(currency, setTransactionValue, currencyAmount) {
+  if(currency) {
+    getCoinPriceById(currency)
+      .then(currencyPrice => {
+        setTransactionValue(currencyPrice * currencyAmount);
+      });
+  }
+}
+
+function setExchangeRateAndCurrencyAmount(fromCurrency, toCurrency, setExchangeRate, setCurrencyAmount, currencyAmount, bool) {
+  if(fromCurrency && toCurrency) {
+    Promise.all([
+      getCoinPriceById(fromCurrency),
+      getCoinPriceById(toCurrency)
+    ])
+      .then(([fromCurrencyPrice, toCurrencyPrice]) => {
+        const exchangeRate = fromCurrencyPrice / toCurrencyPrice;
+        setExchangeRate(exchangeRate);
+        setCurrencyAmount(bool ? currencyAmount * exchangeRate : currencyAmount / exchangeRate);
+      });
+  }
+}
+
+function renderInput(currencyAmount, currencyMax, exchangeRate, setThisCurrencyAmount, setOtherCurrencyAmount) {
+  return (
+    <input
+      placeholder='How much do you want to buy?'
+      type='number'
+      value={currencyAmount}
+      max={currencyMax}
+      min={0}
+      step={'any'}
+      onChange={event => {
+        setThisCurrencyAmount(Number(event.target.value));
+        if(exchangeRate) setOtherCurrencyAmount(Number(event.target.value) / exchangeRate);
+      }} 
+    />
+  );
+}
+
+
+function renderSelect(currency, setCurrency, placeHolder, listElements) {
+  return (
+    <select
+      value={currency}
+      onChange={(event) => setCurrency(event.target.value)}>
+      <option value={''} disabled hidden>{placeHolder}</option>
+      <option key={'USD'} value={'USD'}>{'USD'}</option>
+      {listElements}
+    </select>
+  );
+}
+
+function renderReadOnlyInput(value) {
+  return (
+    <input
+      type='number'
+      value={value}
+      readOnly={true}
+    />
+  );
+}

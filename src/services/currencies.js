@@ -11,7 +11,7 @@ export const getInvestedList = () => get(`${CURRENCY_URL}/invested`);
 
 export const getCoinInfoById = (id) => get(`${CURRENCY_URL}/info/${id}`);
 
-export const getCoinPriceById = (id) => get(`${CURRENCY_URL}/price/${id}`);
+export const getCoinPriceById = (id) => get(`${CURRENCY_URL}/price/${id}`).then(({ price }) => price);
 
 export const getSearchCall = query => get(`${CURRENCY_URL}/search/${query}`);
 
