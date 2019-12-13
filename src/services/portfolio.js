@@ -1,6 +1,7 @@
 import { get, put } from './request';
 import { addTrade } from './trades';
-const PORTFOLIO_BASE_URL = 'http://localhost:7891/api/v1/portfolio';
+import { baseUrl } from './dbUrl';
+const PORTFOLIO_BASE_URL = `${baseUrl}/api/v1/portfolio`;
 
 export const fetchPortfolio = () => get(`${PORTFOLIO_BASE_URL}`);
 export const changeWatchList = (watchList, coin) => {

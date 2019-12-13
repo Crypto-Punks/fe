@@ -1,14 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AboutUsList component renders AboutUsList 1`] = `
-<ul>
-  <Person
-    blurb=""
-    image="/src/images/developer-images/joe-klause.jpg"
-    key="0"
-    name="Joe Klause"
-    spiritAnimal="Panther (or Squirrel...)"
-    website="https://www.linkedin.com/in/joe-klause/"
-  />
-</ul>
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <DeveloperList />
+</ContextProvider>
 `;

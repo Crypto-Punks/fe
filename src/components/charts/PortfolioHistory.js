@@ -37,13 +37,13 @@ const PortfolioHistory = () => {
   return (
     <Line data={{ 
       labels: intervals, 
-      datasets: [
-        { 
-          label: 'net worth', 
-          data: totals, 
-          backgroundColor: 'rgba(255, 0, 0, 0.2)' 
-        }, 
-      ] 
+      datasets: [{ 
+        label: 'net worth', 
+        data: totals, 
+        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+        borderWidth: .5,
+        borderColor: 'rgba(0, 0, 0, 0.2)'
+      }] 
     }} 
     options={PortfolioHistoryOptions}
     /> 
