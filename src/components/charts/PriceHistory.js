@@ -34,10 +34,18 @@ const PriceHistory = ({ id, historyDuration }) => {
 
   return (
     <div className={styles.PriceHistory}>
-      <Line data={{
-        labels: intervals,
-        datasets: [{ label: 'price', data: datasets, backgroundColor: 'rgba(255, 0, 0, 0.2)' }]
-      }} options={priceHistoryOptions} />
+      <Line 
+        data={{
+          labels: intervals,
+          datasets: [{ 
+            label: 'price', 
+            data: datasets, 
+            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+            borderWidth: .5,
+            borderColor: 'rgba(0, 0, 0, 0.2)' 
+          }]
+        }} 
+        options={priceHistoryOptions} />
     </div>
   );
 };
