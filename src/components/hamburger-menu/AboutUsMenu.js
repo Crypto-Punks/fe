@@ -18,7 +18,7 @@ const AboutUsMenu = () => {
       <p>Go to the transaction page to do your trading. Put in which currency you want to exchange from and to, and put in an amount, the other amount will automatically fill with the rate of exchange.</p>
       <p>Just like in the real world, if you run out of money, you will not be able to trade anymore. So be smart!</p>
       <Link to='/about'>
-        Check out the creators of Crypto Trades!
+        About Developers!
       </Link>
     </div >
   );
