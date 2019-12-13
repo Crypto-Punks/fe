@@ -35,7 +35,7 @@ const Derivative = ({ id, derivativeDuration }) => {
   
   return (
     <div className={styles.Derivative}>
-      <Line data={{ labels: intervals, datasets: [{ label: '% change', data: derivativeArray, backgroundColor: 'rgba(255, 0, 0, 0.1)' }] }} options={derivativeOptions} /> 
+      <Line data={{ labels: intervals, datasets: [{ label: '% change', data: derivativeArray, backgroundColor: 'rgba(255, 0, 0, 0.2)' }] }} options={derivativeOptions} /> 
     </div>
   );
 };

@@ -41,7 +41,7 @@ const PortfolioHistory = () => {
         { 
           label: 'net worth', 
           data: totals, 
-          backgroundColor: 'rgba(255, 0, 0, 0.1)' 
+          backgroundColor: 'rgba(255, 0, 0, 0.2)' 
         }, 
       ] 
     }} 

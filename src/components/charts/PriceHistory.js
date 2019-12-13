@@ -36,7 +36,7 @@ const PriceHistory = ({ id, historyDuration }) => {
     <div className={styles.PriceHistory}>
       <Line data={{
         labels: intervals,
-        datasets: [{ label: 'price', data: datasets, backgroundColor: 'rgba(255, 0, 0, 0.1)' }]
+        datasets: [{ label: 'price', data: datasets, backgroundColor: 'rgba(255, 0, 0, 0.2)' }]
       }} options={priceHistoryOptions} />
     </div>
   );
