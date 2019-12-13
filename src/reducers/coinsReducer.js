@@ -12,7 +12,7 @@ export default function reducer(state = initialState, action) {
     case CLEAR_SEARCHED_LIST:
       return { ...state, searchedList: [], searchedError: null };
     case SET_SEARCHED_LIST_ERROR:
-      return { ...state, searchedError: 'No Results Found' };
+      return { ...state, searchedList: [], searchedError: 'No Results Found' };
     default:
       return state;
   }
