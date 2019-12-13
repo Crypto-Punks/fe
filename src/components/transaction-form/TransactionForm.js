@@ -112,9 +112,9 @@ function setExchangeRateAndCurrencyAmount(fromCurrency, toCurrency, setExchangeR
       getCoinPriceById(toCurrency)
     ])
       .then(([fromCurrencyPrice, toCurrencyPrice]) => {
-        const exchangeRate = Number(fromCurrencyPrice) / Number(toCurrencyPrice);
+        const exchangeRate = fromCurrencyPrice / toCurrencyPrice;
         setExchangeRate(exchangeRate);
-        setCurrencyAmount(bool ? Number(currencyAmount * exchangeRate) : Number(currencyAmount / exchangeRate));
+        setCurrencyAmount(bool ? currencyAmount * exchangeRate : currencyAmount / exchangeRate);
       });
   }
 }
@@ -128,8 +128,8 @@ function renderInput(currencyAmount, currencyMax, exchangeRate, setThisCurrencyA
       min={0}
       step={'any'} 
       onChange={event => {
-        setThisCurrencyAmount(event.target.value);
-        if(exchangeRate) setOtherCurrencyAmount(event.target.value / exchangeRate);
+        setThisCurrencyAmount(Number(event.target.value));
+        if(exchangeRate) setOtherCurrencyAmount(Number(event.target.value) / exchangeRate);
       }} 
     />
   );
