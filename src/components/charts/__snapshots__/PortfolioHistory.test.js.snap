@@ -6,12 +6,9 @@ exports[`PortfolioHistory component renders PortfolioHistory 1`] = `
     Object {
       "datasets": Array [
         Object {
+          "backgroundColor": "rgba(255, 0, 0, 0.2)",
           "data": Array [],
           "label": "net worth",
-        },
-        Object {
-          "data": Array [],
-          "label": "trade history",
         },
       ],
       "labels": Array [],

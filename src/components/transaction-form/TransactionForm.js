@@ -60,14 +60,25 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
   return (
     <form
       className={styles.TransactionForm}
-      onSubmit={event => handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
+      onSubmit={event => {
+        setFromCurrency('');
+        setFromCurrencyAmount(0);
+        setFromCurrencyMax(0);
+        setToCurrency('');
+        setToCurrencyAmount(0);
+        setToCurrencyMax(0);
+        setExchangeRate(0);
+        setTransactionValue(0);
+        handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins);
+      }
+      }>
       <label>
         {renderSelect(toCurrency, setToCurrency, 'Choose Coin to Buy', currenciesElements)}
         {renderInput(toCurrencyAmount, toCurrencyMax, exchangeRate, setToCurrencyAmount, setFromCurrencyAmount)}
       </label>
       <label>
         {renderSelect(fromCurrency, setFromCurrency, 'Paying With', investedCoinsElements)}
-        {renderInput(fromCurrencyAmount, fromCurrencyMax, exchangeRate, setFromCurrencyAmount, setToCurrencyAmount)}
+        {renderInput(fromCurrencyAmount, fromCurrencyMax, exchangeRate, setFromCurrencyAmount, setToCurrencyAmount, true)}
       </label>
       <section>
         <p>Exchange rate:</p>
@@ -117,7 +128,7 @@ function setExchangeRateAndCurrencyAmount(fromCurrency, toCurrency, setExchangeR
   }
 }
 
-function renderInput(currencyAmount, currencyMax, exchangeRate, setThisCurrencyAmount, setOtherCurrencyAmount) {
+function renderInput(currencyAmount, currencyMax, exchangeRate, setThisCurrencyAmount, setOtherCurrencyAmount, bool) {
   return (
     <input
       placeholder='How much do you want to buy?'
@@ -128,7 +139,7 @@ function renderInput(currencyAmount, currencyMax, exchangeRate, setThisCurrencyA
       step={'any'}
       onChange={event => {
         setThisCurrencyAmount(Number(event.target.value));
-        if(exchangeRate) setOtherCurrencyAmount(Number(event.target.value) / exchangeRate);
+        if(exchangeRate) setOtherCurrencyAmount(bool ? Number(event.target.value) * exchangeRate : Number(event.target.value) / exchangeRate);
       }} 
     />
   );
