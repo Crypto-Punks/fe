@@ -6,7 +6,8 @@ export const fetchPortfolio = () => get(`${PORTFOLIO_BASE_URL}`);
 export const changeWatchList = (watchList, coin) => {
 
   if(watchList.find(element => element.name === coin)) {
-    const index = watchList.indexOf({ name: coin });
+    const index = watchList.indexOf(watchList.find(element => element.name === coin));
+    console.log(index);
     watchList.splice(index, 1);
   } 
   else watchList.push({ name: coin });
