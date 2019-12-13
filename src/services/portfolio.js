@@ -15,7 +15,6 @@ export const changeWatchList = (watchList, coin) => {
 };
 
 export const changeInvested = (exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins) => {
-
   if(!investedCoins.find(element => element.name === toCurrency)) {
     investedCoins.push({ name: toCurrency, amount: toCurrencyAmount });
   } 
