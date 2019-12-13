@@ -2,14 +2,12 @@
   background-color:  rgba(67, 72, 79, 0.897);
   border: none;
   display: flex;
-  position: fixed;
+  margin-bottom: 10%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 1%;
-  height: 38%;
-  width: 80%;
-  left: 27.75%;
+  height: 40%;
+  width: 100%;
   z-index: 1;
   color: white;
   border-radius: .3em;
