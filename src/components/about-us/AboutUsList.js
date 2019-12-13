@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import Developer from './AboutUsItem';
 import DeveloperMenu from '../hamburger-menu/DeveloperMenu';
 import { developerData } from '../../developerData';
-import styles from './AboutUs.css';
 import { SET_OPEN_MENU_FALSE } from '../../actions/menuActions';
+import styles from './AboutUs.css';
 
 const DeveloperList = () => {
 
