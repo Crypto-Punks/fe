@@ -23,7 +23,7 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
   const [top100Coins, setTop100Coins] = useState([]);
 
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
     dispatch({ type: SET_OPEN_MENU_FALSE });
     loadPortfolio();
