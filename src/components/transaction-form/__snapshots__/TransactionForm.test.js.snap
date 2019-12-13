@@ -84,7 +84,7 @@ exports[`TransactionForm component renders TransactionForm 1`] = `
     />
   </section>
   <button>
-    Complete Your Transaction
+    Purchase
   </button>
 </form>
 `;

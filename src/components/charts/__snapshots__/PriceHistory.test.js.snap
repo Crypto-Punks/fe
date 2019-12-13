@@ -10,6 +10,8 @@ exports[`PriceHistory component renders PriceHistory 1`] = `
         "datasets": Array [
           Object {
             "backgroundColor": "rgba(255, 0, 0, 0.2)",
+            "borderColor": "rgba(0, 0, 0, 0.2)",
+            "borderWidth": 0.5,
             "data": Array [],
             "label": "price",
           },

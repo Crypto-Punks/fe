@@ -57,7 +57,9 @@ const Diversification = ({ investedCoins }) => {
               'rgba(0, 0, 255, 0.2)', 
               'rgba(75, 0, 130, 0.2)', 
               'rgba(238, 130, 238, 0.2)'
-            ] 
+            ],
+            borderWidth: .5,
+            borderColor: 'rgba(0, 0, 0, 0.2)'
           }]
         }
       } options={DiversificationOptions} /> }
