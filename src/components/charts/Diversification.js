@@ -26,7 +26,18 @@ const Diversification = ({ investedCoins }) => {
     <>
       {values.length > 0 && <Pie data={
         { labels: investedCoins.map(item => item.name),
-          datasets: [{ data: values }]
+          datasets: [{ 
+            data: values, 
+            backgroundColor: [
+              'rgba(255, 0, 0, 0.1)', 
+              'rgba(255, 165, 0, 0.1)', 
+              'rgba(255, 255, 0, 0.1)', 
+              'rgba(0, 128, 0, 0.1)', 
+              'rgba(0, 0, 255, 0.1)', 
+              'rgba(75, 0, 130, 0.1)', 
+              'rgba(238, 130, 238, 0.1)'
+            ] 
+          }]
         }
       } options={DiversificationOptions} /> }
     </>

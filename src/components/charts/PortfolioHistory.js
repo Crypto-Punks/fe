@@ -37,7 +37,18 @@ const PortfolioHistory = () => {
   }, []);
 
   return (
-    <Line data={{ labels: intervals, datasets: [{ label: 'net worth', data: totals }, { label: 'trade history', data: trades }] }} options={PortfolioHistoryOptions} /> 
+    <Line data={{ 
+      labels: intervals, 
+      datasets: [
+        { 
+          label: 'net worth', 
+          data: totals, 
+          backgroundColor: 'rgba(255, 0, 0, 0.1)' 
+        }, 
+      ] 
+    }} 
+    options={PortfolioHistoryOptions}
+    /> 
   );
 };
 
