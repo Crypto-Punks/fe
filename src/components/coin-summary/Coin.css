@@ -1,4 +1,11 @@
 .Coin {
+    .watched {
+        color: gold;
+    }
+
+    .unwatched {
+        color: white;
+    }
 
     button {
         position: absolute;
@@ -7,14 +14,8 @@
         border: none;
         outline: none;
         transition: 0s;
+        font-size: 1.5em;
         
-        .watched {
-            color: gold;
-        }
-    
-        .unwatched {
-            color: white;
-        }
 
         img {
             width: 2vw;

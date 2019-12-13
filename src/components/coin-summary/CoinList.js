@@ -3,9 +3,9 @@ import Coin from './Coin';
 import PropTypes from 'prop-types';
 import styles from './CoinList.css';
 
-const CoinList = ({ items, watchList, handleClick }) => {
+const CoinList = ({ items, watchList, handleClick, portfolioInvestedCoins }) => {
   const elements = items.map(item => {
-    return <Coin key={item.name} item={item} watchList={watchList} handleClick={handleClick} />;
+    return <Coin key={item.name} item={item} watchList={watchList} handleClick={handleClick} portfolioInvestedCoins={portfolioInvestedCoins} />;
   });
   return (
     <ul className={styles.CoinList}>
@@ -24,7 +24,11 @@ CoinList.propTypes = {
     special: PropTypes.string.isRequired
   })).isRequired,
   watchList: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
+  portfolioInvestedCoins: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+  }))
 };
 
 export default CoinList;

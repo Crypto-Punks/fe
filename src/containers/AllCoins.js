@@ -10,12 +10,12 @@ import CoinSearchForm from '../components/coin-search/CoinSearchForm';
 import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 import { getStateSearchedList, getSearchedError } from '../selectors/coinsSelectors';
-import { getWatchList } from '../selectors/portfolioSelectors';
+import { getWatchList, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getTop100Currencies } from '../services/currencies';
 
 import styles from './AllCoins.css';
 
-const AllCoins = ({ portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch, handleClick, searchedError }) => {
+const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch, handleClick, searchedError }) => {
 
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
@@ -59,7 +59,7 @@ const AllCoins = ({ portfolioWatchList, searchedList, handleSubmit, loadPortfoli
         {watchList.length !== 0 && <CoinList items={watchList} handleClick={handleClick} watchList={portfolioWatchList} />}
         <CoinSearchForm handleSubmit={handleSubmit}/>
         <h1>All Coins</h1>
-        <CoinList items={top100Coins} handleClick={handleClick} watchList={portfolioWatchList} />
+        <CoinList items={top100Coins} handleClick={handleClick} watchList={portfolioWatchList} portfolioInvestedCoins={portfolioInvestedCoins} />
       </div>
       <NavMenu />
     </>
@@ -81,10 +81,15 @@ AllCoins.propTypes = {
   clearSearch: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   loadPortfolio: PropTypes.func.isRequired,
-  searchedError: PropTypes.string
+  searchedError: PropTypes.string,
+  portfolioInvestedCoins: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 const mapStateToProps = state => ({
+  portfolioInvestedCoins: getPortfolioInvestedCoins(state),
   portfolioWatchList: getWatchList(state),
   searchedList: getStateSearchedList(state),
   searchedError: getSearchedError(state)

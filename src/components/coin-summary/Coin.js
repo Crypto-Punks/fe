@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Coin.css';
-import Star from '../../images/starIcon.png';
 
-const Coin = ({ item, watchList, handleClick }) => {
+const Coin = ({ item, watchList, handleClick, portfolioInvestedCoins }) => {
   const { id, logo, name, price, changePercent24Hr } = item;
 
   if(id === 'USD') return (
@@ -16,11 +15,11 @@ const Coin = ({ item, watchList, handleClick }) => {
   return (
     <div className={styles.Coin}>
       {
-        handleClick &&
+        handleClick && (portfolioInvestedCoins ? !portfolioInvestedCoins.find(element => element.name === id) : true) &&
         <button
           className={watchList.find(element => element.name === id) ? styles.watched : styles.unwatched}
           onClick={() => handleClick(watchList, id)}>
-          <img src={Star}/></button>
+          🟊</button>
       }
       <Link to={`/detail/${id}`}>
         {renderCoinHtml(logo, name, price, changePercent24Hr)}
@@ -39,7 +38,11 @@ Coin.propTypes = {
     special: PropTypes.string.isRequired
   }),
   watchList: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
+  portfolioInvestedCoins: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+  }))
 };
 
 export default Coin;
