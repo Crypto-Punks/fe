@@ -5,6 +5,7 @@ import Developer from './AboutUsItem';
 import DeveloperMenu from '../hamburger-menu/DeveloperMenu';
 import { developerData } from '../../developerData';
 import { SET_OPEN_MENU_FALSE } from '../../actions/menuActions';
+import styles from './AboutUs.css';
 
 const DeveloperList = () => {
 
@@ -21,9 +22,11 @@ const DeveloperList = () => {
 
   return (
     <>
-      <ul>
-        {developerElements}
-      </ul>
+      <div className={styles.AboutUs}>
+        <ul>
+          {developerElements}
+        </ul>
+      </div>
       <DeveloperMenu />
     </>
   );
