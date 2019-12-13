@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import NetWorth from '../components/net-worth/NetWorth';
@@ -9,6 +9,7 @@ import CoinList from '../components/coin-summary/CoinList';
 import CoinSearchForm from '../components/coin-search/CoinSearchForm';
 import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
+import { SET_OPEN_MENU_FALSE } from '../actions/menuActions';
 import { getStateSearchedList, getSearchedError } from '../selectors/coinsSelectors';
 import { getWatchList, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getTop100Currencies } from '../services/currencies';
@@ -21,7 +22,10 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
   const [investedCoins, setInvestedCoins] = useState([]);
   const [top100Coins, setTop100Coins] = useState([]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
+    dispatch({ type: SET_OPEN_MENU_FALSE });
     loadPortfolio();
   }, []);
 
@@ -55,10 +59,12 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
         }
         <h1>Invested Coins</h1>
         {renderCoinList(investedCoins)}
-        <h1>Watched Coins</h1>
         {
           watchList.length !== 0 && 
-          renderCoinList(watchList, handleClick, portfolioWatchList)
+          <>
+            <h1>Watched Coins</h1>
+            {renderCoinList(watchList, handleClick, portfolioWatchList)}
+          </>
         }
         <CoinSearchForm handleSubmit={handleSubmit}/>
         <h1>All Coins</h1>
