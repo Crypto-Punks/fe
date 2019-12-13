@@ -77,7 +77,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         <p>Value (USD):</p>
         {renderReadOnlyInput(transactionValue)}
       </section>
-      <button>Complete Your Transaction</button>
+      <button>Purchase</button>
     </form>
   );
 };

@@ -1,6 +1,8 @@
 .NetWorth {
   display: flex;
   position: fixed;
+  width: 40%;
+  height: 7%;
   left: 2%;
   top: 5%;
   flex-direction: row;

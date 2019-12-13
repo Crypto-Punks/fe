@@ -8,6 +8,8 @@
   padding: 0;
   margin-left: 0;
   margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
   
   a {
     text-decoration: none;
@@ -95,8 +97,12 @@
 @media (max-width: 500px) {
 
   .AssetList {
-    width: 80%;
+    width: 100%;
     top: 60%;
+    margin-left: 0;
+    margin-right: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
 
     li {
       height: 3vh;
@@ -118,7 +124,7 @@
 
       .Change {
         font-size: 6pt;
-        margin-left: 4em;
+        margin-left: 7em;
         letter-spacing: .3em;
         color: yellowgreen;
       }

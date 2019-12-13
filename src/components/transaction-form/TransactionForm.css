@@ -29,6 +29,12 @@
     }
   }
 
+  section {
+    text-align: center;
+    width: 10vw;
+    margin: .3em;
+  }
+
   button {
     background-color: #BF60A5;
     border-radius: .3em;
