@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssetItem component renders AssetItem 1`] = `
+<Link
+  to="detail/undefined"
+>
+  <li>
+    <img />
+    <p
+      className="Name"
+    >
+       (
+      )
+    </p>
+    <p
+      className="Change"
+    >
+      $
+      NaN
+    </p>
+  </li>
+</Link>
+`;

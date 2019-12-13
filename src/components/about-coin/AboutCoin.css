@@ -1,0 +1,72 @@
+.AboutCoin {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  top: 88em;
+  
+
+    a {
+      margin: 1em;
+      text-decoration: none;
+      color: white;
+    }
+
+  p {
+    margin-top: 3%;
+    margin-bottom: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+    color: white;
+    font-family: abolition, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 3px;
+  }
+
+  .Stats {
+    background-color: rgba(101, 134, 137, 0.845);
+    text-align: center;
+    margin: 3%;
+    width: 60%;
+    height: 15%;
+    padding: 2%;
+    border-radius: 1em;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+
+  .AboutCoin {
+    top: 28em;
+    margin-left: 8%;
+    margin-right: 0;
+
+    p {
+      font-size: 10pt;
+      text-align: center;
+      margin-bottom: 15%;
+      width: 90%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .Stats {
+      width: 90%;
+      height: 20%;
+
+      p {
+        text-align: left;
+      }
+    }
+
+  }
+}

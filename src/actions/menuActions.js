@@ -1,0 +1,2 @@
+export const TOGGLE_OPEN_MENU = 'TOGGLE_OPEN_MENU';
+export const SET_OPEN_MENU_FALSE = 'SET_OPEN_MENU_FALSE';

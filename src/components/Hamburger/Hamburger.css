@@ -1,0 +1,83 @@
+.Background {
+
+  img{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-attachment: fixed;
+  }
+}
+
+
+.Button {
+    position: fixed;
+    bottom: 3%;
+    left: 49%;
+
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    
+    img {
+      width: 5em;
+      height: 5em;
+      border: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: .4s ease-in-out
+    }
+
+    img:hover {
+      box-shadow: .5px .5px 35px 1px white;
+      border-radius: 20em;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    transition: .5s ease-in-out
+  }
+
+  .up {
+    transform: rotate(180deg);
+ }
+
+
+@media (max-width: 1000px) {
+    .Button {
+      left: 43%;
+      width: 15%;
+    }
+  }
+
+
+@media (max-width: 800px) {
+ 
+
+    .Button {
+      left: 43%;
+      width: 15%;
+
+      img {
+        width: 3.5em;
+        height: 3.5em;
+      }
+    }
+  }
+
+ 
+@media (max-width: 500px) {
+  
+    .Button {
+      left: 43%;
+      width: 15%;
+
+      img {
+        width: 3em;
+        height: 3em;
+      }
+    }
+  }
+
+

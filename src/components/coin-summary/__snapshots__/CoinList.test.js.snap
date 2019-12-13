@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinList component renders CoinList 1`] = `
+<ul
+  className="CoinList"
+/>
+`;

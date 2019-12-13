@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransactionForm component renders TransactionForm 1`] = `
+<form
+  className="TransactionForm"
+  onSubmit={[Function]}
+>
+  <label>
+    <select
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        disabled={true}
+        hidden={true}
+        value=""
+      >
+        Choose Coin to Buy
+      </option>
+      <option
+        key="USD"
+        value="USD"
+      >
+        USD
+      </option>
+    </select>
+    <input
+      max={0}
+      min={0}
+      onChange={[Function]}
+      placeholder="How much do you want to buy?"
+      step="any"
+      type="number"
+      value={0}
+    />
+  </label>
+  <label>
+    <select
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        disabled={true}
+        hidden={true}
+        value=""
+      >
+        Paying With
+      </option>
+      <option
+        key="USD"
+        value="USD"
+      >
+        USD
+      </option>
+    </select>
+    <input
+      max={0}
+      min={0}
+      onChange={[Function]}
+      placeholder="How much do you want to buy?"
+      step="any"
+      type="number"
+      value={0}
+    />
+  </label>
+  <section>
+    <p>
+      Exchange rate:
+    </p>
+    <input
+      readOnly={true}
+      type="number"
+      value={0}
+    />
+  </section>
+  <section>
+    <p>
+      Value (USD):
+    </p>
+    <input
+      readOnly={true}
+      type="number"
+      value={0}
+    />
+  </section>
+  <button>
+    Purchase
+  </button>
+</form>
+`;
