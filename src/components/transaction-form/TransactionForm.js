@@ -94,7 +94,6 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
   return (
     <form className={styles.TransactionForm} onSubmit={event => handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins)}>
       <label>
-        I want to buy
         <input 
           type='number' 
           value={toCurrencyAmount}  
@@ -109,14 +108,13 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         <select 
           value={toCurrency} 
           onChange={(event) => setToCurrency(event.target.value)}>
-          <option value={''} disabled hidden>Choose your To Currency</option>
+          <option value={''} disabled hidden>I want to buy</option>
           <option key={'USD'} value={'USD'}>{'USD'}</option>
  
           {currenciesElements}
         </select>
       </label>
       <label>
-        I want to use
         <input 
           type='number' 
           value={fromCurrencyAmount} 
@@ -131,14 +129,14 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         <select 
           value={fromCurrency} 
           onChange={event => setFromCurrency(event.target.value)}>
-          <option value={''} disabled hidden>Choose Your From Currency</option>
+          <option value={''} disabled hidden>With This Currency</option>
           <option key={'USD'} value={'USD'}>{'USD'}</option>
           {investedCoinsElements}
         </select>
       </label>
       <section>
         <p>Exchange rate:</p>
-        <input 
+        <input placeholder="Exchange"
           type='number' 
           value={exchangeRate}
           readOnly={true} 

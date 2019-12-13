@@ -35,8 +35,8 @@ const CoinDetail = ({ match, investedCoins, watchList, handleClick, loadPortfoli
     <>
       <div className={styles.CoinDetail}>
         <div className={styles.Header}>
-          <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
           <img src={coinInfo.logo} />
+          <h1>You have {coin ? coin.amount : 0} {coinInfo.name}</h1>
           <button onClick={() => handleClick(watchList, match.params.id)}>{watchList.find(element => element.name === match.params.id) ? <img src={close} /> : <img src={add}/>} </button>
         </div>
         <form>

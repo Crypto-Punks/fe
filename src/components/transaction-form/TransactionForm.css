@@ -13,10 +13,15 @@
   border-radius: .3em;
 
   label {
+    display: flex;
     margin: 10px;
   
     input {
       margin: 10px;
+    }
+
+    select {
+      background-color: blue;
     }
   }
 }
@@ -28,5 +33,16 @@
     left: 0;
     width: 100vw;
     top: 4.461%;
+
+    label {
+
+      input {
+        width: 15vw;
+      }
+
+      select {
+        width: 15vw;
+      }
+    }
   }
 }
