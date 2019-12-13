@@ -66,9 +66,9 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
         setFromCurrencyMax(0);
         setToCurrency('');
         setToCurrencyAmount(0);
+        setTransactionValue(0);
         setToCurrencyMax(0);
         setExchangeRate(0);
-        setTransactionValue(0);
         handleSubmit(event, exchangeRate, toCurrency, toCurrencyAmount, fromCurrency, fromCurrencyAmount, investedCoins);
       }
       }>
