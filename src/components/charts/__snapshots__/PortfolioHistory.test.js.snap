@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PortfolioHistory component renders PortfolioHistory 1`] = `
+<Line
+  data={
+    Object {
+      "datasets": Array [
+        Object {
+          "data": Array [],
+          "label": "net worth",
+        },
+        Object {
+          "data": Array [],
+          "label": "trade history",
+        },
+      ],
+      "labels": Array [],
+    }
+  }
+  options={
+    Object {
+      "animation": Object {
+        "duration": 1000,
+        "easing": "linear",
+        "showlines": true,
+      },
+      "title": Object {
+        "display": true,
+        "text": "Portfolio History",
+      },
+    }
+  }
+/>
+`;
