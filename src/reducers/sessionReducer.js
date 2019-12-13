@@ -18,6 +18,7 @@ export default function reducer(state = initialState, action) {
     case SET_SESSION_LOADING_TRUE:
       return { ...state, loading: true, };
     case SET_SESSION_LOADING_FALSE:
+      console.log('ding')
       return { ...state, loading: false };
     case SET_SESSION:
       return { ...state, ...action.payload, loading: false, error: null };
