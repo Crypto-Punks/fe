@@ -55,7 +55,7 @@ const TransactionForm = ({ handleSubmit, currencies, investedCoins }) => {
       const max = fromCurrencyMax * exchangeRate;
       setToCurrencyMax(max);
     }
-  }, [toCurrencyAmount, fromCurrencyMax]);
+  }, [toCurrencyAmount, fromCurrencyMax, exchangeRate]);
 
   return (
     <form 
