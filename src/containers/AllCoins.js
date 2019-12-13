@@ -28,9 +28,9 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
   useEffect(() => {
     getTop100Currencies()
       .then(({ watchList, investedCoins, top100Coins }) => {
-        setWatchList(modifiedList(watchList, 'watched'));
-        setInvestedCoins(modifiedList(investedCoins, 'invested'));
-        setTop100Coins(modifiedCoinList(top100Coins, watchList, investedCoins));
+        setWatchList(watchList);
+        setInvestedCoins(investedCoins);
+        setTop100Coins(top100Coins);
       });
   }, [portfolioWatchList]);
 
@@ -50,7 +50,7 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
         <>
           <h1>Search Results</h1>
           {renderClearSearchButton(clearSearch)}
-          {renderCoinList(modifiedCoinList(searchedList, watchList, investedCoins), handleClick, portfolioWatchList)}
+          {renderCoinList(searchedList, handleClick, portfolioWatchList)}
         </>
         }
         <h1>Invested Coins</h1>
@@ -134,28 +134,3 @@ function renderClearSearchButton(clearSearch) {
   );
 }
 
-function modifiedCoinList(array, watchList, investedCoins) {
-  const lookup = array.reduce((acc, coin) => {
-    acc = {
-      ...acc,
-      [coin.id]: { ...coin, special: 'not' }
-    };
-    return acc;
-  }, {});
-
-  watchList.forEach(watchCoin => {
-    if(lookup[watchCoin.id]) lookup[watchCoin.id].special = 'watched';
-  });
-  investedCoins.forEach(investedCoin => {
-    if(lookup[investedCoin.id]) lookup[investedCoin.id].special = 'invested';
-  });
-
-  return Object.values(lookup);
-}
-
-function modifiedList(array, string) {
-  return array.map(item => {
-    item.special = string;
-    return item;
-  });
-}
