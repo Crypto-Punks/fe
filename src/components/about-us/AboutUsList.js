@@ -1,6 +1,5 @@
 import React from 'react';
 import Developer from './AboutUsItem';
-import { connect } from 'react-redux';
 import { developerData } from '../../developerData';
 
 const DeveloperList = () => {
@@ -15,4 +14,4 @@ const DeveloperList = () => {
 };
 
 
-export default connect()(DeveloperList);
+export default (DeveloperList);
