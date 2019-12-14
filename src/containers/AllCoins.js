@@ -16,7 +16,7 @@ import { getTop100Currencies } from '../services/currencies';
 
 import styles from './AllCoins.css';
 
-const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, handleSubmit, loadPortfolio, clearSearch, handleClick, searchedError }) => {
+const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, handleSearchSubmit, loadPortfolio, clearSearch, handleClick, searchedError }) => {
 
   const [watchList, setWatchList] = useState([]);
   const [investedCoins, setInvestedCoins] = useState([]);
@@ -66,7 +66,7 @@ const AllCoins = ({ portfolioInvestedCoins, portfolioWatchList, searchedList, ha
             {renderCoinList(watchList, handleClick, portfolioWatchList)}
           </>
         }
-        <CoinSearchForm handleSubmit={handleSubmit}/>
+        <CoinSearchForm handleSubmit={handleSearchSubmit}/>
         <h1>All Coins</h1>
         {renderCoinList(top100Coins, handleClick, portfolioWatchList, portfolioInvestedCoins)}
       </div>
@@ -86,7 +86,7 @@ AllCoins.propTypes = {
     price: PropTypes.string.isRequired,
     changePercent24Hr: PropTypes.string.isRequired
   })).isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  handleSearchSubmit: PropTypes.func.isRequired,
   clearSearch: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   loadPortfolio: PropTypes.func.isRequired,
@@ -105,7 +105,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleSubmit(event, query) {
+  handleSearchSubmit(event, query) {
     event.preventDefault();
     dispatch(getSearchedList(query));
   },
