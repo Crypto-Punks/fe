@@ -3,7 +3,6 @@ import { getSearchCall } from '../services/currencies';
 export const SET_SEARCHED_LIST = 'SET_SEARCHED_LIST';
 export const SET_SEARCHED_LIST_ERROR = 'SET_SEARCHED_LIST_ERROR';
 export const getSearchedList = query => dispatch => {
-
   getSearchCall(query)
     .then(coins => {
       if(coins.length === 0){
