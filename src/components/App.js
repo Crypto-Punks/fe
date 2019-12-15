@@ -43,7 +43,7 @@ export default function App() {
 
 function checkBrowser() {
   const ua = detect.parse(navigator.userAgent);
-  if(ua.browser.family === 'Safari') return true;
+  if(ua.browser.family === 'Safari' || ua.browser.family === 'Mobile Safari' ) return true;
 }
 
 const PrivateRoute = ({ ...rest }) => {
