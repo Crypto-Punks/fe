@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutUsItem component renders AboutUsItem 1`] = `
+<div>
+  <h1>
+    test
+  </h1>
+  <div
+    className="HeadShot"
+  >
+    <img
+      alt="test"
+      src="test"
+    />
+    <p>
+      test
+    </p>
+  </div>
+  <h2>
+    Spirit Animal: 
+    test
+  </h2>
+  <a
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    test's Website
+  </a>
+</div>
+`;

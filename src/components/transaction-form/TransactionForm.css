@@ -1,0 +1,76 @@
+.TransactionForm {
+  background-color:  rgba(67, 72, 79, 0.897);
+  border: none;
+  display: flex;
+  margin-bottom: 10%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 40%;
+  width: 100%;
+  z-index: 1;
+  color: white;
+  border-radius: .3em;
+
+  label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  
+    input {
+      margin: 10px;
+    }
+
+    select {
+      height: 2em;
+      background-color: #BF60A5;
+    }
+  }
+
+  section {
+    text-align: center;
+    width: 10vw;
+    margin: .3em;
+  }
+
+  button {
+    background-color: #BF60A5;
+    border-radius: .3em;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .TransactionForm {
+    height: 50%;
+    left: 0;
+    width: 100vw;
+    top: 4.461%;
+
+    label {
+
+      input {
+        width: 40vw;
+      }
+
+      select {
+        width: 45vw;
+      }
+    }
+
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+
+      input {
+        margin: 10px;
+        width: 40vw;
+        height: 1.5em;
+    }
+  }
+}
+}

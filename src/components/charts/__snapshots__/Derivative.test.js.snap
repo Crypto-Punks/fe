@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Derivative component renders Derivative 1`] = `
+<div
+  className="Derivative"
+>
+  <Line
+    data={
+      Object {
+        "datasets": Array [
+          Object {
+            "backgroundColor": "rgba(255, 0, 0, 0.2)",
+            "borderColor": "rgba(0, 0, 0, 0.2)",
+            "borderWidth": 0.5,
+            "data": Array [],
+            "label": "rate of change",
+          },
+        ],
+        "labels": Array [],
+      }
+    }
+    options={
+      Object {
+        "animation": Object {
+          "duration": 1000,
+          "easing": "linear",
+          "showlines": true,
+        },
+        "title": Object {
+          "display": true,
+          "text": "Derivative",
+        },
+      }
+    }
+  />
+</div>
+`;

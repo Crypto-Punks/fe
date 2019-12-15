@@ -1,0 +1,55 @@
+.NetWorth {
+  display: flex;
+  position: fixed;
+  width: 40%;
+  height: 7%;
+  left: 2%;
+  top: 5%;
+  flex-direction: row;
+  align-items: center;
+  z-index: 2;
+  
+  img {
+    width: 9%;
+    top: 10%;
+  }
+
+  p {
+    color: white;
+    font-family: abolition, sans-serif;
+    font-size: 15pt;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 3px;
+    top: 10%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .NetWorth {
+    position: fixed;
+    background-color: rgba(67, 72, 79, 0.897);
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .NetWorth {
+    position: fixed;
+    background-color: rgba(67, 72, 79, 0.897);
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border: none;
+
+    p {
+      font-size: 6pt;
+    }
+  }
+}
+

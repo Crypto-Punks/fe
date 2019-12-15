@@ -1,0 +1,37 @@
+.AllCoins {
+  margin-top: 15%;
+  position: absolute;
+  width: 100%;
+  
+  h1 {
+    text-align: left;
+    margin-left: 30em;
+    margin-bottom: 0;
+    color: white;
+    font-family: abolition, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 10pt;
+    letter-spacing: .4em;
+  }
+
+.ClearButton {
+  color: Red;
+  position: absolute;
+}
+}
+
+@media (max-width: 500px) {
+
+  .AllCoins {
+
+    h1{
+      margin-left: 3em;
+    }
+
+    .ClearButton {
+      top: 0;
+      left: 4%;
+    }
+  }
+}
