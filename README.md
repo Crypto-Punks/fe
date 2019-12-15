@@ -40,5 +40,7 @@ available via `npm run-script`:
 ToDo: 
 make $ not change css on hover
 change asset list to have a header saying assets, and include watch list (both on transaction page and on portfolio page)
+search delete button
+fix refresh and back
 see more info on portfolio history chart?
 change scope of graph on portfolio history chart?
