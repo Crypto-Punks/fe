@@ -35,3 +35,10 @@ available via `npm run-script`:
 
 #### UML
 [wireframes](src/images/crypto-trades-wireframes.jpg)
+
+
+ToDo: 
+make $ not change css on hover
+change asset list to have a header saying assets, and include watch list (both on transaction page and on portfolio page)
+see more info on portfolio history chart?
+change scope of graph on portfolio history chart?
