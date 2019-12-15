@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { sessionSignOut } from '../actions/sessionActions';
+import { safariSessionSignOut } from '../actions/safariSessionActions';
+import { safari } from '../components/App';
+
 import exitIcon from '../images/exitIcon.png';
 import styles from './SignOut.css';
 
@@ -21,7 +24,8 @@ SignOut.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   signOut() {
-    dispatch(sessionSignOut());
+    if(safari()) dispatch(safariSessionSignOut());
+    if(!safari()) dispatch(sessionSignOut());
   }
 });
 

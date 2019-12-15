@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import UserForm from '../components/user/UserForm';
 
 import { sessionLogIn, clearSessionError } from '../actions/sessionActions';
+import { safariSessionLogIn } from '../actions/safariSessionActions';
+import { safari } from '../components/App';
 import { getSessionError } from '../selectors/sessionSelectors';
 
 const mapStateToProps = state => ({
@@ -14,7 +16,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleSubmit(event, username, password) {
     event.preventDefault();
-    dispatch(sessionLogIn(username, password));
+    if(safari()) dispatch(safariSessionLogIn(username, password));
+    if(!safari()) dispatch(sessionLogIn(username, password));
   },
   handleClearError() {
     dispatch(clearSessionError());
