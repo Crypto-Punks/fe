@@ -9,7 +9,7 @@ import CoinList from '../components/coin-summary/CoinList';
 
 import { getPortfolio } from '../actions/portfolioActions';
 import { SET_OPEN_MENU_FALSE } from '../actions/menuActions';
-import { getPortfolioInvestedCoins, getWatchList } from '../selectors/portfolioSelectors';
+import { getPortfolioInvestedCoins, getPortfolioWatchList } from '../selectors/portfolioSelectors';
 import { getPortfolioLists } from '../services/currencies';
 
 import PortfolioHistory from '../components/charts/PortfolioHistory';
@@ -68,13 +68,13 @@ Portfolio.propTypes = {
   portfolioWatchList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     id: PropTypes.isRequired,
-  })),
+  })).isRequired,
   loadPortfolio: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   portfolioInvestedCoins: getPortfolioInvestedCoins(state),
-  portfolioWatchList: getWatchList(state)
+  portfolioWatchList: getPortfolioWatchList(state)
 });
 
 const mapDispatchToProps = dispatch => ({

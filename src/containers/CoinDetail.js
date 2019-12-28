@@ -8,7 +8,7 @@ import Derivative from '../components/charts/Derivative';
 import PriceHistory from '../components/charts/PriceHistory';
 
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
-import { getPortfolioInvestedCoins, getWatchList } from '../selectors/portfolioSelectors';
+import { getPortfolioInvestedCoins, getPortfolioWatchList } from '../selectors/portfolioSelectors';
 import { getCoinInfoById } from '../services/currencies';
 
 import styles from './CoinDetail.css';
@@ -78,7 +78,7 @@ CoinDetail.propTypes = {
 
 const mapStateToProps = state => ({
   investedCoins: getPortfolioInvestedCoins(state),
-  watchList: getWatchList(state)
+  watchList: getPortfolioWatchList(state)
 });
 
 const mapDispatchToProps = dispatch => ({

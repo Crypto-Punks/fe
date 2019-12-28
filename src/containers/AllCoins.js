@@ -11,7 +11,7 @@ import { getSearchedList, CLEAR_SEARCHED_LIST } from '../actions/coinsActions';
 import { toggleWatchList, getPortfolio } from '../actions/portfolioActions';
 import { SET_OPEN_MENU_FALSE } from '../actions/menuActions';
 import { getStateSearchedList, getSearchedError } from '../selectors/coinsSelectors';
-import { getWatchList, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
+import { getPortfolioWatchList, getPortfolioInvestedCoins } from '../selectors/portfolioSelectors';
 import { getTop100Currencies } from '../services/currencies';
 
 import styles from './AllCoins.css';
@@ -99,7 +99,7 @@ AllCoins.propTypes = {
 
 const mapStateToProps = state => ({
   portfolioInvestedCoins: getPortfolioInvestedCoins(state),
-  portfolioWatchList: getWatchList(state),
+  portfolioWatchList: getPortfolioWatchList(state),
   searchedList: getStateSearchedList(state),
   searchedError: getSearchedError(state)
 });
