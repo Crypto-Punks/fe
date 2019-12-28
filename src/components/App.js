@@ -22,8 +22,15 @@ import AboutUs from '../components/about-us/AboutUsList';
 
 export default function App() {
   // eslint-disable-next-line react/no-unescaped-entities
-  if(checkBrowser()) return <h1>Crypto Trades does not support currently Safari. We are actively working towards full compatibility. In the mean time, please use Chrome or Firefox. Sorry for the inconvenience.</h1>;
-
+  if(checkBrowser()) {
+    return (<h1>
+      Crypto Trades does not support currently Safari. 
+    We are actively working towards full compatibility. 
+    In the mean time, please use Chrome or Firefox. 
+    Sorry for the inconvenience.
+    </h1>
+    );
+  }
   return (
     <Router>
       <Switch>
