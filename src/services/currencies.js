@@ -7,8 +7,6 @@ export const getAllCurrencyIds = () => get(`${CURRENCY_URL}/all-ids`);
 
 export const getTop100Currencies = () => get(`${CURRENCY_URL}/100`);
 
-export const getInvestedList = () => get(`${CURRENCY_URL}/invested`);
-
 export const getPortfolioLists = () => get(`${CURRENCY_URL}/portfolio-lists`);
 
 export const getCoinInfoById = (id) => get(`${CURRENCY_URL}/info/${id}`);
