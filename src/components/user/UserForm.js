@@ -15,30 +15,32 @@ const UserForm = ({ buttonText, redirectText, redirectLink, error, handleSubmit,
 
   return (
     <>
-      <div className={styles.Header}></div>
-      <div className={styles.Container}>
-        {error && <span>{error}</span>}
-        <Link 
-          to={redirectLink} 
-          onClick={() => handleClearError()}>
-          {redirectText}
-        </Link>
-        <form onSubmit={event => handleSubmit(event, username, password)} className={styles.Form}>
-          <input 
-            type="text" 
-            value={username} 
-            onChange={({ target }) => setUsername(target.value)} 
-            placeholder="Username" 
-          />
-          <input 
-            type="password" 
-            value={password} 
-            onChange={({ target }) => setPassword(target.value)} 
-            placeholder="Password" 
-          />
-          <button>{buttonText}</button>
-        </form>
-      </div>
+      <main className={styles.main}>
+        <div className={styles.Header}></div>
+        <div className={styles.Container}>
+          {error && <span>{error}</span>}
+          <Link 
+            to={redirectLink} 
+            onClick={() => handleClearError()}>
+            {redirectText}
+          </Link>
+          <form onSubmit={event => handleSubmit(event, username, password)} className={styles.Form}>
+            <input 
+              type="text" 
+              value={username} 
+              onChange={({ target }) => setUsername(target.value)} 
+              placeholder="Username" 
+            />
+            <input 
+              type="password" 
+              value={password} 
+              onChange={({ target }) => setPassword(target.value)} 
+              placeholder="Password" 
+            />
+            <button>{buttonText}</button>
+          </form>
+        </div>
+      </main>
       <AboutUsMenu />
     </>
   );
