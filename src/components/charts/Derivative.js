@@ -39,7 +39,7 @@ const Derivative = ({ id, derivativeDuration }) => {
         data={{ 
           labels: intervals, 
           datasets: [{ 
-            label: '% change', 
+            label: 'rate of change', 
             data: derivativeArray, 
             backgroundColor: 'rgba(255, 0, 0, 0.2)',
             borderWidth: .5,
